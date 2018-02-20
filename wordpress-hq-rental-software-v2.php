@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name:  HQ Rental
+Plugin Name:  HQ Rental Wordpress Integration
 Plugin URI:   https://hqrentalsoftware.com
 Description:  HQ Rental Software Wordpress Integration
 Version:      0.0.1
@@ -13,18 +13,25 @@ Text Domain:  hq-rental-wp-plugin-v2
 /*
  * Plugin Settings Variables
  */
-define('HQ_RENTAL_WPV2_USER_TOKEN','hq_rental_wpv2_user_token');
-define('HQ_RENTAL_WPV2_TENANT_TOKEN','hq_rental_wpv2_tenant_token');
-define('CAAG_HQ_RENTAL_DATE_FORMAT','hq_rental_wpv2_date_format');
-define('HQ_RENTA_WPV2_CUSTOM_POST_TYPE','hq_rental_wpv2_forms');
-define('HQ_RENTA_WPV2_API_GET_CALLS','https://api.caagcrm.com/api/fleets/brands');
+define('HQ_RENTAL_WPV2_USER_TOKEN', 'hq_rental_wpv2_user_token');
+define('HQ_RENTAL_WPV2_TENANT_TOKEN', 'hq_rental_wpv2_tenant_token');
+define('HQ_RENTAL_WPV2_DATE_FORMAT', 'hq_rental_wpv2_date_format');
+
+/*
+ *  Require Files 
+ */
+
+require_once ('setup/init.php');
+require_once ('assets/assets.php');
+require_once ('utils/admin.php');
+require_once ('admin/settings.php');
 
 function hq_rental_wpv2_activation()
 {
-	// In case of V1 plugin is setup load credentials
-	if(){
-
-	}
+	//hq_rental_wpv2_init();
+	update_option( HQ_RENTAL_WPV2_USER_TOKEN, '' );
+	//update_option( HQ_RENTAL_WPV2_TENANT_TOKEN, '' );
+	//update_option( HQ_RENTAL_WPV2_DATE_FORMAT, 'YYYY/MM/DD');
 }
 register_activation_hook( __FILE__ , 'hq_rental_wp_v2_activation' );
 
