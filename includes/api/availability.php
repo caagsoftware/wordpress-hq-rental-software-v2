@@ -2,7 +2,7 @@
 
 
 
-function hq_rental_wpv2_check_availability($vars)
+function hq_rental_wpv2_api_check_availability($vars)
 {
 	$query_string = hq_rental_wpv2_get_query_string($vars);
 	$header = hq_rental_wpv2_get_header();

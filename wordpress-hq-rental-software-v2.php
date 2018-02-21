@@ -21,12 +21,11 @@ define('HQ_RENTAL_WPV2_DATE_FORMAT', 'hq_rental_wpv2_date_format');
  *  Require Files 
  */
 
-require_once ('setup/init.php');
-require_once ('assets/assets.php');
-require_once ('utils/init.php');
-require_once ('admin/settings.php');
+
+require_once ('assets/init.php');
+require_once ('includes/admin/init.php');
 require_once ('includes/api/init.php');
-require_once ('includes/setup/init.php');
+require_once ('includes/shortcodes/init.php');
 //Check why doesnt create options on activation
 add_option(HQ_RENTAL_WPV2_USER_TOKEN, '');
 add_option(HQ_RENTAL_WPV2_TENANT_TOKEN, '');
