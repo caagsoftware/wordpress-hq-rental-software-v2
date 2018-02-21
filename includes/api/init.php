@@ -3,7 +3,7 @@
  *	Define url Request for Caag Api
  *
  */
-define('HQ_RENTAL_WPV2_CHECK_AVAILABILITY_ACTION','https://api.caagcrm.comapi/car-rental/availability?');
+define('HQ_RENTAL_WPV2_CHECK_AVAILABILITY_ACTION','https://api.caagcrm.com/api/car-rental/availability?');
 
 /*
  * Components from Api Module

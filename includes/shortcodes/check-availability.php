@@ -1,12 +1,44 @@
 <?php
 
 function hq_rental_wpv2_check_availability_shortcode()
-{
-	$api = hq_rental_wpv2_api_check_availability();
-	var_dump($api);
-	?>
-		<form method="POST" action="" accept-charset="UTF-8" id="availability-check-form" class="prevent-submit-by-enter AVAST_PAM_nonloginform">
-		   <input name="_token" type="hidden" value="2Bw5xlV8czff7jFzH7KWr88lydAVhexfrDQcUsEf">
+{	
+	if(!empty( $_POST )){
+		$cars = hq_rental_wpv2_api_check_availability($_POST);
+		foreach($cars as $car){
+			$new_car = $car->vehicle_class;
+			?>
+				<div class="row">
+				   <div class="col-md-3 col-sm-3 col-xs-12">
+				      <img src="<?php echo $new_car->public_image_link; ?>" class="img-responsive">
+				   </div>
+				   <div class="col-md-6 col-sm-6 col-xs-12">
+				      <h4 class="no-margin-top">
+				         <?php echo $new_car->name; ?>
+				      </h4>
+				   </div>
+				   <div class="col-md-3 col-sm-3 col-xs-12">
+				      <div class="panel panel-default no-margin-bottom">
+				         <div class="panel-heading text-right" style="padding-top: 1px;padding-left: 10px;padding-right: 10px;">
+				            <h6>
+				               Excl. taxes &amp; insurance(s)
+				            </h6>
+				            <h5 style="font-size: 13px;">
+				               <a class="modal-open" data-modal_nowrap="yes" href="#" data-url="https://migueltrial.caagcrm.com/car-rental/reservations/debug-availability?vehicle_class_id=1">
+				               Available Cars                <?php echo $new_car->available_quantity->quantity; ?>
+				               </a>
+				            </h5>
+				            <button type="submit" name="vehicle_class_id" value="1" class="btn btn-success">
+				            Continue
+				            </button>
+				         </div>
+				      </div>
+				   </div>
+				</div>
+			<?php
+		}
+	}else{
+		?>
+			<form method="POST" action="" accept-charset="UTF-8" id="availability-check-form" class="prevent-submit-by-enter AVAST_PAM_nonloginform">
 		   <div class="osections section-edit" style="display:block">
 		      <div class="appform container-fluid">
 		         <div class="row">
@@ -67,6 +99,9 @@ function hq_rental_wpv2_check_availability_shortcode()
 		      </div>
 		   </div>
 		</form>
-	<?php
+		<?php
+	}
+	
+	
 }
 add_shortcode('hq_rental_wp_availability','hq_rental_wpv2_check_availability_shortcode');

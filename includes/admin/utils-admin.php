@@ -3,7 +3,7 @@
 function hq_rental_wpv2_save_settings($options)
 {
     update_option(HQ_RENTAL_WPV2_USER_TOKEN, $options[HQ_RENTAL_WPV2_USER_TOKEN]);
-    update_option(HHQ_RENTAL_WPV2_TENANT_TOKEN, $options[HQ_RENTAL_WPV2_TENANT_TOKEN]);
+    update_option(HQ_RENTAL_WPV2_TENANT_TOKEN, $options[HQ_RENTAL_WPV2_TENANT_TOKEN]);
     update_option(HQ_RENTAL_WPV2_DATE_FORMAT, $options[HQ_RENTAL_WPV2_DATE_FORMAT]);
 }
 
