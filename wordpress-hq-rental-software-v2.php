@@ -23,15 +23,21 @@ define('HQ_RENTAL_WPV2_DATE_FORMAT', 'hq_rental_wpv2_date_format');
 
 require_once ('setup/init.php');
 require_once ('assets/assets.php');
-require_once ('utils/admin.php');
+require_once ('utils/init.php');
 require_once ('admin/settings.php');
-
+require_once ('includes/api/init.php');
+require_once ('includes/setup/init.php');
+//Check why doesnt create options on activation
+add_option(HQ_RENTAL_WPV2_USER_TOKEN, '');
+add_option(HQ_RENTAL_WPV2_TENANT_TOKEN, '');
+add_option(HQ_RENTAL_WPV2_DATE_FORMAT, 'yyyy-mm-dd');
 function hq_rental_wpv2_activation()
 {
-	//hq_rental_wpv2_init();
-	update_option( HQ_RENTAL_WPV2_USER_TOKEN, '' );
-	//update_option( HQ_RENTAL_WPV2_TENANT_TOKEN, '' );
-	//update_option( HQ_RENTAL_WPV2_DATE_FORMAT, 'YYYY/MM/DD');
+	//Do nothing
+    /*
+    add_option(HQ_RENTAL_WPV2_USER_TOKEN, '');
+    add_option(HQ_RENTAL_WPV2_TENANT_TOKEN, '');
+    add_option(HQ_RENTAL_WPV2_DATE_FORMAT, 'yyyy-mm-dd');*/
 }
 register_activation_hook( __FILE__ , 'hq_rental_wp_v2_activation' );
 
