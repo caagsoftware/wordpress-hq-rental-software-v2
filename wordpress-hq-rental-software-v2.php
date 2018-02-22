@@ -17,19 +17,26 @@ define('HQ_RENTAL_WPV2_USER_TOKEN', 'hq_rental_wpv2_user_token');
 define('HQ_RENTAL_WPV2_TENANT_TOKEN', 'hq_rental_wpv2_tenant_token');
 define('HQ_RENTAL_WPV2_DATE_FORMAT', 'hq_rental_wpv2_date_format');
 
+
+/*
+ *
+ *
+ */
+define('HQ_RENTAL_WPV2_BASE_FILE', __FILE__);
+define('HQ_RENTAL_WPV2_BASE_DIR', dirname(HQ_RENTAL_WPV2_BASE_FILE));
 /*
  *  Require Files 
  */
-
-
 require_once ('assets/init.php');
 require_once ('includes/admin/init.php');
 require_once ('includes/api/init.php');
 require_once ('includes/shortcodes/init.php');
+require_once('includes/templates/init.php');
+
 //Check why doesnt create options on activation
 add_option(HQ_RENTAL_WPV2_USER_TOKEN, '');
 add_option(HQ_RENTAL_WPV2_TENANT_TOKEN, '');
-add_option(HQ_RENTAL_WPV2_DATE_FORMAT, 'yyyy-mm-dd');
+
 function hq_rental_wpv2_activation()
 {
 	//Do nothing
@@ -46,3 +53,5 @@ function hq_rental_wpv2_deactivation()
 	// Do nothing
 }
 register_deactivation_hook(__FILE__,'caag_hq_rental_deactivation');
+
+
