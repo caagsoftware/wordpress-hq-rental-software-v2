@@ -39,19 +39,28 @@ require_once ('includes/shortcodes/init.php');
 require_once('includes/templates/init.php');
 require_once ('includes/activation.php');
 
-//Check why doesn't create options on activation
-add_option(HQ_RENTAL_WPV2_USER_TOKEN, '');
-add_option(HQ_RENTAL_WPV2_TENANT_TOKEN, '');
+
 
 function hq_rental_wpv2_activation()
 {
+    hq_rental_wpv2_create_settings_data();
 	hq_rental_wpv2_create_system_pages();
 }
-register_activation_hook( __FILE__ , 'hq_rental_wp_v2_activation' );
+register_activation_hook( __FILE__ , 'hq_rental_wpv2_activation' );
 
 
 function hq_rental_wpv2_deactivation()
 {
 	// Do nothing
 }
-register_deactivation_hook(__FILE__,'caag_hq_rental_deactivation');
+register_deactivation_hook(__FILE__,'hq_rental_wpv2_deactivation');
+
+/*
+function tl_save_error() {
+    update_option( 'plugin_error',  ob_get_contents() );
+}
+add_action( 'activated_plugin', 'tl_save_error' );
+/* Then to display the error message: */
+//echo get_option( 'plugin_error' );
+/* Or you could do the following: */
+//file_put_contents( 'C:\errors' , ob_get_contents() ); // or any suspected variable*/
