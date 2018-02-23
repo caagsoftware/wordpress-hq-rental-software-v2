@@ -2,9 +2,10 @@
     global $post;
     get_header();
     wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
+    wp_enqueue_script('hq_rental_wpv2_app_init');
     ?>
     <div id="main">
-        <div class="container">
+        <div class="container stm-reservation-archive hq-rental-reservation-wrapper">
             <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding" style="position: relative; left: -221.5px; box-sizing: border-box; width: 1583px;">
                 <div class="wpb_column vc_column_container vc_col-sm-12">
                     <div class="vc_column-inner ">
@@ -109,11 +110,6 @@
                                                 <i class="stm-service-icon-pin"></i>
                                                 <select name="pickup_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                     <option value="">Choose office</option>
-                                                    <option value="486">Arlington Heights</option>
-                                                    <option value="485">Downtown</option>
-                                                    <option value="484">West Hollywood</option>
-                                                    <option value="99">Hollywood</option>
-                                                    <option value="98">Koreatown</option>
                                                 </select>
                                                 <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-pickup_location-wo-container"><span class="select2-selection__rendered" id="select2-pickup_location-wo-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                             </div>
@@ -123,7 +119,7 @@
                                             </label>
                                             <div class="stm_date_time_input">
                                                 <h4 class="stm_form_title">Pick-up Date/Time*</h4>
-                                                <div class="stm_date_input"> <input type="text" value="" class="stm-date-timepicker-start" name="pickup_date" placeholder="Pickup Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                                                <div class="stm_date_input"> <input type="text" id="hq-rental-pick-up-date" value="" class="stm-date-timepicker-start" name="pickup_date" placeholder="Pickup Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
                                             </div>
                                         </div>
                                         <h4>Return</h4>
@@ -134,18 +130,13 @@
                                                     <i class="stm-service-icon-pin"></i>
                                                     <select name="drop_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                         <option value="">Choose office</option>
-                                                        <option value="486">Arlington Heights</option>
-                                                        <option value="485">Downtown</option>
-                                                        <option value="484">West Hollywood</option>
-                                                        <option value="99">Hollywood</option>
-                                                        <option value="98">Koreatown</option>
                                                     </select>
                                                     <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-drop_location-38-container"><span class="select2-selection__rendered" id="select2-drop_location-38-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                                 </div>
                                             </div>
                                             <div class="stm_date_time_input">
                                                 <h4 class="stm_form_title">Drop Date/Time*</h4>
-                                                <div class="stm_date_input"> <input type="text" class="stm-date-timepicker-end" name="return_date" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                                                <div class="stm_date_input"> <input type="text" class="stm-date-timepicker-end" id="hq-rental-return-date" name="return_date" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
                                             </div>
                                         </div>
                                         <button type="submit">Continue reservation</button>
