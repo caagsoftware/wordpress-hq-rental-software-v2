@@ -1,7 +1,6 @@
 <?php
     if(hq_rental_wpv2_is_coming_from_step_2($_POST)){
-        $available_charges = hq_rental_wpv2_get_available_charges_step_3($_POST);
-        var_dump($available_charges);
+        $additional_charges = hq_rental_wpv2_get_available_charges_step_3($_POST)->additional_charges;
     }else{
         wp_redirect('/reservation-step-1');
     }
@@ -80,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <style></style>
+
             <div class="stm-reservation-archive">
                 <div class="container">
                     <div class="row">
@@ -98,152 +97,38 @@
                                             <div class="clear"></div>
                                         </form>
                                     </div>
-                                    <script></script>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-7">
-                                    <div class="stm_rental_options_archive">
-                                        <div class="stm_rental_option">
-                                            <div class="image"> <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></div>
-                                            <div class="stm_rental_option_content">
-                                                <div class="content">
-                                                    <div class="title">
-                                                        <h4>Loss damage waiver</h4>
+                                    <form action="/reservation-step-4" method="post">
+                                        <?php foreach ($additional_charges as $charge): ?>
+                                            <div class="stm_rental_options_archive">
+                                                <div class="stm_rental_option">
+                                                    <div class="image">
+                                                        <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
                                                     </div>
-                                                    <div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>
-                                                </div>
-                                                <div class="meta">
-                                                    <div class="price">
-                                                        <div class="empty_sale_price"></div>
-                                                        <div class="current_price heading-font"></div>
+                                                    <div class="stm_rental_option_content">
+                                                        <div class="content">
+                                                            <div class="title">
+                                                                <h4><?php echo $charge->name; ?></h4>
+                                                            </div>
+                                                            <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
+                                                        </div>
+                                                        <div class="meta">
+                                                            <div class="price">
+                                                                <div class="empty_sale_price"></div>
+                                                                <div class="current_price heading-font"></div>
+                                                            </div>
+                                                            <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=208"> Add </a></div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
                                                     </div>
-                                                    <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=208"> Add </a></div>
                                                 </div>
-                                                <div class="clearfix"></div>
-                                                <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="stm_rental_options_archive">
-                                        <div class="stm_rental_option">
-                                            <div class="image"> <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/handicap.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></div>
-                                            <div class="stm_rental_option_content">
-                                                <div class="content">
-                                                    <div class="title">
-                                                        <h4>Handicap controls</h4>
-                                                    </div>
-                                                    <div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>
-                                                </div>
-                                                <div class="meta">
-                                                    <div class="price">
-                                                        <div class="empty_sale_price"></div>
-                                                        <div class="current_price heading-font"></div>
-                                                    </div>
-                                                    <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=207"> Add </a></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="stm_rental_options_archive">
-                                        <div class="stm_rental_option">
-                                            <div class="image"> <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/insurance.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></div>
-                                            <div class="stm_rental_option_content">
-                                                <div class="content">
-                                                    <div class="title">
-                                                        <h4>Super Protective Insurance</h4>
-                                                    </div>
-                                                    <div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>
-                                                </div>
-                                                <div class="meta">
-                                                    <div class="price">
-                                                        <div class="sale_price"></div>
-                                                        <div class="current_price heading-font"></div>
-                                                    </div>
-                                                    <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=204"> Add </a></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="stm_rental_options_archive">
-                                        <div class="stm_rental_option">
-                                            <div class="image"> <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/driver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></div>
-                                            <div class="stm_rental_option_content">
-                                                <div class="content">
-                                                    <div class="title">
-                                                        <h4>Additional Driver</h4>
-                                                    </div>
-                                                    <div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>
-                                                </div>
-                                                <div class="meta">
-                                                    <div class="quantity">
-                                                        <input type="text" step="1" min="0" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4">
-                                                        <div class="quantity_actions"> <span class="plus">+</span> <span class="minus">-</span></div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="empty_sale_price"></div>
-                                                        <div class="current_price heading-font"></div>
-                                                    </div>
-                                                    <div class="stm-add-to-cart heading-font stm-manage-stock-yes"> <a href="/rent-a-car/product/economy/?add-to-cart=203"> Add </a></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="stm_rental_options_archive">
-                                        <div class="stm_rental_option">
-                                            <div class="image"> <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/wifi.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></div>
-                                            <div class="stm_rental_option_content">
-                                                <div class="content">
-                                                    <div class="title">
-                                                        <h4>Navigation System</h4>
-                                                    </div>
-                                                    <div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>
-                                                </div>
-                                                <div class="meta">
-                                                    <div class="price">
-                                                        <div class="empty_sale_price"></div>
-                                                        <div class="current_price heading-font"></div>
-                                                    </div>
-                                                    <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=200"> Add </a></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="stm_rental_options_archive">
-                                        <div class="stm_rental_option">
-                                            <div class="image"> <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/opt.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt=""></div>
-                                            <div class="stm_rental_option_content">
-                                                <div class="content">
-                                                    <div class="title">
-                                                        <h4>Child Seat</h4>
-                                                    </div>
-                                                    <div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>
-                                                </div>
-                                                <div class="meta">
-                                                    <div class="quantity">
-                                                        <input type="text" step="1" min="0" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4">
-                                                        <div class="quantity_actions"> <span class="plus">+</span> <span class="minus">-</span></div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="sale_price"></div>
-                                                        <div class="current_price heading-font"></div>
-                                                    </div>
-                                                    <div class="stm-add-to-cart heading-font stm-manage-stock-yes"> <a href="/rent-a-car/product/economy/?add-to-cart=191"> Add </a></div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <script></script>
+                                        <?php endforeach; ?>
+                                    </form>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="stm_rent_order_info">
