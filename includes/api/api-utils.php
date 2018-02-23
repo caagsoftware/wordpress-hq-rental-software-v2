@@ -32,3 +32,13 @@ function hq_rental_wpv2_get_query_string_availability($data)
 {
 	return HQ_RENTAL_WPV2_CHECK_AVAILABILITY_ACTION . 'start_date='. $data['pick_up_date'] . ' ' . $data['pick_up_time'] . '&end_date=' . $data['return_date'] . ' ' . $data['return_time'];
 }
+
+
+function hq_rental_wpv2_response_handler($response)
+{
+    if(is_wp_error($response)){
+        return array('errors'   =>  true, 'message' => $response->get_error_message());
+    }else{
+        return json_decode($response['body']    );
+    }
+}

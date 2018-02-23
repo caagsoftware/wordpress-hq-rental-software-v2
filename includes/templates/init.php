@@ -1,7 +1,6 @@
 <?php
-
-
 define('HQ_RENTAL_WPV2_IS_HQ_PAGE_META','hq_rental_wpv2_is_hq_rental_page');
+require_once('templates-utils.php');
 /*
  * Manage the Template Display
  * Overrides behavior for Template Display

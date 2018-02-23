@@ -1,4 +1,11 @@
 <?php
+
+    if(hq_rental_wpv2_is_coming_from_step_1()){
+        $cars_availability = hq_rental_wpv2_get_availability_step_2($_POST);
+    }else{
+        wp_redirect('/reservation-step-1');
+        exit;
+    }
     get_header();
     wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
     wp_enqueue_script('hq_rental_wpv2_app_init');
