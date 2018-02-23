@@ -46,8 +46,7 @@ function hq_rental_wpv2_response_handler($response)
 
 function hq_rental_wpv2_get_query_string_availability_step_2($post_data)
 {
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq-rental-pick-up-date-time']);
+    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_pick_up_date_time']);
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_return_date_time']);
-    return HQ_RENTAL_WPV2_CHECK_AVAILABILITY_STEP_2_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '?pick_up_time=' . $pick_up_date->toTimeString() . 'return_date=' . $return_date->toDateString() . '?return_time=' . $return_date->toTimeString() . '?brand=' . $post_data['brand_id'];
-
+    return HQ_RENTAL_WPV2_CHECK_AVAILABILITY_STEP_2_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '&pick_up_time=' . $pick_up_date->format('H:i') . '&return_date=' . $return_date->toDateString() . '&return_time=' . $return_date->format('H:i') . '&brand=' . $post_data['brand_id'] . '&pick_up_location=' . $post_data['hq_rental_pick_up_location'] .'&return_location=' . $post_data['hq_rental_return_location'] ;
 }
