@@ -1,6 +1,7 @@
 <?php
     global $post;
     get_header();
+    $locations = hq_rental_wpv2_api_get_locations_step_1()->fleets_locations;
     wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
     wp_enqueue_script('hq_rental_wpv2_app_init');
     ?>
@@ -13,7 +14,7 @@
                             <div class=" vc_custom_1485249035889">
                                 <div class="stm-fullwidth-with-parallax-bg" style=" background-image: url(<?php echo get_the_post_thumbnail_url($post->ID); ?>); ">
                                     <div class="container">
-                                        <div class="stm_wizard_title heading-font"> Reservation</div>
+                                        <div class="stm_wizard_title heading-font">Reservation</div>
                                         <div class="row">
                                             <div class="col-md-4 col-sm-12">
                                                 <div class="stm_nav_wizard_step stm_nav_wizard_step_1">
@@ -102,16 +103,19 @@
                         <div class="wpb_wrapper">
                             <div class="stm_rent_car_form_wrapper style_2 text-left ">
                                 <div class="stm_rent_car_form">
-                                    <form action="/reservation-step-1/" method="get">
+                                    <form action="/reservation-step-2/" method="post">
+                                        <input type="hidden" name="brand_id" value="<?php echo $locations[0]->brand_id; ?>">
                                         <h4>Pick Up</h4>
                                         <div class="stm_rent_form_fields">
                                             <h4 class="stm_form_title">Place to pick up the Car*</h4>
                                             <div class="stm_pickup_location">
                                                 <i class="stm-service-icon-pin"></i>
-                                                <select name="pickup_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                <select name="hq_rental_pick_up_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                     <option value="">Choose office</option>
+                                                    <?php foreach ($locations as $location): ?>
+                                                        <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
-                                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-pickup_location-wo-container"><span class="select2-selection__rendered" id="select2-pickup_location-wo-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                             </div>
                                             <label>
                                                 <div class="checker"><span class="checked"><input type="checkbox" name="return_same" checked=""></span></div>
@@ -119,7 +123,7 @@
                                             </label>
                                             <div class="stm_date_time_input">
                                                 <h4 class="stm_form_title">Pick-up Date/Time*</h4>
-                                                <div class="stm_date_input"> <input type="text" id="hq-rental-pick-up-date" value="" class="stm-date-timepicker-start" name="pickup_date" placeholder="Pickup Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                                                <div class="stm_date_input"> <input type="text" id="hq-rental-pick-up-date-time" value="" class="stm-date-timepicker-start" name="hq_rental_pick_up_date_time" placeholder="Pickup Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
                                             </div>
                                         </div>
                                         <h4>Return</h4>
@@ -128,22 +132,23 @@
                                                 <h4 class="stm_form_title">Place to drop the Car*</h4>
                                                 <div class="stm_pickup_location stm_drop_location">
                                                     <i class="stm-service-icon-pin"></i>
-                                                    <select name="drop_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                    <select name="hq_rental_return_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                         <option value="">Choose office</option>
+                                                        <?php foreach ($locations as $location): ?>
+                                                            <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                                                        <?php endforeach; ?>
                                                     </select>
-                                                    <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-drop_location-38-container"><span class="select2-selection__rendered" id="select2-drop_location-38-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                                 </div>
                                             </div>
                                             <div class="stm_date_time_input">
                                                 <h4 class="stm_form_title">Drop Date/Time*</h4>
-                                                <div class="stm_date_input"> <input type="text" class="stm-date-timepicker-end" id="hq-rental-return-date" name="return_date" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                                                <div class="stm_date_input"> <input type="text" class="stm-date-timepicker-end" id="hq-rental-return-date-time" name="hq_rental_return_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
                                             </div>
                                         </div>
                                         <button type="submit">Continue reservation</button>
                                     </form>
                                 </div>
                             </div>
-                            <script></script>
                         </div>
                     </div>
                 </div>

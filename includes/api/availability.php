@@ -1,7 +1,5 @@
 <?php
 
-
-
 function hq_rental_wpv2_api_check_availability($vars)
 {
 	$query_string = hq_rental_wpv2_get_query_string($vars);

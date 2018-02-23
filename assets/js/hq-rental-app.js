@@ -18,20 +18,23 @@
         $('.stm_pickup_location select').on('select2:close', function(){
             $('body').removeClass('stm_background_overlay');
         });
-
+        $('#hq_rental_pick_up_location').change(function(){
+            $('#hq_rental_return_location').val($('#hq_rental_pick_up_location').val());
+        });
+/*      $()
         $('.stm_date_time_input input').on('change', function(){
             if($(this).val() == '') {
                 $(this).removeClass('active');
             } else {
                 $(this).addClass('active');
             }
-        });
-
+        });*/
+/*
         $(document).on('mouseover', '.stm_rent_location .select2-results__options li', function(){
             var currentLi = ($(this).index()) - 1;
             $('.stm_rent_location .stm_locations_description').remove();
             $('.stm_rent_location').append(contents[currentLi]);
-        });
+        });*/
 
 
         /*Timepicker*/
@@ -45,7 +48,7 @@
 
 
 
-        $('#hq-rental-pick-up-date').stm_datetimepicker({
+        $('#hq-rental-pick-up-date-time').stm_datetimepicker({
             format: dateTimeFormat,
             defaultDate: stmToday,
             defaultSelect: false,
@@ -79,7 +82,7 @@
             }
         });
         /*Datepicker Init*/
-        $('#hq-rental-return-date').stm_datetimepicker({
+        $('#hq-rental-return-date-time').stm_datetimepicker({
             format:dateTimeFormat,
             defaultDate: stmTomorrow,
             defaultSelect: false,

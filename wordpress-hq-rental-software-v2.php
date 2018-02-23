@@ -38,8 +38,7 @@ require_once ('includes/api/init.php');
 require_once ('includes/shortcodes/init.php');
 require_once('includes/templates/init.php');
 require_once ('includes/activation.php');
-
-
+require_once ('includes/vendor/init.php');
 
 function hq_rental_wpv2_activation()
 {
