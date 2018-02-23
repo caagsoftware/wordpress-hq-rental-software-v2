@@ -8,6 +8,6 @@ function hq_rental_wpv2_api_get_locations_step_1()
 
 function hq_rental_wpv2_get_availability_step_2($post_data)
 {
-    $response = wp_remote_post(hq_rental_wpv2_get_query_string_availability($vars), hq_rental_wpv2_get_header());
+    $response = wp_remote_post(hq_rental_wpv2_get_query_string_availability_step_2($post_data), hq_rental_wpv2_get_header());
     return hq_rental_wpv2_response_handler($response);
 }

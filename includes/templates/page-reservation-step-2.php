@@ -2,6 +2,7 @@
 
     if(hq_rental_wpv2_is_coming_from_step_1()){
         $cars_availability = hq_rental_wpv2_get_availability_step_2($_POST);
+        var_dump($cars_availability);
     }else{
         wp_redirect('/reservation-step-1');
         exit;
