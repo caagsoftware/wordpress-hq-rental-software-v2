@@ -1,15 +1,16 @@
 <?php
-global $post;
-get_header();
-?>
+    global $post;
+    get_header();
+    wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
+    ?>
     <div id="main">
         <div class="container">
-            <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding" style="position: relative; left: -104.5px; box-sizing: border-box; width: 1349px;">
+            <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding" style="position: relative; left: -221.5px; box-sizing: border-box; width: 1583px;">
                 <div class="wpb_column vc_column_container vc_col-sm-12">
                     <div class="vc_column-inner ">
                         <div class="wpb_wrapper">
                             <div class=" vc_custom_1485249035889">
-                                <div class="stm-fullwidth-with-parallax-bg" style="background-image: url(<?php echo wp_get_attachment_url(get_post_thumbnail_id($post)); ?>);">
+                                <div class="stm-fullwidth-with-parallax-bg" style=" background-image: url(<?php echo get_the_post_thumbnail_url($post->ID); ?>); ">
                                     <div class="container">
                                         <div class="stm_wizard_title heading-font"> Reservation</div>
                                         <div class="row">
@@ -95,12 +96,12 @@ get_header();
                 </div>
             </div>
             <div class="vc_row wpb_row vc_row-fluid vc_custom_1484737305124">
-                <div class="wpb_column vc_column_container vc_col-sm-7">
+                <div class="wpb_column vc_column_container vc_col-sm-7 col-md-7">
                     <div class="vc_column-inner ">
                         <div class="wpb_wrapper">
                             <div class="stm_rent_car_form_wrapper style_2 text-left ">
                                 <div class="stm_rent_car_form">
-                                    <form action="http://motors.stylemixthemes.com/rent-a-car/reservation/" method="get">
+                                    <form action="/reservation-step-1/" method="get">
                                         <h4>Pick Up</h4>
                                         <div class="stm_rent_form_fields">
                                             <h4 class="stm_form_title">Place to pick up the Car*</h4>
@@ -114,7 +115,7 @@ get_header();
                                                     <option value="99">Hollywood</option>
                                                     <option value="98">Koreatown</option>
                                                 </select>
-                                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-pickup_location-12-container"><span class="select2-selection__rendered" id="select2-pickup_location-12-container" title="Downtown">Downtown</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-pickup_location-wo-container"><span class="select2-selection__rendered" id="select2-pickup_location-wo-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                             </div>
                                             <label>
                                                 <div class="checker"><span class="checked"><input type="checkbox" name="return_same" checked=""></span></div>
@@ -139,7 +140,7 @@ get_header();
                                                         <option value="99">Hollywood</option>
                                                         <option value="98">Koreatown</option>
                                                     </select>
-                                                    <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-drop_location-1z-container"><span class="select2-selection__rendered" id="select2-drop_location-1z-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                    <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-drop_location-38-container"><span class="select2-selection__rendered" id="select2-drop_location-38-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                                 </div>
                                             </div>
                                             <div class="stm_date_time_input">
@@ -147,7 +148,7 @@ get_header();
                                                 <div class="stm_date_input"> <input type="text" class="stm-date-timepicker-end" name="return_date" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
                                             </div>
                                         </div>
-                                        <input type="hidden" name="order_old_days" value="1"> <button type="submit">Continue reservation</button>
+                                        <button type="submit">Continue reservation</button>
                                     </form>
                                 </div>
                             </div>
@@ -155,7 +156,7 @@ get_header();
                         </div>
                     </div>
                 </div>
-                <div class="wpb_column vc_column_container vc_col-sm-5">
+                <div class="wpb_column vc_column_container vc_col-sm-5 col-md-5">
                     <div class="vc_column-inner ">
                         <div class="wpb_wrapper">
                             <div class="">
@@ -230,5 +231,5 @@ get_header();
             <div class="clearfix"></div>
         </div>
     </div>
-<?php
-get_footer();
+    <?php
+    get_footer();
