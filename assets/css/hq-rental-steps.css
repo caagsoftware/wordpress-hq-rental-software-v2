@@ -4,3 +4,22 @@
 .hq-rental-reservation-wrapper{
     background-color: #eeeeee;
 }
+button.hq-rental-reservation-submit-button{
+    width:100% !important;
+    background-color:#f0c540 !important;
+    box-shadow: 0 2px 0 #f0c540 !important;
+}
+
+.stm-template-car_rental .stm_rent_accept_wrapper .hq-rental-reservation-submit-button{
+    display: block;
+    padding: 12px 15px 10px;
+    width: 100% !important;
+    font-weight: 700;
+    font-size: 16px;
+    color: #2a4045;
+    border: 3px solid #f0c540;
+    text-transform: uppercase;
+    background-color: #f0c540;
+    text-align: center;
+    text-decoration: none !important;
+}

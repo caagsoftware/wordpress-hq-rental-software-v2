@@ -1,6 +1,7 @@
 <?php
     if(hq_rental_wpv2_is_coming_from_step_2($_POST)){
         $additional_charges = hq_rental_wpv2_get_available_charges_step_3($_POST)->additional_charges;
+        $selected_car = hq_rental_wpv2_get_available_charges_step_3($_POST)->price->rack_rate_details[0]->vehicleClass;
     }else{
         wp_redirect('/reservation-step-1');
     }
@@ -133,10 +134,11 @@
                                 <div class="col-md-5">
                                     <div class="stm_rent_order_info">
                                         <div class="title">
-                                            <h4>Economy</h4>
-                                            <div class="subtitle heading-font">Mini Cooper 3 or Similar</div>
+                                            <h4><?php echo $selected_car->name; ?></h4>
+                                            <div class="subtitle heading-font"><?php echo $selected_car->label_for_website->en; ?></div>
                                         </div>
-                                        <div class="image"> <img src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/economy-300x181.png"></div>
+
+                                        <div class="image"> <img class="img-responsive" src="<?php echo $selected_car->public_image_link; ?>"></div>
                                         <div class="stm_rent_table">
                                             <div class="heading heading-font">
                                                 <h4>Rate</h4>
@@ -205,7 +207,9 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="stm_rent_accept_wrapper"> <a href="http://motors.stylemixthemes.com/rent-a-car/checkout/" class="stm_rent_accept heading-font">Continue</a></div>
+                                        <div class="stm_rent_accept_wrapper">
+                                            <button href="http://motors.stylemixthemes.com/rent-a-car/checkout/" class="hq-rental-reservation-submit-button">Continue</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
