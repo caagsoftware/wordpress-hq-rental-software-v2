@@ -1,6 +1,6 @@
 <?php
 
-    if(hq_rental_wpv2_is_coming_from_step_1()){
+    if(hq_rental_wpv2_is_coming_from_step_1($_POST)){
         $cars_availability = hq_rental_wpv2_get_availability_step_2($_POST)->applicable_classes;
         $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
     }else{
@@ -106,9 +106,9 @@
                             </div>
                             <?php foreach ($cars_availability as $car): ?>
                                 <div>
-                                    <form action="/reservation-step-3">
+                                    <form action="/reservation-step-3" method="post">
                                         <?php echo $hidden_inputs; ?>
-                                        <input type="hidden" name="vehicle_class_id" value="<?php echo $car->rack_rate_details[0]->applicable_rate->vehicle_class_id; ?>">
+                                        <input type="hidden" name="hq_rental_vehicle_class_id" value="<?php echo $car->rack_rate_details[0]->applicable_rate->vehicle_class_id; ?>">
                                         <div class="stm_single_class_car  " id="product-<?php echo $car->class->id; ?>">
                                             <div class="row">
                                                 <div class="col-md-4 col-sm-4 first">

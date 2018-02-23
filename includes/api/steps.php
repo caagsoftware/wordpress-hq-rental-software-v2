@@ -11,3 +11,8 @@ function hq_rental_wpv2_get_availability_step_2($post_data)
     $response = wp_remote_post(hq_rental_wpv2_get_query_string_availability_step_2($post_data), hq_rental_wpv2_get_header());
     return hq_rental_wpv2_response_handler($response);
 }
+function hq_rental_wpv2_get_available_charges_step_3($post_data)
+{
+    $response = wp_remote_get(hq_rental_wpv2_get_query_string_availability_step_3($post_data), hq_rental_wpv2_get_header());
+    return hq_rental_wpv2_response_handler($response);
+}

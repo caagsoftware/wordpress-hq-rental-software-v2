@@ -18,7 +18,10 @@
         $('.stm_pickup_location select').on('select2:close', function(){
             $('body').removeClass('stm_background_overlay');
         });
-/*
+        $('#hq_rental_pick_up_location').change(function(){
+            $('#hq_rental_return_location').val($('#hq_rental_pick_up_location').val());
+        });
+/*      $()
         $('.stm_date_time_input input').on('change', function(){
             if($(this).val() == '') {
                 $(this).removeClass('active');

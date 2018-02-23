@@ -1,4 +1,10 @@
 <?php
+    if(hq_rental_wpv2_is_coming_from_step_2($_POST)){
+        $available_charges = hq_rental_wpv2_get_available_charges_step_3($_POST);
+        var_dump($available_charges);
+    }else{
+        wp_redirect('/reservation-step-1');
+    }
     get_header();
     wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
     wp_enqueue_script('hq_rental_wpv2_app_init');
