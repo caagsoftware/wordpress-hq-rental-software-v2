@@ -91,7 +91,6 @@
                                         <div class="clear"></div>
                                     </form>
                                 </div>
-                                <script></script>
                             </div>
                         </div>
                         <div class="row">

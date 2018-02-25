@@ -57,3 +57,12 @@ function hq_rental_wpv2_get_query_string_availability_step_3($post_data)
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_return_date_time']);
     return HQ_RENTAL_WPV2_ADDITIONAL_CHARGES_STEP_3_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '&pick_up_time=' . $pick_up_date->format('H:i') . '&return_date=' . $return_date->toDateString() . '&return_time=' . $return_date->format('H:i') . '&brand=' . $post_data['brand_id'] . '&pick_up_location=' . $post_data['hq_rental_pick_up_location'] .'&return_location=' . $post_data['hq_rental_return_location'] .'&vehicle_class_id=' . $post_data['hq_rental_vehicle_class_id'] ;
 }
+
+function hq_rental_wpv2_get_query_string_clients_step_4($post_data)
+{
+    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_pick_up_date_time']);
+    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_return_date_time']);
+    var_dump($post_data);
+    die();
+    return HQ_RENTAL_WPV2_ADDITIONAL_CHARGES_STEP_3_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '&pick_up_time=' . $pick_up_date->format('H:i') . '&return_date=' . $return_date->toDateString() . '&return_time=' . $return_date->format('H:i') . '&brand=' . $post_data['brand_id'] . '&pick_up_location=' . $post_data['hq_rental_pick_up_location'] .'&return_location=' . $post_data['hq_rental_return_location'] .'&vehicle_class_id=' . $post_data['hq_rental_vehicle_class_id'] ;
+}

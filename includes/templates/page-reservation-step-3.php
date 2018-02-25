@@ -2,6 +2,7 @@
     if(hq_rental_wpv2_is_coming_from_step_2($_POST)){
         $additional_charges = hq_rental_wpv2_get_available_charges_step_3($_POST)->additional_charges;
         $selected_car = hq_rental_wpv2_get_available_charges_step_3($_POST)->price->rack_rate_details[0]->vehicleClass;
+        $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
     }else{
         wp_redirect('/reservation-step-1');
     }
@@ -88,7 +89,7 @@
                             <div id="rent_notice"></div>
                             <div class="row stm_rental_archive_top">
                                 <div class="col-md-7 col-sm-7">
-                                    <h2 class="title"> Vehicle Add-ons</h2>
+                                    <h2 class="title">Vehicle Add-ons</h2>
                                 </div>
                                 <div class="col-md-5 col-sm-5">
                                     <div class="stm_rental_coupon">
@@ -103,33 +104,102 @@
                             <div class="row">
                                 <div class="col-md-7">
                                     <form action="/reservation-step-4" method="post">
+                                        <?php echo $hidden_inputs; ?>
                                         <?php foreach ($additional_charges as $charge): ?>
-                                            <div class="stm_rental_options_archive">
-                                                <div class="stm_rental_option">
-                                                    <div class="image">
-                                                        <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
-                                                    </div>
-                                                    <div class="stm_rental_option_content">
-                                                        <div class="content">
-                                                            <div class="title">
-                                                                <h4><?php echo $charge->name; ?></h4>
-                                                            </div>
-                                                            <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
+                                            <?php if($charge->selection_type == 'mulitple'): ?>
+                                                <div class="stm_rental_options_archive">
+                                                    <div class="stm_rental_option">
+                                                        <div class="image">
+                                                            <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
                                                         </div>
-                                                        <div class="meta">
-                                                            <div class="price">
-                                                                <div class="empty_sale_price"></div>
-                                                                <div class="current_price heading-font"></div>
+                                                        <div class="stm_rental_option_content">
+                                                            <div class="content">
+                                                                <div class="title">
+                                                                    <h4><?php echo $charge->name; ?></h4>
+                                                                </div>
+                                                                <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
                                                             </div>
-                                                            <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=208"> Add </a></div>
+                                                            <div class="meta">
+                                                                <div class="price">
+                                                                    <div class="empty_sale_price"></div>
+                                                                    <div class="current_price heading-font"></div>
+                                                                </div>
+                                                                <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=208"> Add </a></div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
                                                         </div>
-                                                        <div class="clearfix"></div>
-                                                        <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php elseif ($charge->selection_type == 'only_one'): ?>
+                                                <div class="stm_rental_options_archive">
+                                                    <div class="stm_rental_option">
+                                                        <div class="image">
+                                                            <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                        </div>
+                                                        <div class="stm_rental_option_content">
+                                                            <div class="content">
+                                                                <div class="title">
+                                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><span> Mandatory</span><?php endif; ?><?php if($charge->recommended): ?><span> Recommended</span><?php endif; ?>
+                                                                </div>
+                                                                <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
+                                                            </div>
+                                                            <div class="meta">
+                                                                <div class="price">
+                                                                    <div class="empty_sale_price"></div>
+                                                                    <div class="current_price heading-font"></div>
+                                                                </div>
+                                                                <?php if($charge->mandatory): ?>
+                                                                    <input name="hq_rental_<?php echo strtolower(str_replace(' ', '_', $charge->name)); ?>" type="checkbox" checked disabled /> <span><?php echo '1'; ?></span><span> $</span>
+                                                                <?php else: ?>
+                                                                    <input type="checkbox" name="hq_rental_<?php echo strtolower(str_replace(' ', '_', $charge->name)); ?>" /> <span><?php echo '1'; ?></span><span> $</span>
+                                                                <?php endif; ?>
+
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php else: ?>
+                                                <div class="stm_rental_options_archive">
+                                                    <div class="stm_rental_option">
+                                                        <div class="image">
+                                                            <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                                        </div>
+                                                        <div class="stm_rental_option_content">
+                                                            <div class="content">
+                                                                <div class="title">
+                                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><span> Mandatory</span><?php endif; ?><?php if($charge->recommended): ?><span> Recommended</span><?php endif; ?>
+                                                                </div>
+                                                                <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
+                                                            </div>
+                                                            <div class="meta">
+                                                                <div class="price">
+                                                                    <div class="empty_sale_price"></div>
+                                                                    <div class="current_price heading-font"></div>
+                                                                </div>
+                                                                <select name="hq_rental_<?php echo strtolower(str_replace(' ', '_', $charge->name)); ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                                    <?php if(is_null($charge->selection_range)): ?>
+                                                                        <option value="">Choose Option</option>
+                                                                        <?php foreach (range(1, 4,1) as $key    =>  $value): ?>
+                                                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php else: ?>
+                                                                        <option value="">Choose Option</option>
+                                                                        <?php foreach (range(1, (int)$charge->selection_range,1) as $key    =>  $value): ?>
+                                                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endif; ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
-                                    </form>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="stm_rent_order_info">
@@ -208,17 +278,17 @@
                                             </table>
                                         </div>
                                         <div class="stm_rent_accept_wrapper">
-                                            <button href="http://motors.stylemixthemes.com/rent-a-car/checkout/" class="hq-rental-reservation-submit-button">Continue</button>
+                                            <button type="submit" class="hq-rental-reservation-submit-button">Continue</button>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                            <script></script>
                         </div>
-                        <div class="stm-shop-sidebar-area"></div>
                     </div>
+                    <div class="stm-shop-sidebar-area"></div>
                 </div>
             </div>
         </div>
+    </div>
     <?php
     get_footer();
