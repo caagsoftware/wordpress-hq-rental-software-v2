@@ -1,7 +1,7 @@
 <?php
     if(hq_rental_wpv2_is_coming_from_step_3($_POST)){
-        $clients = hq_rental_wpv2_get_available_charges_step_4($_POST)->additional_charges;
-        $selected_car = hq_rental_wpv2_get_available_charges_step_4($_POST)->price->rack_rate_details[0]->vehicleClass;
+        $clients = hq_rental_wpv2_get_clients_step_4($_POST);
+        //$selected_car = hq_rental_wpv2_get_available_charges_step_4($_POST)->price->rack_rate_details[0]->vehicleClass;
         $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
     }else{
         wp_redirect('/reservation-step-1');

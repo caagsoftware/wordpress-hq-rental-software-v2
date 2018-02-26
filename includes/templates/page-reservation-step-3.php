@@ -106,7 +106,7 @@
                                     <form action="/reservation-step-4" method="post">
                                         <?php echo $hidden_inputs; ?>
                                         <?php foreach ($additional_charges as $charge): ?>
-                                            <?php if($charge->selection_type == 'mulitple'): ?>
+                                            <?php if($charge->selection_type == 'multiple'): ?>
                                                 <div class="stm_rental_options_archive">
                                                     <div class="stm_rental_option">
                                                         <div class="image">
@@ -117,14 +117,25 @@
                                                                 <div class="title">
                                                                     <h4><?php echo $charge->name; ?></h4>
                                                                 </div>
-                                                                <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
                                                             </div>
                                                             <div class="meta">
                                                                 <div class="price">
                                                                     <div class="empty_sale_price"></div>
                                                                     <div class="current_price heading-font"></div>
                                                                 </div>
-                                                                <div class="stm-add-to-cart heading-font stm-manage-stock-no"> <a href="/rent-a-car/product/economy/?add-to-cart=208"> Add </a></div>
+                                                                <select name="hq_rental_charges[<?php echo $charge->id; ?>]" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                                    <?php if(is_null($charge->selection_range)): ?>
+                                                                        <option value="">Choose Option</option>
+                                                                        <?php foreach (range(1, 4,1) as $key    =>  $value): ?>
+                                                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php else: ?>
+                                                                        <option value="">Choose Option</option>
+                                                                        <?php foreach (range(1, (int)$charge->selection_range,1) as $key    =>  $value): ?>
+                                                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                                                        <?php endforeach; ?>
+                                                                    <?php endif; ?>
+                                                                </select>
                                                             </div>
                                                             <div class="clearfix"></div>
                                                             <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
@@ -150,9 +161,9 @@
                                                                     <div class="current_price heading-font"></div>
                                                                 </div>
                                                                 <?php if($charge->mandatory): ?>
-                                                                    <input name="hq_rental_<?php echo strtolower(str_replace(' ', '_', $charge->name)); ?>" type="checkbox" checked disabled /> <span><?php echo '1'; ?></span><span> $</span>
+                                                                    <input name="hq_rental_hq_rental_charges[<?php echo $charge->id; ?>]" type="checkbox" checked disabled /> <span><?php echo '1'; ?></span><span> $</span>
                                                                 <?php else: ?>
-                                                                    <input type="checkbox" name="hq_rental_<?php echo strtolower(str_replace(' ', '_', $charge->name)); ?>" /> <span><?php echo '1'; ?></span><span> $</span>
+                                                                    <input type="checkbox" name="hq_rental_charges[<?php echo $charge->id; ?>]" /> <span><?php echo '1'; ?></span><span> $</span>
                                                                 <?php endif; ?>
 
                                                             </div>
@@ -179,7 +190,7 @@
                                                                     <div class="empty_sale_price"></div>
                                                                     <div class="current_price heading-font"></div>
                                                                 </div>
-                                                                <select name="hq_rental_<?php echo strtolower(str_replace(' ', '_', $charge->name)); ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                                <select name="hq_rental_charges[<?php echo $charge->id; ?>]" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                                     <?php if(is_null($charge->selection_range)): ?>
                                                                         <option value="">Choose Option</option>
                                                                         <?php foreach (range(1, 4,1) as $key    =>  $value): ?>
