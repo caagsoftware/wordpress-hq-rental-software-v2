@@ -13,7 +13,7 @@
     <div id="main">
        <div class="stm-fullwidth-with-parallax-bg">
           <div class="container">
-             <div class="stm_wizard_title heading-font"> Reservation</div>
+             <div class="stm_wizard_title heading-font">Reservation</div>
              <div class="row">
                 <div class="col-md-4 col-sm-12">
                    <div class="stm_nav_wizard_step stm_nav_wizard_step_1">
