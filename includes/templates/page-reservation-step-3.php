@@ -93,11 +93,12 @@
                                 </div>
                                 <div class="col-md-5 col-sm-5">
                                     <div class="stm_rental_coupon">
+                                        <!--
                                         <form class="stm_checkout_coupon" method="post">
                                             <p class="form-row form-row-first"> <input type="text" name="coupon_code" class="input-text" placeholder="Coupon code" id="coupon_code" value=""></p>
                                             <p class="form-row form-row-last"> <input type="submit" class="button" name="apply_coupon" value="Apply coupon"></p>
                                             <div class="clear"></div>
-                                        </form>
+                                        </form>-->
                                     </div>
                                 </div>
                             </div>

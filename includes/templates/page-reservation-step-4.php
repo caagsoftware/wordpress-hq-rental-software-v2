@@ -1,7 +1,6 @@
 <?php
     if(hq_rental_wpv2_is_coming_from_step_3($_POST)){
         $clients = hq_rental_wpv2_get_clients_step_4($_POST);
-        //$selected_car = hq_rental_wpv2_get_available_charges_step_4($_POST)->price->rack_rate_details[0]->vehicleClass;
         $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
     }else{
         wp_redirect('/reservation-step-1');
@@ -234,134 +233,16 @@
                                   <p class="form-row form-row-last"> <input type="submit" class="button" name="apply_coupon" value="Apply coupon"></p>
                                   <div class="clear"></div>
                                </form>
-                               <form name="checkout" method="post" class="checkout woocommerce-checkout" action="http://motors.stylemixthemes.com/rent-a-car/checkout/" enctype="multipart/form-data" novalidate="novalidate">
+                               <form method="post" class="checkout woocommerce-checkout" action="/reservation-step-5">
                                    <?php echo $hidden_inputs; ?>
                                   <div class="row" id="customer_details">
                                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 stm_woocommerce_checkout_billing">
                                         <div class="woocommerce-billing-fields">
                                            <h4>Billing Details</h4>
                                            <div class="stm-billing-fields woocommerce-billing-fields__field-wrapper">
-                                              <p class="form-row form-row-first validate-required" id="billing_first_name_field" data-priority="10"><label for="billing_first_name" class="heading-font">First name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="billing_first_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus"></p>
-                                              <p class="form-row form-row-last validate-required" id="billing_last_name_field" data-priority="20"><label for="billing_last_name" class="heading-font">Last name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="billing_last_name" id="billing_last_name" placeholder="" value="" autocomplete="family-name"></p>
-                                              <p class="form-row form-row-first" id="billing_driver_license_field" data-priority=""><label for="billing_driver_license" class="heading-font">Driver license</label><input type="text" class="input-text " name="billing_driver_license" id="billing_driver_license" placeholder="" value="" autocomplete="driver_license"></p>
-                                           </div>
-                                        </div>
-                                     </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 stm_woocommerce_checkout_shipping">
-                                        <div class="woocommerce-shipping-fields">
-                                           <h4 id="ship-to-different-address">
-                                              <label for="ship-to-different-address-checkbox" class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">Ship to a different address?</label>
-                                              <div class="checker" id="uniform-ship-to-different-address-checkbox"><span><input id="ship-to-different-address-checkbox" class="input-checkbox" type="checkbox" name="ship_to_different_address" value="1"></span></div>
-                                           </h4>
-                                           <div class="shipping_address" style="display: none;">
-                                              <div class="stm-billing-fields woocommerce-shipping-fields__field-wrapper">
-                                                 <p class="form-row form-row-first validate-required" id="shipping_first_name_field" data-priority="10"><label for="shipping_first_name" class="heading-font">First name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="shipping_first_name" id="shipping_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus"></p>
-                                                 <p class="form-row form-row-last validate-required" id="shipping_last_name_field" data-priority="20"><label for="shipping_last_name" class="heading-font">Last name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="shipping_last_name" id="shipping_last_name" placeholder="" value="" autocomplete="family-name"></p>
-                                                 <p class="form-row form-row-wide" id="shipping_company_field" data-priority="30"><label for="shipping_company" class="heading-font">Company name</label><input type="text" class="input-text " name="shipping_company" id="shipping_company" placeholder="" value="" autocomplete="organization"></p>
-                                                 <p class="form-row form-row-wide address-field update_totals_on_change woocommerce-validated" id="shipping_country_field" data-priority="40">
-                                                    <label for="shipping_country" class="heading-font">Country</label>
-                                                    <select name="shipping_country" id="shipping_country" class="country_to_state country_select  select2-hidden-accessible" autocomplete="country" tabindex="-1" aria-hidden="true">
-                                                       <option value="">Select a country…</option>
-
-                                                    </select>
-                                                    <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-shipping_country-container" role="combobox"><span class="select2-selection__rendered" id="select2-shipping_country-container" role="textbox" aria-readonly="true" title="Venezuela">Venezuela</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                 <noscript>&lt;input type="submit" name="woocommerce_checkout_update_totals" value="Update country" /&gt;</noscript>
-                                                 </p>
-                                                 <p class="form-row form-row-wide address-field" id="shipping_address_1_field" data-priority="50"><label for="shipping_address_1" class="heading-font">Street address</label><input type="text" class="input-text " name="shipping_address_1" id="shipping_address_1" placeholder="House number and street name" value="" autocomplete="address-line1"></p>
-                                                 <p class="form-row form-row-wide address-field" id="shipping_address_2_field" data-priority="60"><input type="text" class="input-text " name="shipping_address_2" id="shipping_address_2" placeholder="Apartment, suite, unit etc. (optional)" value="" autocomplete="address-line2"></p>
-                                                 <p class="form-row form-row-wide address-field" id="shipping_city_field" data-priority="70" data-o_class="form-row form-row-wide address-field"><label for="shipping_city" class="heading-font">Town / City</label><input type="text" class="input-text " name="shipping_city" id="shipping_city" placeholder="" value="" autocomplete="address-level2"></p>
-                                                 <p class="form-row form-row-wide address-field validate-state" id="shipping_state_field" data-priority="80" data-o_class="form-row form-row-wide address-field validate-state"><label for="shipping_state" class="heading-font">State / County</label><input type="text" class="input-text " value="" placeholder="" name="shipping_state" id="shipping_state" autocomplete="address-level1"></p>
-                                                 <p class="form-row form-row-wide address-field validate-postcode" id="shipping_postcode_field" data-priority="90" data-o_class="form-row form-row-wide address-field validate-postcode"><label for="shipping_postcode" class="heading-font">Postcode / ZIP</label><input type="text" class="input-text " name="shipping_postcode" id="shipping_postcode" placeholder="" value="" autocomplete="postal-code"></p>
-                                              </div>
-                                           </div>
-                                        </div>
-                                        <div class="woocommerce-additional-fields">
-                                           <div class="stm-billing-fields">
-                                              <p class="form-row notes" id="order_comments_field" data-priority=""><label for="order_comments" class="heading-font">Order notes</label><textarea name="order_comments" class="input-text " id="order_comments" placeholder="Notes about your order, e.g. special notes for delivery." rows="2" cols="5"></textarea></p>
-                                           </div>
-                                        </div>
-                                     </div>
-                                  </div>
-                                  <div id="order_review" class="woocommerce-checkout-review-order">
-                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden">
-                                           <div class="colored-separator text-left">
-                                              <div class="first-long"></div>
-                                              <div class="last-short"></div>
-                                           </div>
-                                           <h4 id="order_review_heading">Your order</h4>
-                                           <table class="shop_table woocommerce-checkout-review-order-table heading-font">
-                                              <tbody>
-                                                 <tr class="table_heading">
-                                                    <th class="product-name">Product</th>
-                                                    <th class="product-total">Total</th>
-                                                 </tr>
-                                                 <tr class="cart_item">
-                                                    <td class="product-name">
-    Handicap controls&nbsp;							 <span class="product-quantity">× 1</span>
-                                                    </td>
-                                                    <td class="product-total">
-                                                       <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>0</span>
-                                                    </td>
-                                                 </tr>
-                                                 <tr class="cart_item">
-                                                    <td class="product-name">
-    Economy&nbsp;							 <span class="product-quantity">× 6</span>
-                                                    </td>
-                                                    <td class="product-total">
-                                                       <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>600</span>
-                                                    </td>
-                                                 </tr>
-                                                 <tr class="cart-subtotal">
-                                                    <th>Subtotal</th>
-                                                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>600</span></strong></td>
-                                                 </tr>
-                                                 <tr class="shipping">
-                                                    <th>Shipping</th>
-                                                    <td data-title="Shipping">
-        Flat Rate <input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0" value="flat_rate:1" class="shipping_method">
-                                                    </td>
-                                                 </tr>
-                                                 <tr class="order-total">
-                                                    <th>Total</th>
-                                                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>600</span></strong> <small class="includes_tax">(includes <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>17</span> VAT)</small></td>
-                                                 </tr>
-                                              </tbody>
-                                           </table>
-                                        </div>
-                                        <script></script>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 stm_rental_payment_methods stm_single_method_available">
-                                           <div class="colored-separator text-left">
-                                              <div class="first-long"></div>
-                                              <div class="last-short"></div>
-                                           </div>
-                                           <h4 id="payment_heading">Payment</h4>
-                                           <script type="text/javascript">
-        jQuery(document).ready(function(){
-            jQuery('.stm_rental_payment_methods').addClass('stm_single_method_available');
-        })
-                                           </script>
-                                           <div id="payment" class="woocommerce-checkout-payment">
-                                              <ul class="payment_methods methods">
-                                                 <li class="wc_payment_method payment_method_paypal">
-                                                    <input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="paypal" checked="checked" data-order_button_text="Proceed to PayPal" style="display: none;">
-                                                    <label for="payment_method_paypal">
-    Pay now <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" alt="PayPal acceptance mark"><a href="https://www.paypal.com/gb/webapps/mpp/paypal-popup" class="about_paypal" onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;">What is PayPal?</a>	</label>
-                                                    <div class="payment_box payment_method_paypal">
-                                                       <p>Pay now via PayPal</p>
-                                                    </div>
-                                                 </li>
-                                              </ul>
-                                              <div class="form-row place-order">
-                                                 <noscript>Since your browser does not support JavaScript, or it is disabled, please ensure you click the &lt;em&gt;Update Totals&lt;/em&gt; button before placing your order. You may be charged more than the amount stated above if you fail to do so.&lt;br/&gt;&lt;input type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="Update totals" /&gt;</noscript>
-                                                 <input type="hidden" id="_wpnonce" name="_wpnonce" value="bf57035ecb"><input type="hidden" name="_wp_http_referer" value="/rent-a-car/?wc-ajax=update_order_review">
-                                                 <p class="form-row terms">
-                                                    <label for="terms" class="checkbox">I’ve read and accept the <a href="http://motors.stylemixthemes.com/rent-a-car/terms/" target="_blank">terms &amp; conditions</a></label>
-                                                    <input type="checkbox" class="input-checkbox" name="terms" id="terms">
-                                                 </p>
-                                                 <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Proceed to PayPal" data-value="Place order">
-                                              </div>
-                                              <div class="clear"></div>
+                                              <p class="form-row validate-required" id="billing_first_name_field" data-priority="10"><label for="billing_first_name" class="heading-font">First Name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="hq_rental_clients_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus"></p>
+                                               <p class="form-row validate-required" id="billing_first_name_field" data-priority="10"><label for="billing_first_name" class="heading-font">Last Name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="hq_rental_clients_last_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus"></p>
+                                               <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Proceed to PayPal" data-value="Place order">
                                            </div>
                                         </div>
                                      </div>

@@ -14,6 +14,63 @@ function hq_rental_wpv2_get_header()
 	return $args;
 }
 
+function hq_rental_wpv2_get_header_step4($post_data)
+{
+    $body = array();
+    $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
+    $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
+    $final_token = base64_encode($tenant . ':' . $user);
+    $args = array(
+        'headers' => array(
+            'Authorization' => 'Basic ' . $final_token
+        )
+    );
+    $charges = array();
+    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_pick_up_date_time']);
+    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_return_date_time']);
+    $body['brand_id'] = $post_data['brand_id'];
+    $body['pick_up_location'] = $post_data['hq_rental_pick_up_location'];
+    $body['pick_up_date'] = $pick_up_date->toDateString();
+    $body['pick_up_time'] = $pick_up_date->toTimeString();
+    $body['return_date'] = $return_date->toDateString();
+    $body['return_time'] = $return_date->toTimeString();
+    $body['brand'] = $post_data['brand_id'];
+    $body['vehicle_class_id'] = $post_data['hq_rental_vehicle_class_id'];
+    foreach ($post_data as $key => $value){
+        $charges[] = $key.'_'.$value;
+    }
+    $body['additional_charges'] = $charges;
+    $args['body'] = $body;
+    return $args;
+}
+
+function hq_rental_wpv2_get_http_arguments(array $post_data = [])
+{
+    $vars = array();
+    $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
+    $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
+    $final_token = base64_encode($tenant . ':' . $user);
+    $args = array(
+        'headers' => array(
+            'Authorization' => 'Basic ' . $final_token
+        )
+    );
+
+    if(isset($body['pick_up_date_time'])){
+        $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
+        $vars['pick_up_date'] = $pick_up_date->toDateString();
+        $vars['pick_up_time'] = $pick_up_date->toTimeString();
+    }
+    if(isset($body['return_date_time'])){
+        $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+        $vars['return_date'] = $pick_up_date->toDateString();
+        $vars['return_time'] = $pick_up_date->toTimeString();
+    }
+    $vars[] = $post_data;
+    $args['body'] = $vars;
+    return $args;
+}
+
 function hq_rental_wpv2_get_query_string($vars)
 {
 	$query_string = '';
@@ -63,9 +120,7 @@ function hq_rental_wpv2_get_query_string_clients_step_4($post_data)
     $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_pick_up_date_time']);
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_return_date_time']);
     $charges_string = hq_rental_wpv2_get_query_string_arrays($post_data['hq_rental_charges']);
-    var_dump(HQ_RENTAL_WPV2_ADDITIONAL_CHARGES_STEP_3_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '&pick_up_time=' . $pick_up_date->format('H:i') . '&return_date=' . $return_date->toDateString() . '&return_time=' . $return_date->format('H:i') . '&brand=' . $post_data['brand_id'] . '&pick_up_location=' . $post_data['hq_rental_pick_up_location'] .'&return_location=' . $post_data['hq_rental_return_location'] .'&vehicle_class_id=' . $post_data['hq_rental_vehicle_class_id'] . '&additional_charges=' . $charges_string );
-    die();
-    return HQ_RENTAL_WPV2_ADDITIONAL_CHARGES_STEP_3_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '&pick_up_time=' . $pick_up_date->format('H:i') . '&return_date=' . $return_date->toDateString() . '&return_time=' . $return_date->format('H:i') . '&brand=' . $post_data['brand_id'] . '&pick_up_location=' . $post_data['hq_rental_pick_up_location'] .'&return_location=' . $post_data['hq_rental_return_location'] .'&vehicle_class_id=' . $post_data['hq_rental_vehicle_class_id'] . '&additional_charges=' . $charges_string ;
+
 }
 
 function hq_rental_wpv2_get_query_string_arrays($data_array)
@@ -75,5 +130,7 @@ function hq_rental_wpv2_get_query_string_arrays($data_array)
         $output .= $key.'_'.$value;
     }
     $output .= ']';
+    var_dump($output);
+    die();
     return $output;
 }
