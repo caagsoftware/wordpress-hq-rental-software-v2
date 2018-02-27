@@ -23,3 +23,13 @@ button.hq-rental-reservation-submit-button{
     text-align: center;
     text-decoration: none !important;
 }
+.hq-rental-non-active-step{
+    background-color: #fff;
+    position: relative;
+    padding: 25px 30px 35px;
+}
+.hq-rental-active-step{
+    background-color: #f0c540;
+    position: relative;
+    padding: 25px 30px 35px;
+}

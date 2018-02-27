@@ -1,8 +1,12 @@
 <?php
-
+    use Carbon\Carbon;
     if(hq_rental_wpv2_is_coming_from_step_1($_POST)){
         $cars_availability = hq_rental_wpv2_get_availability_step_2($_POST)->applicable_classes;
         $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
+        /*var_dump($cars_availability[0]->pick_up->date);
+        die();
+        $pickup_date = Carbon::createFromFormat('Y-m-d H:i:s', $cars_availability[0]->pick_up->date);
+        $return_date = Carbon::createFromFormat('Y-m-d H:i:s', $cars_availability[0]->return->date);*/
     }else{
         wp_redirect('/reservation-step-1');
         exit;
@@ -20,15 +24,13 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="stm_nav_wizard_step stm_nav_wizard_step_1">
                                 <div class="inner passed">
-                                    <a href="http://motors.stylemixthemes.com/rent-a-car/date-reservation/" class="top heading-font">
-                                        <div class="number"> <span>1</span></div>
-                                        <label>Your Itinerary</label>
-                                    </a>
-                                    <div class="content">
+                                    <div class="number"> <span>1</span></div>
+                                    <label>Your Itinerary</label>
+                                    <div class="hq-rental-active-step">
                                         <div class="first">
                                             <h5>Pick up</h5>
                                             <div class="stm_filled_pickup_location">208 Manhattan St. Downtown, FL 33823</div>
-                                            <div class="stm_filled_pickup_date">2018/02/24 21:51</div>
+                                            <div class="stm_filled_pickup_date"><?php echo $pickup_date->toDateString(); ?> <?php echo $return_date->toTimeString(); ?></div>
                                         </div>
                                         <div class="second">
                                             <h5 class="second">Drop off</h5>
@@ -46,7 +48,7 @@
                                         <div class="number"> <span>2</span></div>
                                         <label>Select Vehicle/Add-ons</label>
                                     </a>
-                                    <div class="content">
+                                    <div class="hq-rental-non-active-step">
                                         <div class="first">
                                             <h5>Type</h5>
                                             <div>--</div>
@@ -66,7 +68,7 @@
                                         <div class="number"> <span>3</span></div>
                                         <label>Reserve Your Vehicle</label>
                                     </a>
-                                    <div class="content">
+                                    <div class="hq-rental-non-active-step">
                                         <div class="first">
                                             <h5>Your information</h5>
                                             <div>--</div>
@@ -133,37 +135,9 @@
                                                         <div class="col-md-6 col-sm-6">
                                                             <div class="stm_rent_prices">
                                                                 <div class="stm_rent_price">
-                                                                    <div class="total heading-font"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $car->rack_rate_details[0]->applicable_rate->daily_rate; ?></span>/Total</div>
-                                                                    <div class="period"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span><?php echo $car->rack_rate_details[0]->applicable_rate->daily_rate; ?></span>/Day</div>
-                                                                    <div class="pay"> <button class="heading-font" style="background-color: #f0c540; box-shadow: 0 2px 0 #f0c540;" href="http://motors.stylemixthemes.com/rent-a-car/product/economy/?add-to-cart=141&amp;product_id=141&amp;variation_id=186&amp;attribute_payment-method=Pay%20now">Pay now</button></div>
-                                                                    <div class="stm_discount">Saves you <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>40</span></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 col-sm-12">
-                                                            <div class="more">
-                                                                <div class="lists-inline">
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae mollis velit. Nullam interdum auctor turpis, at eleifend tortor pellentesque nec. Fusce pretium nulla ut risus egestas, quis dapibus eros condimentum. Integer volutpat posuere quam vitae mollis. Proin diam sapien, luctus ut faucibus sit amet, dignissim a arcu.</p>
-                                                                    <ul>
-                                                                        <li>Auxiliary heating</li>
-                                                                        <li>Bluetooth</li>
-                                                                        <li>CD player</li>
-                                                                    </ul>
-                                                                    <ul>
-                                                                        <li>Head-up display</li>
-                                                                        <li>MP3 interface</li>
-                                                                        <li>Navigation system</li>
-                                                                    </ul>
-                                                                    <ul>
-                                                                        <li>Alloy wheels</li>
-                                                                        <li>Electric side mirror</li>
-                                                                        <li>Sports package</li>
-                                                                    </ul>
-                                                                    <ul>
-                                                                        <li>MP3 interface</li>
-                                                                        <li>Navigation system</li>
-                                                                        <li>Panoramic roof</li>
-                                                                    </ul>
+                                                                    <div class="total heading-font"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $car->rack_rate_details[0]->base_daily_price->currency_icon; ?></span><?php echo $car->rack_rate_details[0]->applicable_rate->daily_rate; ?></span>/Total</div>
+                                                                    <div class="period"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $car->rack_rate_details[0]->base_daily_price->currency_icon; ?></span><?php echo $car->rack_rate_details[0]->applicable_rate->daily_rate; ?></span>/Day</div>
+                                                                    <div class="pay"> <button class="heading-font" style="background-color: #f0c540; box-shadow: 0 2px 0 #f0c540;">Pay now</button></div>
                                                                 </div>
                                                             </div>
                                                         </div>

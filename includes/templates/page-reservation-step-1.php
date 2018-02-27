@@ -23,7 +23,7 @@
                                                             <div class="number"> <span>1</span></div>
                                                             <label>Your Itinerary</label>
                                                         </a>
-                                                        <div class="content">
+                                                        <div class="hq-rental-non-active-step">
                                                             <div class="first">
                                                                 <h5>Pick up</h5>
                                                                 <div class="stm_filled_pickup_location">--</div>
@@ -92,13 +92,13 @@
                 <div class="wpb_column vc_column_container vc_col-sm-12">
                     <div class="vc_column-inner ">
                         <div class="wpb_wrapper">
-                            <h2 style="font-size: 26px;color: #2a4045;line-height: 31px;text-align: left" class="vc_custom_heading vc_custom_1485249076121">RESERVE YOUR VEHICLE</h2>
+                            <h2 style="font-size: 26px;color: #2a4045;line-height: 31px;text-align: left; margin-bottom:35px;" class="vc_custom_heading vc_custom_1485249076121">RESERVE YOUR VEHICLE</h2>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="vc_row wpb_row vc_row-fluid vc_custom_1484737305124">
-                <div class="wpb_column vc_column_container vc_col-sm-7 col-md-7">
+            <div class="vc_row wpb_row vc_row-fluid">
+                <div class="wpb_column vc_column_container vc_col-sm-9 col-md-9">
                     <div class="vc_column-inner ">
                         <div class="wpb_wrapper">
                             <div class="stm_rent_car_form_wrapper style_2 text-left ">
@@ -147,77 +147,6 @@
                                         </div>
                                         <button type="submit">Continue reservation</button>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wpb_column vc_column_container vc_col-sm-5 col-md-5">
-                    <div class="vc_column-inner ">
-                        <div class="wpb_wrapper">
-                            <div class="">
-                                <div class="stm_rent_order_info">
-                                    <div class="title">
-                                        <h4>Car</h4>
-                                        <div class="subtitle heading-font">Please select your vehicle</div>
-                                    </div>
-                                    <div class="image image-placeholder">
-                                        <a href="http://motors.stylemixthemes.com/rent-a-car/reservation/">
-                                            <div class="placeholder"> <span class="plus"></span> <i class="stm-icon-car-relic"></i></div>
-                                            <div class="clearfix"></div>
-                                            <span class="button"> Find a vehicle <i class="fa fa-arrow-right"></i> </span>
-                                        </a>
-                                    </div>
-                                    <div class="stm_rent_table">
-                                        <div class="heading heading-font">
-                                            <h4>Rate</h4>
-                                        </div>
-                                        <table>
-                                            <tbody>
-                                            <tr>
-                                                <td colspan="3" class="divider"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>--</td>
-                                                <td>--</td>
-                                                <td>--</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="divider"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="stm_rent_table">
-                                        <div class="heading heading-font">
-                                            <h4>Add-ons</h4>
-                                        </div>
-                                        <table>
-                                            <tbody>
-                                            <tr>
-                                                <td colspan="3" class="divider"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>--</td>
-                                                <td>--</td>
-                                                <td>--</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="divider"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="stm-rent-total heading-font">
-                                        <table>
-                                            <tbody>
-                                            <tr>
-                                                <td>Estimated total</td>
-                                                <td>--</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
