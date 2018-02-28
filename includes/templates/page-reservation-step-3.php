@@ -1,8 +1,16 @@
 <?php
+    use Carbon\Carbon;
+    $api_call_errors = false;
     if(hq_rental_wpv2_is_coming_from_step_2($_POST)){
-        $additional_charges = hq_rental_wpv2_get_available_charges_step_3($_POST)->additional_charges;
-        $selected_car = hq_rental_wpv2_get_available_charges_step_3($_POST)->price->rack_rate_details[0]->vehicleClass;
-        $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
+        $api_call = hq_rental_wpv2_get_available_charges_step_3($_POST);
+        if($api_call->success){
+            $additional_charges = $api_call->additional_charges;
+            $selected_car = $api_call->price->rack_rate_details[0]->vehicleClass;
+            $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
+        }else{
+            wp_redirect('/reservation-step-2?errors=');
+            exit();
+        }
     }else{
         wp_redirect('/reservation-step-1');
     }
@@ -14,7 +22,7 @@
         <div id="main">
             <div class="stm-fullwidth-with-parallax-bg" style="background-image: url(<?php echo get_the_post_thumbnail_url( $post->ID ); ?>)">
                 <div class="container">
-                    <div class="stm_wizard_title heading-font"> Reservation</div>
+                    <div class="stm_wizard_title heading-font">Reservation</div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <div class="stm_nav_wizard_step stm_nav_wizard_step_1">
@@ -297,7 +305,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="stm-shop-sidebar-area"></div>
                 </div>
             </div>
         </div>

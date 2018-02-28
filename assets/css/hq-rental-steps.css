@@ -3,6 +3,7 @@
 }
 .hq-rental-reservation-wrapper{
     background-color: #eeeeee;
+    padding-top: 0px !important;
 }
 button.hq-rental-reservation-submit-button{
     width:100% !important;

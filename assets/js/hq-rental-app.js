@@ -1,6 +1,5 @@
 (function($) {
     "use strict";
-
     $(document).ready(function(){
         $('input[name="return_same"]').on('change', function(){
             if($(this).prop('checked')) {
@@ -9,7 +8,11 @@
                 $('.stm_same_return').slideDown();
             }
         });
-
+        $('input[name="pick_up_location"]').change(function(){
+            if($(this).prop('checked')) {
+                $('input[name="return_location"]').val($('input[name="pick_up_location"]').val());
+            }
+        });
         $('.stm_pickup_location select').on('select2:open', function() {
             $('body').addClass('stm_background_overlay');
             $('.select2-container').css('width', $('.select2-dropdown').outerWidth());
