@@ -1,3 +1,4 @@
+
 <?php
 
 use Carbon\Carbon;
@@ -99,6 +100,9 @@ function hq_rental_wpv2_get_query_string($vars)
 	}
 	return $query_string;
 }
+/*
+ *
+ */
 function hq_rental_wpv2_get_query_string_availability($data)
 {
 	return HQ_RENTAL_WPV2_CHECK_AVAILABILITY_ACTION . 'start_date='. $data['pick_up_date'] . ' ' . $data['pick_up_time'] . '&end_date=' . $data['return_date'] . ' ' . $data['return_time'];
@@ -114,7 +118,9 @@ function hq_rental_wpv2_response_handler($response)
     }
 }
 
-
+/*
+ *
+ */
 function hq_rental_wpv2_get_query_string_availability_step_2($post_data)
 {
     $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
@@ -137,6 +143,9 @@ function hq_rental_wpv2_get_query_string_clients_step_4($post_data)
 
 }
 
+/*
+ *
+ */
 function hq_rental_wpv2_get_query_string_arrays($data_array)
 {
     $output = '[';
@@ -161,6 +170,9 @@ function hq_rental_wpv2_get_api_calls_arguments(array $post_data = [])
     return $args;
 }
 
+/*
+ *
+ */
 function hq_rental_wpv2_get_query_string_from_array($data_array)
 {
     $query_variables = '';
@@ -186,6 +198,9 @@ function hq_rental_wpv2_get_query_string_from_errors($data_array)
     return $query_variables;
 }
 
+/*
+ *
+ */
 function hq_rental_wpv2_get_post_data_step_2($post_data)
 {
     $body = array();
@@ -209,6 +224,9 @@ function hq_rental_wpv2_get_post_data_step_2($post_data)
     return $args;
 }
 
+/*
+ *
+ */
 function hq_rental_wpv2_get_request_data_step_3($post_data)
 {
     $body = array();
@@ -233,6 +251,9 @@ function hq_rental_wpv2_get_request_data_step_3($post_data)
     return $args;
 }
 
+/*
+ *
+ */
 function hq_rental_wpv2_get_clients_field_header()
 {
     $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
@@ -246,6 +267,9 @@ function hq_rental_wpv2_get_clients_field_header()
     return $args;
 }
 
+/*
+ *
+ */
 function hq_rental_wpv2_get_header_new_client($post_data)
 {
     $body = array();
@@ -260,4 +284,23 @@ function hq_rental_wpv2_get_header_new_client($post_data)
     $body['category_id'] = $post_data['category_id'];
     $args['body'] = $body;
 
+}
+
+function hq_rental_wpv2_get_countries_for_dropdown()
+{
+    $response = wp_remote_get(HQ_RENTAL_WPV2_COUNTRIES_URL, hq_rental_wpv2_get_basic_header());
+    return hq_rental_wpv2_response_handler($response);
+}
+
+function hq_rental_wpv2_get_basic_header()
+{
+    $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
+    $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
+    $final_token = base64_encode($tenant . ':' . $user);
+    $args = array(
+        'headers' => array(
+            'Authorization' => 'Basic ' . $final_token
+        )
+    );
+    return $args;
 }

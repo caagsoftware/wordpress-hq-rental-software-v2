@@ -1,5 +1,8 @@
 <?php
 
+/*
+ *
+ */
 function hq_rental_wpv2_is_coming_from_step_1($post_data)
 {
     return isset($post_data['pick_up_location'], $post_data['pick_up_date_time'], $post_data['return_location'], $post_data['return_date_time']);
@@ -30,6 +33,10 @@ function hq_rental_wpv2_inputs_from_last_step($post_data)
     }
     return $output;
 }
+
+/*
+ *
+ */
 function hq_rental_wpv2_get_inputs_from_last_step_arrays($arrayName, $post_data){
     $output = '';
     foreach ($post_data as $key => $value) {
