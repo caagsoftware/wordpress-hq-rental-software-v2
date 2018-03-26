@@ -132,7 +132,7 @@
                                                                     <div class="empty_sale_price"></div>
                                                                     <div class="current_price heading-font"></div>
                                                                 </div>
-                                                                <select name="hq_rental_charges[<?php echo $charge->id; ?>]" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                                <select name="charges[<?php echo $charge->id; ?>]" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                                     <?php if(is_null($charge->selection_range)): ?>
                                                                         <option value="">Choose Option</option>
                                                                         <?php foreach (range(1, 4,1) as $key    =>  $value): ?>
@@ -170,9 +170,9 @@
                                                                     <div class="current_price heading-font"></div>
                                                                 </div>
                                                                 <?php if($charge->mandatory): ?>
-                                                                    <input name="hq_rental_hq_rental_charges[<?php echo $charge->id; ?>]" type="checkbox" checked disabled /> <span><?php echo '1'; ?></span><span> $</span>
+                                                                    <input name="charges[<?php echo $charge->id; ?>]" type="checkbox" checked disabled /> <span><?php echo '1'; ?></span><span> $</span>
                                                                 <?php else: ?>
-                                                                    <input type="checkbox" name="hq_rental_charges[<?php echo $charge->id; ?>]" /> <span><?php echo '1'; ?></span><span> $</span>
+                                                                    <input type="checkbox" name="charges[<?php echo $charge->id; ?>]" /> <span><?php echo '1'; ?></span><span> $</span>
                                                                 <?php endif; ?>
 
                                                             </div>
@@ -199,7 +199,7 @@
                                                                     <div class="empty_sale_price"></div>
                                                                     <div class="current_price heading-font"></div>
                                                                 </div>
-                                                                <select name="hq_rental_charges[<?php echo $charge->id; ?>]" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                                                <select name="charges[<?php echo $charge->id; ?>]" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                                     <?php if(is_null($charge->selection_range)): ?>
                                                                         <option value="">Choose Option</option>
                                                                         <?php foreach (range(1, 4,1) as $key    =>  $value): ?>

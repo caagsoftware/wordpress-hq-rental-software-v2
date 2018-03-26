@@ -34,3 +34,7 @@ button.hq-rental-reservation-submit-button{
     position: relative;
     padding: 25px 30px 35px;
 }
+
+.hq-submit-button-wrapper{
+    margin-top:20px;
+}

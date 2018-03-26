@@ -1,11 +1,16 @@
 <?php
     global $post;
     $error = false;
-    $message = '';
     $api_call = hq_rental_wpv2_api_get_locations_step_1();
     if(is_array($api_call) and $api_call['errors']){
         $error = true;
         $message =  $api_call['message'];
+    }elseif(isset($_GET['error'])){
+        if($_GET['error']){
+               $error = true;
+               var_dump($_GET);
+               die();
+        }
     }else{
         $locations = $api_call->fleets_locations;
     }
@@ -80,7 +85,7 @@
                                                                 </div>
                                                                 <div class="second">
                                                                     <h5>Payment information</h5>
-                                                                    <div> Estimated Total - $0</div>
+                                                                    <div>--</div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -117,15 +122,14 @@
                                                 <h4 class="stm_form_title">Place to pick up the Car*</h4>
                                                 <div class="stm_pickup_location">
                                                     <i class="stm-service-icon-pin"></i>
-                                                    <select name="pick_up_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" required placeholder="Choose Location">
-                                                        <option>Choose office</option>
+                                                    <select id="pick_up_location" name="pick_up_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" required placeholder="Choose Location">
                                                         <?php foreach ($locations as $location): ?>
                                                             <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                                                         <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                                 <label>
-                                                    <div class=""><span class="checked"><input type="checkbox" name="return_same" checked="">Return to the same location</span></div>
+                                                    <div class=""><span class="checked"><input type="checkbox" id="return_same_location" name="return_same" checked="">Return to the same location</span></div>
 
                                                 </label>
                                                 <div class="stm_date_time_input">
@@ -139,8 +143,7 @@
                                                     <h4 class="stm_form_title">Place to drop the Car*</h4>
                                                     <div class="stm_pickup_location stm_drop_location">
                                                         <i class="stm-service-icon-pin"></i>
-                                                        <select name="return_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-                                                            <option value="">Choose office</option>
+                                                        <select id="return_location" name="return_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
                                                             <?php foreach ($locations as $location): ?>
                                                                 <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                                                             <?php endforeach; ?>

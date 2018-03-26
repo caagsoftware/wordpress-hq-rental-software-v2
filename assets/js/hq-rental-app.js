@@ -8,11 +8,12 @@
                 $('.stm_same_return').slideDown();
             }
         });
+        /*
         $('input[name="pick_up_location"]').change(function(){
             if($(this).prop('checked')) {
                 $('input[name="return_location"]').val($('input[name="pick_up_location"]').val());
             }
-        });
+        });*/
         $('.stm_pickup_location select').on('select2:open', function() {
             $('body').addClass('stm_background_overlay');
             $('.select2-container').css('width', $('.select2-dropdown').outerWidth());
@@ -21,8 +22,11 @@
         $('.stm_pickup_location select').on('select2:close', function(){
             $('body').removeClass('stm_background_overlay');
         });
-        $('#hq_rental_pick_up_location').change(function(){
-            $('#hq_rental_return_location').val($('#hq_rental_pick_up_location').val());
+
+        $('#pick_up_location').change(function(){
+            if($('#return_same_location').is(':checked')) {
+                $('#return_location').val($('#pick_up_location').val());
+            }
         });
 /*      $()
         $('.stm_date_time_input input').on('change', function(){
@@ -49,7 +53,27 @@
         var endDate = false;
         var dateTimeFormat = 'Y-m-d H:i';
 
-
+        $('#hq-datepicker').each(function(){
+            $(this).stm_datetimepicker({
+               format: 'm/d/Y',
+               timepicker:false,
+               defaultDate: stmToday,
+               defaultSelect: false,
+               closeOnDateSelect: true,
+               timeHeightInTimePicker: 40,
+               fixed: true,
+               lang: stm_lang_code,
+               onSelectDate: function( ) {
+                   if($('.stm-date-timepicker-start').val() != '' && $('.stm-date-timepicker-end').val() != '') {
+                       checkDate($('.stm-date-timepicker-start').val(), $('.stm-date-timepicker-end').val());
+                   }
+                   $('.stm-date-timepicker-start').stm_datetimepicker('close');
+               },
+               onClose: function( ) {
+                   $('body').removeClass('stm_background_overlay stm-lock');
+               }
+           });
+        });
 
         $('#hq-rental-pick-up-date-time').stm_datetimepicker({
             format: dateTimeFormat,

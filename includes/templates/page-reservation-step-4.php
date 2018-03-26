@@ -1,7 +1,10 @@
 <?php
     if(hq_rental_wpv2_is_coming_from_step_3($_POST)){
-        $clients = hq_rental_wpv2_get_clients_step_4($_POST);
+        $step_3_fields = hq_rental_wpv2_post_data_from_step_3($_POST);
+        $clients = hq_rental_wpv2_get_clients_form_fields_step_4();
+        $clients_fields = $clients->fields;
         $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
+        $hidden_inputs_array = hq_rental_wpv2_get_inputs_from_last_step_arrays('charges', $_POST['charges']);
     }else{
         wp_redirect('/reservation-step-1');
     }
@@ -235,14 +238,57 @@
                                </form>
                                <form method="post" class="checkout woocommerce-checkout" action="/reservation-step-5">
                                    <?php echo $hidden_inputs; ?>
+                                   <?php echo $hidden_inputs_array; ?>
+                                   <input type="hidden" name="category_id" value="<?php echo $clients->contact_category_id; ?>">
                                   <div class="row" id="customer_details">
                                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 stm_woocommerce_checkout_billing">
                                         <div class="woocommerce-billing-fields">
-                                           <h4>Billing Details</h4>
+                                           <h4>Client Information</h4>
                                            <div class="stm-billing-fields woocommerce-billing-fields__field-wrapper">
-                                              <p class="form-row validate-required" id="billing_first_name_field" data-priority="10"><label for="billing_first_name" class="heading-font">First Name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="hq_rental_clients_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus"></p>
-                                               <p class="form-row validate-required" id="billing_first_name_field" data-priority="10"><label for="billing_first_name" class="heading-font">Last Name <abbr class="required" title="required">*</abbr></label><input type="text" class="input-text " name="hq_rental_clients_last_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus"></p>
-                                               <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Proceed to PayPal" data-value="Place order">
+                                               <?php foreach ($clients_fields as $field): ?>
+                                                    <?php if($field->type == 'identification'): ?>
+                                                       <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                           <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                           <input type="text" class="input-text " name="<?php echo $field->handle; ?>" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus">
+                                                       </p>
+                                                    <?php endif; ?>
+                                                    <?php if($field->type == 'text'): ?>
+                                                       <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                           <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                           <input type="text" class="input-text " name="<?php echo $field->handle; ?>" id="billing_first_name" placeholder="" value="" autocomplete="given-name" autofocus="autofocus">
+                                                       </p>
+                                                    <?php endif; ?>
+                                                    <?php if($field->type == 'textarea'): ?>
+                                                        <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                            <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                            <textarea name="<?php echo $field->handle; ?>" cols="40" rows="5" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="" style="height: auto;"></textarea>
+                                                        </p>
+                                                    <?php endif; ?>
+                                                    <?php if($field->type == 'date'): ?>
+                                                       <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                           <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                           <div class="stm_date_input">
+                                                               <input type="text" class="stm-date-timepicker-end" id="hq-datepicker" name="<?php echo $field->handle; ?>" value="" required="" readonly=""> <i class="stm-icon-date"></i>
+                                                           </div>
+                                                       </p>
+                                                    <?php endif; ?>
+                                                    <?php if($field->type == 'radio'): ?>
+                                                           <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                               <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                               <div class="stm_date_input">
+                                                                    <?php foreach ($field->field_settings->items as $options): ?>
+                                                                        <?php $item_values = explode(' :: ',$options) ?>
+                                                                        <label for="billing_first_name" class="heading-font"><?php echo $item_values[1]; ?>
+                                                                            <input type="radio" name="<?php echo $item_values[1]; ?>" value="<?php echo $item_values[1]; ?>">
+                                                                        </label>
+                                                                    <?php endforeach; ?>
+                                                               </div>
+                                                           </p>
+                                                    <?php endif; ?>
+                                               <?php endforeach; ?>
+                                               <div class="hq-submit-button-wrapper">
+                                                   <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Proceed to PayPal" data-value="Place order">
+                                               </div>
                                            </div>
                                         </div>
                                      </div>

@@ -1,6 +1,10 @@
 <?php
 
 use Carbon\Carbon;
+
+/*
+ * Retrieved Basic Header for Api Calls
+ */
 function hq_rental_wpv2_get_header()
 {
 	$user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
@@ -14,6 +18,9 @@ function hq_rental_wpv2_get_header()
 	return $args;
 }
 
+/*
+ * Retrieved arguments for Post Request after Step 3
+ */
 function hq_rental_wpv2_get_header_step4($post_data)
 {
     $body = array();
@@ -26,16 +33,17 @@ function hq_rental_wpv2_get_header_step4($post_data)
         )
     );
     $charges = array();
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_return_date_time']);
+    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
     $body['brand_id'] = $post_data['brand_id'];
-    $body['pick_up_location'] = $post_data['hq_rental_pick_up_location'];
+
+    $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
-    $body['pick_up_time'] = $pick_up_date->toTimeString();
+    $body['pick_up_time'] = $pick_up_date->format('H:i');
     $body['return_date'] = $return_date->toDateString();
-    $body['return_time'] = $return_date->toTimeString();
+    $body['return_time'] = $return_date->format('H:i');
     $body['brand'] = $post_data['brand_id'];
-    $body['vehicle_class_id'] = $post_data['hq_rental_vehicle_class_id'];
+    $body['vehicle_class_id'] = $post_data['vehicle_class_id'];
     foreach ($post_data as $key => $value){
         $charges[] = $key.'_'.$value;
     }
@@ -44,6 +52,9 @@ function hq_rental_wpv2_get_header_step4($post_data)
     return $args;
 }
 
+/*
+ *
+ */
 function hq_rental_wpv2_get_http_arguments(array $post_data = [])
 {
     $vars = array();
@@ -71,6 +82,9 @@ function hq_rental_wpv2_get_http_arguments(array $post_data = [])
     return $args;
 }
 
+/*
+ *  Retrieved Query String for Api Calls - Decrepited
+ */
 function hq_rental_wpv2_get_query_string($vars)
 {
 	$query_string = '';
@@ -117,9 +131,9 @@ function hq_rental_wpv2_get_query_string_availability_step_3($post_data)
 
 function hq_rental_wpv2_get_query_string_clients_step_4($post_data)
 {
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['hq_rental_return_date_time']);
-    $charges_string = hq_rental_wpv2_get_query_string_arrays($post_data['hq_rental_charges']);
+    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $charges_string = hq_rental_wpv2_get_query_string_arrays($post_data['charges']);
 
 }
 
@@ -130,8 +144,6 @@ function hq_rental_wpv2_get_query_string_arrays($data_array)
         $output .= $key.'_'.$value;
     }
     $output .= ']';
-    var_dump($output);
-    die();
     return $output;
 }
 
@@ -155,6 +167,20 @@ function hq_rental_wpv2_get_query_string_from_array($data_array)
     if(!empty($data_array)){
         foreach ($data_array as $key  =>  $value) {
             $query_variables =  $key.'='.$value;
+        }
+    }
+    return $query_variables;
+}
+
+
+
+function hq_rental_wpv2_get_query_string_from_errors($data_array)
+{
+    $query_variables = '?error='. urlencode(true);
+    $counter = 0;
+    if(!empty($data_array)) {
+        foreach ($data_array as $key => $value) {
+            $query_variables .= '&' . $key . '=' . urlencode($value[0]);
         }
     }
     return $query_variables;
@@ -205,4 +231,33 @@ function hq_rental_wpv2_get_request_data_step_3($post_data)
     $body['vehicle_class_id'] = $post_data['vehicle_class_id'];
     $args['body'] = $body;
     return $args;
+}
+
+function hq_rental_wpv2_get_clients_field_header()
+{
+    $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
+    $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
+    $final_token = base64_encode($tenant . ':' . $user);
+    $args = array(
+        'headers' => array(
+            'Authorization' => 'Basic ' . $final_token
+        )
+    );
+    return $args;
+}
+
+function hq_rental_wpv2_get_header_new_client($post_data)
+{
+    $body = array();
+    $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
+    $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
+    $final_token = base64_encode($tenant . ':' . $user);
+    $args = array(
+        'headers' => array(
+            'Authorization' => 'Basic ' . $final_token
+        )
+    );
+    $body['category_id'] = $post_data['category_id'];
+    $args['body'] = $body;
+
 }

@@ -9,7 +9,7 @@
             $pickup_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->pick_up->date,0,  -10));
             $return_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->return->date, 0, -10));
         }else{
-            wp_redirect('/reservation-step-1?error='.hq_rental_wpv2_get_query_string_from_array($api_call->errors));
+            wp_redirect('/reservation-step-1'.hq_rental_wpv2_get_query_string_from_errors((array)$api_call->errors));
             exit;
         }
     }else{
@@ -142,8 +142,8 @@
                                                             <div class="col-md-6 col-sm-6">
                                                                 <div class="stm_rent_prices">
                                                                     <div class="stm_rent_price">
-                                                                        <div class="total heading-font"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $car->rack_rate_details[0]->base_daily_price->currency_icon; ?></span> <?php echo substr($car->rack_rate_details[0]->applicable_rate->daily_rate,0,-2); ?></span>/Total</div>
-                                                                        <div class="period"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $car->rack_rate_details[0]->base_daily_price->currency_icon; ?></span> <?php echo substr($car->rack_rate_details[0]->applicable_rate->daily_rate,0,-2); ?></span>/Day</div>
+                                                                        <div class="total heading-font"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $car->rack_rate_details[0]->base_daily_price->amount_for_display; ?></span>/Total</div>
+                                                                        <div class="period"> <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $car->rack_rate_details[0]->base_daily_price->amount_for_display; ?></span>/Day</div>
                                                                         <div class="pay"> <button class="heading-font" style="background-color: #f0c540; box-shadow: 0 2px 0 #f0c540;">Pay now</button></div>
                                                                     </div>
                                                                 </div>

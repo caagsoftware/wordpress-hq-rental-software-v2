@@ -32,8 +32,19 @@ function hq_rental_wpv2_get_available_charges_step_3($post_data)
 /*
  *
  */
-function hq_rental_wpv2_get_clients_step_4($post_data)
+function hq_rental_wpv2_post_data_from_step_3($post_data)
 {
-    $response = wp_remote_post(HQ_RENTAL_WPV2_CLIENTS_4_URL, hq_rental_wpv2_get_header_step4($post_data));
+    $response = wp_remote_post(HQ_RENTAL_WPV2_ADDITIONAL_CHARGES_STEP_4_URL, hq_rental_wpv2_get_header_step4($post_data));
     return hq_rental_wpv2_response_handler($response);
+}
+
+function hq_rental_wpv2_get_clients_form_fields_step_4()
+{
+    $response = wp_remote_get(HQ_RENTAL_WPV2_CLIENTS_STEP_4_URL, hq_rental_wpv2_get_clients_field_header());
+    return hq_rental_wpv2_response_handler($response);
+}
+
+function hq_rental_wpv2_get_new_client_from_step_4($post_data)
+{
+    $response = wp_remote_post( HQ_RENTAL_WPV2_NEW_CLIENT_STEP_4, hq_rental_wpv2_get_header_new_client($post_data));
 }
