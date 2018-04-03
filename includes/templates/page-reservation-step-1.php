@@ -115,7 +115,7 @@
                             <div class="wpb_wrapper">
                                 <div class="stm_rent_car_form_wrapper style_2 text-left ">
                                     <div class="stm_rent_car_form">
-                                        <form action="/reservation-step-2/" method="post">
+                                        <form action="/reservation-step-2" method="post">
                                             <input type="hidden" name="brand_id" value="<?php echo $locations[0]->brand_id; ?>">
                                             <h4>Pick Up</h4>
                                             <div class="stm_rent_form_fields">

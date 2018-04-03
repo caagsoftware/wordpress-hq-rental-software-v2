@@ -11,6 +11,7 @@ define('HQ_RENTAL_WPV2_ADDITIONAL_CHARGES_STEP_4_URL','https://api.caagcrm.com/a
 define('HQ_RENTAL_WPV2_CLIENTS_STEP_4_URL','https://api.caagcrm.com/api/car-rental/reservations/fields/customer');
 define('HQ_RENTAL_WPV2_NEW_CLIENT_STEP_4','https://api.caagcrm.com/api/contacts/categories/{category_id}/contacts');
 define('HQ_RENTAL_WPV2_COUNTRIES_URL','https://api.caagcrm.com/api/countries');
+define('HQ_RENTAL_WPV2_CONFIRMATION_URL','https://api.caagcrm.com/api/car-rental/reservations/confirm');
 /*
  * Components from Api Module
  */

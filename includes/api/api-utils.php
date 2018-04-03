@@ -272,18 +272,63 @@ function hq_rental_wpv2_get_clients_field_header()
  */
 function hq_rental_wpv2_get_header_new_client($post_data)
 {
+    $args = hq_rental_wpv2_get_basic_header();
     $body = array();
-    $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
-    $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
-    $final_token = base64_encode($tenant . ':' . $user);
-    $args = array(
-        'headers' => array(
-            'Authorization' => 'Basic ' . $final_token
-        )
-    );
-    $body['category_id'] = $post_data['category_id'];
-    $args['body'] = $body;
+    //var_dump($post_data['fields']);
+    foreach ($post_data['fields'] as $key => $value){
+        switch ($value['type']){
+            case 'text':
+                $body[$key] = $value['value'];
+            case 'checkbox':
+                $body[$key] = $value['value'];
+            case 'textarea':
+                $body[$key] = $value['value'];
+            default:
+                //$body[$key] = $value['value'];
 
+        }
+        /*
+        if($value['type'] == 'text' or $value['type'] == 'textarea'){
+            $body[$key] = $value['value'];
+        }else{
+            $body[$key] = array(
+                $key    => array(
+                    'items'     =>  array(
+                        'type'  => $value['type'],
+                        'number'    =>  $value['value']
+                    )
+                )
+            );*/
+    }
+    $body['category'] = $post_data['category_id'];
+    $body['contact_entity'] = 'person';
+    $args['body'] = $body;
+    return $args;
+}
+
+function hq_rental_wpv2_get_confirmation_request_data( $post_data )
+{
+    $args = hq_rental_wpv2_get_basic_header();
+    $body = array();
+    foreach( $post_data as $key => $value ){
+        if($key == 'client_id'){
+            $body['customer_id'] = $value;
+        }else if($key == 'brand_id'){
+            $body['brand'] = $value;
+        }
+        $body[$key] = $value;
+    }
+    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $body['pick_up_location'] = $post_data['pick_up_location'];
+    $body['pick_up_date'] = $pick_up_date->toDateString();
+    $body['pick_up_time'] = $pick_up_date->format('H:i');
+    $body['return_date'] = $return_date->toDateString();
+    $body['return_time'] = $return_date->format('H:i');
+    //var_dump($body);
+    //die();
+    $args['body'] = $body;
+    return $args;
 }
 
 function hq_rental_wpv2_get_countries_for_dropdown()

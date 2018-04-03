@@ -168,7 +168,6 @@ function checkDate ($start, $end) {
             context: this,
             data: 'startDate=' + $start + '&endDate=' + $end + '&action=stm_ajax_check_is_available_car_date',
             success: function (data) {
-                console.log(data);
                 $("#select-vehicle-popup").attr("href", $("#select-vehicle-popup").attr('href').split("?")[0] + "?pickup_location=" + locationId);
                 if (data != '') {
                     clearTimeout(stm_timeout_rental);
