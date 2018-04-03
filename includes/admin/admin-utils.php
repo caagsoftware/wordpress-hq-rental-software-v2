@@ -31,3 +31,4 @@ function hq_rental_wpv2_get_option($option)
 {
     return get_option($option);
 }
+

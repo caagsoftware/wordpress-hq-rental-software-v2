@@ -22,74 +22,8 @@
     ?>
         <?php if(!$api_call_errors): ?>
             <div id="main">
-                <div class="stm-fullwidth-with-parallax-bg" style=" background-image: url(<?php echo get_the_post_thumbnail_url($post->ID); ?>); ">
-                    <div class="container">
-                        <div class="stm_wizard_title heading-font">Reservation</div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-12">
-                                <div class="stm_nav_wizard_step stm_nav_wizard_step_1">
-                                    <div class="inner passed">
-                                        <a href="http://motors.stylemixthemes.com/rent-a-car/reservation/" class="top heading-font">
-                                            <div class="number"><span>1</span></div>
-                                            <label>Your Itinerary</label>
-                                        </a>
-                                        <div class="hq-rental-active-step">
-                                            <div class="first">
-                                                <h5>Pick up</h5>
-                                                <div class="stm_filled_pickup_location">208 Manhattan St. Downtown, FL 33823</div>
-                                                <div class="stm_filled_pickup_date"><?php echo $pickup_date->toDateString(); ?> <?php echo $return_date->format('H:i'); ?></div>
-                                            </div>
-                                            <div class="second">
-                                                <h5 class="second">Drop off</h5>
-                                                <div class="stm_filled_return_location">208 Manhattan St. Downtown, FL 33823</div>
-                                                <div class="stm_filled_return_date">2018/02/28 21:51</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="stm_nav_wizard_step stm_nav_wizard_step_2">
-                                    <div class="inner current">
-                                        <a href="http://motors.stylemixthemes.com/rent-a-car/reservation/" class="top heading-font">
-                                            <div class="number"> <span>2</span></div>
-                                            <label>Select Vehicle/Add-ons</label>
-                                        </a>
-                                        <div class="hq-rental-non-active-step">
-                                            <div class="first">
-                                                <h5>Type</h5>
-                                                <div>--</div>
-                                            </div>
-                                            <div class="second">
-                                                <h5>Addons</h5>
-                                                <div>--</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="stm_nav_wizard_step stm_nav_wizard_step_3">
-                                    <div class="inner ">
-                                        <a href="http://motors.stylemixthemes.com/rent-a-car/checkout/" class="top heading-font">
-                                            <div class="number"> <span>3</span></div>
-                                            <label>Reserve Your Vehicle</label>
-                                        </a>
-                                        <div class="hq-rental-non-active-step">
-                                            <div class="first">
-                                                <h5>Your information</h5>
-                                                <div>--</div>
-                                            </div>
-                                            <div class="second">
-                                                <h5>Payment information</h5>
-                                                <div> Estimated Total - $0</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container stm-reservation-archive hq-rental-reservation-wrapper">
+                    <?php hq_rental_wpv2_get_partial('banner'); ?>
                 </div>
                 <div class="stm-reservation-archive hq-rental-reservation-wrapper">
                     <div class="container">
