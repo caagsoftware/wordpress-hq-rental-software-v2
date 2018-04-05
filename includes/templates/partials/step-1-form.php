@@ -1,4 +1,5 @@
 <?php
+$locations = $data;
 ?>
 
 <form action="/reservation-step-2" method="post">

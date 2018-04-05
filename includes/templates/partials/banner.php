@@ -1,6 +1,7 @@
 <?php
     //this ccs class - > add yellow background on current step boxes
     $hq_rental_active_step = 'hq-rental-active-step';
+    $locations = $data;
 ?>
 <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding" style="position: relative; left: -221.5px; box-sizing: border-box; width: 1583px;">
     <div class="wpb_column vc_column_container vc_col-sm-12">

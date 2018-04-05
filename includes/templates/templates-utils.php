@@ -89,15 +89,15 @@ function hq_rental_wpv2_get_banner()
 
 }
 
-function hq_rental_wpv2_get_partial($partial_name)
+function hq_rental_wpv2_get_partial($partial_name, $data = [])
 {
     $default_file = HQ_RENTAL_WPV2_BASE_DIR . '/includes/templates/partials/' . $partial_name . '.php';
     $custom_file = get_stylesheet_directory() . '/hq-rental-partials/'. $partial_name .'.php';
     if( hq_rental_wpv2_its_rental_page() ) {
         if (file_exists($custom_file)) {
-            include($custom_file);
+            include $custom_file;
         } else {
-            include($default_file);
+            include $default_file;
         }
     }
 }
