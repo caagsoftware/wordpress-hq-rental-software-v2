@@ -37,7 +37,6 @@ function hq_rental_wpv2_get_header_step4($post_data)
     $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
     $body['brand_id'] = $post_data['brand_id'];
-
     $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
     $body['pick_up_time'] = $pick_up_date->format('H:i');
@@ -274,8 +273,7 @@ function hq_rental_wpv2_get_header_new_client($post_data)
 {
     $args = hq_rental_wpv2_get_basic_header();
     $body = array();
-    //var_dump($post_data['fields']);
-    foreach ($post_data['fields'] as $key => $value){
+    foreach ($post_data['client'] as $key => $value){
         switch ($value['type']){
             case 'text':
                 $body[$key] = $value['value'];
@@ -285,7 +283,6 @@ function hq_rental_wpv2_get_header_new_client($post_data)
                 $body[$key] = $value['value'];
             default:
                 //$body[$key] = $value['value'];
-
         }
         /*
         if($value['type'] == 'text' or $value['type'] == 'textarea'){
@@ -325,8 +322,6 @@ function hq_rental_wpv2_get_confirmation_request_data( $post_data )
     $body['pick_up_time'] = $pick_up_date->format('H:i');
     $body['return_date'] = $return_date->toDateString();
     $body['return_time'] = $return_date->format('H:i');
-    //var_dump($body);
-    //die();
     $args['body'] = $body;
     return $args;
 }

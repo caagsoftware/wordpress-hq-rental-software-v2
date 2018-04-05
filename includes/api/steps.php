@@ -54,10 +54,9 @@ function hq_rental_wpv2_create_new_client_from_step_4($post_data)
     //All validation Regarding The creation of the contact
     $link = 'https://api.caagcrm.com/api/contacts/categories/' . $post_data['category_id'] . '/contacts';
     $arguments = hq_rental_wpv2_get_header_new_client($post_data);
-    $response = wp_remote_post( $link, $arguments);
-
+    $response = wp_remote_post( $link, $arguments );
     $data_response = array(
-        'before_data'   =>  $post_data,
+        'reservation'   =>  $post_data,
         'client'  =>  json_decode($response['body'])
     );
     return $data_response;

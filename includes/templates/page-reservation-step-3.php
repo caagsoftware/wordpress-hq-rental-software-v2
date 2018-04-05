@@ -31,11 +31,6 @@
             <div class="stm-reservation-archive hq-rental-reservation-wrapper">
                 <?php hq_rental_wpv2_get_partial('step-3-additional-charges', $partials_data)?>
             </div>
-
-
-
-
-            </div>
-
+        </div>
     <?php
     get_footer();

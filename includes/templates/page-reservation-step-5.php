@@ -1,9 +1,8 @@
 <?php
 if(hq_rental_wpv2_is_coming_from_step_4($_POST) and $_POST['hq_comes_from_step_4'] == '1'){
         $final_data = hq_rental_wpv2_create_new_client_from_step_4($_POST);
-        $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($final_data['before_data']);
-        $hidden_inputs_array = hq_rental_wpv2_get_inputs_from_last_step_arrays('charges', $final_data['before_data']['charges']);
-        hq_rental_wpv2_confirmation($final_data);
+        $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($final_data['reservation']);
+        $hidden_inputs_array = hq_rental_wpv2_get_inputs_from_last_step_arrays('charges', $final_data['reservation']['charges']);
 }else{
     wp_redirect('/reservation-step-1');
     exit;
