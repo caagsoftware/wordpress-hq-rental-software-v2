@@ -10,6 +10,7 @@ License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  hq-rental-wp-plugin-v2
 */
 
+
 /*
  * Plugin Settings Variables
  */
@@ -30,7 +31,7 @@ define('HQ_RENTAL_WPV2_BASE_FILE', __FILE__);
 define('HQ_RENTAL_WPV2_BASE_DIR', dirname(HQ_RENTAL_WPV2_BASE_FILE));
 
 /*
- *  Require Files 
+ *  Require Files
  */
 require_once ('assets/init.php');
 require_once ('includes/admin/init.php');

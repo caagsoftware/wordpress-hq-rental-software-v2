@@ -324,6 +324,19 @@
                                                 <input type="hidden" name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" value="multiselect" />
                                             </p>
                                         <?php endif; ?>
+                                        <?php if($field->type == 'select'): ?>
+                                            <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                <div class="stm_date_input">
+                                                    <select name="<?php echo 'client[field_'.$field->id.'][value]'; ?>">
+                                                        <?php foreach ($field->field_settings->items as $options): ?>
+                                                            <option value="<?php echo $options; ?>" ><?php echo $options; ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <input type="hidden" name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" value="dropdown"/>
+                                            </p>
+                                        <?php endif; ?>
                                         <?php endforeach; ?>
                                         <div class="hq-submit-button-wrapper">
                                             <button type="submit" class="hq-rental-reservation-submit-button">Continue</button>

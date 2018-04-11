@@ -291,7 +291,9 @@ function hq_rental_wpv2_get_header_new_client($post_data)
 				$body[$key] = $value['value'];
 				break;
 			case 'radio':
-				//var_dump($value);
+				$body[$key] = $value['value'];
+				break;
+			case 'dropdown':
 				$body[$key] = $value['value'];
 				break;
 			case 'multiselect':
