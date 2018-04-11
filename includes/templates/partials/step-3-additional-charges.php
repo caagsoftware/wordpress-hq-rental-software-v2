@@ -26,6 +26,7 @@
                 <div class="col-md-7">
                     <form action="/reservation-step-4" method="post">
                         <?php echo $hidden_inputs; ?>
+
                         <?php foreach ($additional_charges as $charge): ?>
                             <?php if($charge->selection_type == 'multiple'): ?>
                                 <div class="stm_rental_options_archive">
@@ -38,6 +39,9 @@
                                                 <div class="title">
                                                     <h4><?php echo $charge->name; ?></h4>
                                                 </div>
+                                                <?php if($charge->short_description_for_website->en != ''): ?>
+                                                    <div class="stm-more"><a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i></a></div>
+                                                <?php endif; ?>
                                             </div>
                                             <div class="meta">
                                                 <div class="price">
@@ -45,21 +49,25 @@
                                                     <div class="current_price heading-font"></div>
                                                 </div>
                                                 <select name="charges[<?php echo $charge->id; ?>]" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-                                                    <?php if(is_null($charge->selection_range)): ?>
-                                                        <option value="">Choose Option</option>
-                                                        <?php foreach (range(1, 4,1) as $key    =>  $value): ?>
+                                                    <?php if(! is_null($charge->selection_range)): ?>
+                                                        <?php $range_values = hq_rental_wpv2_get_range_on_multiple_charges($charge->selection_range); ?>
+                                                            <option value="">Choose Option</option>
+                                                                <?php foreach ($range_values as $value): ?>
                                                             <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                                                        <?php endforeach; ?>
+                                                            <?php endforeach; ?>
                                                     <?php else: ?>
-                                                        <option value="">Choose Option</option>
-                                                        <?php foreach (range(1, (int)$charge->selection_range,1) as $key    =>  $value): ?>
+                                                            <option value="">Choose Option</option>
+                                                            <?php foreach (range(1,4) as $value): ?>
                                                             <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                                         <?php endforeach; ?>
                                                     <?php endif; ?>
                                                 </select>
                                             </div>
+
                                             <div class="clearfix"></div>
-                                            <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
+                                            <div class="more">
+                                                <?php echo ($charge->short_description_for_website->en != '' ? $charge->short_description_for_website->en : ''); ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

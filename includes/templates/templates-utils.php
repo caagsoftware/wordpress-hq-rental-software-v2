@@ -107,3 +107,14 @@ function hq_rental_wpv2_its_rental_page()
     global $post;
     return get_post_meta( $post->ID , HQ_RENTAL_WPV2_IS_HQ_PAGE_META);
 }
+
+// TODO: Validate Information in this Fucntion '1_4', but could be other
+function hq_rental_wpv2_get_range_on_multiple_charges($range_values)
+{
+    $values = explode('_', $range_values);
+    if(count($values) == 1){
+        return $values[0];
+    }else{
+        return range((int)$values[0], (int)$values[1]);
+    }
+}

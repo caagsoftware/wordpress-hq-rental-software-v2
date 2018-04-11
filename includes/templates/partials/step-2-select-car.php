@@ -38,8 +38,8 @@
                                         <div class="col-md-6 col-sm-6">
                                             <div class="top">
                                                 <div class="heading-font">
-                                                    <h3><?php echo $car->class->name; ?></h3>
-                                                    <div class="s_title"><?php echo $car->class->label_for_website->en; ?></div>
+                                                    <h3><?php echo $car->class->label_for_website->en; ?></h3>
+                                                    <div class="s_title"><?php echo $car->class->short_description_for_website->en; ?></div>
                                                     <div class="infos">
                                                         <!--<div class="single_info stm_single_info_font_stm-rental-seats"> <i class="stm-rental-seats"></i> <span>4 Seats</span></div>
                                                         <div class="single_info stm_single_info_font_stm-rental-door"> <i class="stm-rental-door"></i> <span>2 Doors</span></div>

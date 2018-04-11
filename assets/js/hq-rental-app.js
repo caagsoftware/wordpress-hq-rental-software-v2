@@ -8,12 +8,7 @@
                 $('.stm_same_return').slideDown();
             }
         });
-        /*
-        $('input[name="pick_up_location"]').change(function(){
-            if($(this).prop('checked')) {
-                $('input[name="return_location"]').val($('input[name="pick_up_location"]').val());
-            }
-        });*/
+
         $('.stm_pickup_location select').on('select2:open', function() {
             $('body').addClass('stm_background_overlay');
             $('.select2-container').css('width', $('.select2-dropdown').outerWidth());
@@ -28,21 +23,6 @@
                 $('#return_location').val($('#pick_up_location').val());
             }
         });
-/*      $()
-        $('.stm_date_time_input input').on('change', function(){
-            if($(this).val() == '') {
-                $(this).removeClass('active');
-            } else {
-                $(this).addClass('active');
-            }
-        });*/
-/*
-        $(document).on('mouseover', '.stm_rent_location .select2-results__options li', function(){
-            var currentLi = ($(this).index()) - 1;
-            $('.stm_rent_location .stm_locations_description').remove();
-            $('.stm_rent_location').append(contents[currentLi]);
-        });*/
-
 
         /*Timepicker*/
         var stmToday = new Date();
@@ -55,19 +35,19 @@
 
         $('#hq-datepicker').each(function(){
             $(this).stm_datetimepicker({
-               format: 'm/d/Y',
-               timepicker:false,
-               defaultDate: stmToday,
-               defaultSelect: false,
-               closeOnDateSelect: true,
-               timeHeightInTimePicker: 40,
-               fixed: true,
-               lang: stm_lang_code,
-               onSelectDate: function( ) {
-                   if($('.stm-date-timepicker-start').val() != '' && $('.stm-date-timepicker-end').val() != '') {
-                       checkDate($('.stm-date-timepicker-start').val(), $('.stm-date-timepicker-end').val());
-                   }
-                   $('.stm-date-timepicker-start').stm_datetimepicker('close');
+                format: 'm/d/Y',
+                timepicker:false,
+                defaultDate: stmToday,
+                defaultSelect: false,
+                closeOnDateSelect: true,
+                timeHeightInTimePicker: 40,
+                fixed: true,
+                lang: stm_lang_code,
+                onSelectDate: function( ) {
+                    if($('.stm-date-timepicker-start').val() != '' && $('.stm-date-timepicker-end').val() != '') {
+                        checkDate($('.stm-date-timepicker-start').val(), $('.stm-date-timepicker-end').val());
+                    }
+                    $('.stm-date-timepicker-start').stm_datetimepicker('close');
                },
                onClose: function( ) {
                    $('body').removeClass('stm_background_overlay stm-lock');
@@ -138,7 +118,6 @@
                 if($('.stm-date-timepicker-start').val() != '' && $('.stm-date-timepicker-end').val() != '') {
                     checkDate($('.stm-date-timepicker-start').val(), $('.stm-date-timepicker-end').val());
                 }
-
                 $('.stm-date-timepicker-end').stm_datetimepicker('close');
             },
             onClose: function( ) {
@@ -148,12 +127,17 @@
 
     });
 
-    $('#caag-pick-up-date').change(function(){
-        var newDate = moment($('#caag-pick-up-date').val(),'YYYY-MM-DD HH:mm');
-        console.log(newDate);
-        $('#caag-return-date').val(newDate.add(7, 'days').format('YYYY-MM-DD HH:mm'));
-    });
     $('.xdsoft_current').css('background-color','#1184bf !important');
+
+    /*Change Return Location on PickUp Location Selection*/
+    $('#pick_up_location').change(function(){
+        $('#return_location').val($('#pick_up_location').val());
+    });
+
+    /*Change Return Date on PickUp Date Selection*/
+    $('#hq-rental-pick-up-date-time').change(function(){
+        $('#hq-rental-return-date-time').val(moment().add(7, 'days').format('MM/DD/YYYY HH:mm'));
+    });
 
 })(jQuery);
 

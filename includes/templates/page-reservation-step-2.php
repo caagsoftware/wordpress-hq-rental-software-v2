@@ -12,6 +12,7 @@
             );
             $pickup_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->pick_up->date,0,  -10));
             $return_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->return->date, 0, -10));
+
         }else{
             wp_redirect('/reservation-step-1'.hq_rental_wpv2_get_query_string_from_errors((array)$api_call->errors));
             exit;
@@ -31,7 +32,7 @@
                 </div>
                 <div class="stm-reservation-archive hq-rental-reservation-wrapper">
                     <?php hq_rental_wpv2_get_partial('step-2-select-car',$partials_data) ?>
-                </div>
+    <div class="stm-reservation-archive hq-rental-reservation-wrapper">
             </div>
         <?php else: ?>
             errors
