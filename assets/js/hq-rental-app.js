@@ -1,6 +1,15 @@
 (function($) {
     "use strict";
     $(document).ready(function(){
+        /*Timepicker*/
+        var stmToday = new Date();
+        var stmTomorrow = new Date(+new Date() + 86400000);
+        var stmStartDate = false;
+        var stmEndDate = false;
+        var startDate = false;
+        var endDate = false;
+        var dateTimeFormat = 'Y-m-d H:i';
+
         $('input[name="return_same"]').on('change', function(){
             if($(this).prop('checked')) {
                 $('.stm_same_return').slideUp();
@@ -23,15 +32,21 @@
                 $('#return_location').val($('#pick_up_location').val());
             }
         });
+        /*Multiselect Setup*/
+        $('.js-example-basic-multiple').each(function(){
+            $(this).select2();
+        });
+        $('#hq-countries').select2();
+        $('#hq-datepicker-identification-field').each(function(){
+            $(this).stm_datetimepicker({
+                format: 'Y-m-d',
+                timepicker:false,
+                defaultSelect: false,
+                closeOnDateSelect: true
+            });
+        });
 
-        /*Timepicker*/
-        var stmToday = new Date();
-        var stmTomorrow = new Date(+new Date() + 86400000);
-        var stmStartDate = false;
-        var stmEndDate = false;
-        var startDate = false;
-        var endDate = false;
-        var dateTimeFormat = 'Y-m-d H:i';
+
 
         $('#hq-datepicker').each(function(){
             $(this).stm_datetimepicker({

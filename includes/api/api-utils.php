@@ -91,9 +91,9 @@ function hq_rental_wpv2_get_query_string($vars)
 	$counter = 1;
 	foreach ($vars as $key => $value) {
 		if(count($vars) == $counter){
-			$query_string .= $key .'='.$value;	
+			$query_string .= $key .'='.$value;
 		}else{
-			$query_string .= $key .'='.$value.'&';	
+			$query_string .= $key .'='.$value.'&';
 		}
 		$counter++;
 	}
@@ -277,25 +277,54 @@ function hq_rental_wpv2_get_header_new_client($post_data)
         switch ($value['type']){
             case 'text':
                 $body[$key] = $value['value'];
+				break;
             case 'checkbox':
                 $body[$key] = $value['value'];
+				break;
             case 'textarea':
                 $body[$key] = $value['value'];
+				break;
+			case 'countries':
+				$body[$key] = $value['value'];
+				break;
+			case 'nationality':
+				$body[$key] = $value['value'];
+				break;
+			case 'radio':
+				//var_dump($value);
+				$body[$key] = $value['value'];
+				break;
+			case 'multiselect':
+				/*
+				$items = array();
+				if(isset($value['value'])){
+					foreach ($value['value'] as $keyvalue => $optionvalue) {
+						$items[] = array(
+							'type' 		=>	'multiselect',
+							'number'	=>	$optionvalue
+						);
+					}
+				}*/
+
+				/*
+				$body[$key] = array(
+					'items'	=>	$items
+				);*/
+				$body[$key] = $value['value'];
+				break;
+			case 'identification':
+				$expiration = is_null($value['value']['expiration']) ? '' : $value['value']['expiration'];
+				$body[$key] = array(
+					'items' => array([
+						'type'			=>	trim($value['value']['type']),
+						'number'		=>	trim($value['value']['id_number']),
+						'expires_on'	=>	$expiration
+					])
+				);
+				break;
             default:
-                //$body[$key] = $value['value'];
+                $body[$key] = $value['value'];
         }
-        /*
-        if($value['type'] == 'text' or $value['type'] == 'textarea'){
-            $body[$key] = $value['value'];
-        }else{
-            $body[$key] = array(
-                $key    => array(
-                    'items'     =>  array(
-                        'type'  => $value['type'],
-                        'number'    =>  $value['value']
-                    )
-                )
-            );*/
     }
     $body['category'] = $post_data['category_id'];
     $body['contact_entity'] = 'person';

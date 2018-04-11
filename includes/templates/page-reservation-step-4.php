@@ -3,7 +3,6 @@ if(hq_rental_wpv2_is_coming_from_step_3($_POST)){
     $step_3_fields = hq_rental_wpv2_post_data_from_step_3($_POST);
     $clients = hq_rental_wpv2_get_clients_form_fields_step_4();
     $clients_fields = $clients->fields;
-    //var_dump($clients_fields);
     $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
     $hidden_inputs_array = hq_rental_wpv2_get_inputs_from_last_step_arrays('charges', $_POST['charges']);
     $partials_data = array(
