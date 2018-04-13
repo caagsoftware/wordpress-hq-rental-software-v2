@@ -391,6 +391,17 @@
                                                 <input type="hidden" name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" value="dropdown"/>
                                             </p>
                                         <?php endif; ?>
+                                        <?php if($field->type == 'currencies'): ?>
+                                            <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                <div class="stm_date_input">
+                                                    <select name="<?php echo 'client[field_'.$field->id.'][value]'; ?>">
+                                                        <?php echo hq_rental_wpv2_get_partial('dropdown-currencies-options'); ?>
+                                                    </select>
+                                                </div>
+                                                <input type="hidden" name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" value="currencies" />
+                                            </p>
+                                        <?php endif; ?>
                                         <?php endforeach; ?>
                                         <div class="hq-submit-button-wrapper">
                                             <button type="submit" class="hq-rental-reservation-submit-button">Continue</button>

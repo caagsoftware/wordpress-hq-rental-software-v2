@@ -310,6 +310,7 @@ function hq_rental_wpv2_get_header_new_client($post_data)
 				);
 				break;
 			case 'phone':
+				/*
 				$body[$key] = array(
 						'items'	=>	array([
 							'number'		=>	$value['value']['number'],
@@ -317,7 +318,10 @@ function hq_rental_wpv2_get_header_new_client($post_data)
 							'ext'			=>	$value['value']['ext'],
 							'country'		=>	$value['value']['country']
 						])
-					);
+					);*/
+				break;
+			case 'currencies':
+				$body[$key] = $value['value'];
 				break;
 			case 'identification':
 				$expiration = is_null($value['value']['expiration']) ? '' : $value['value']['expiration'];
