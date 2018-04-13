@@ -16,11 +16,26 @@ if(hq_rental_wpv2_is_coming_from_step_3($_POST)){
 }
 get_header();
 wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
-wp_enqueue_script('hq_rental_wpv2_app_init');
 wp_enqueue_script('hq_rental_wpv2_select2_js');
 wp_enqueue_style('hq_rental_wpv2_select2_css');
+wp_enqueue_style('hq_rental_wpv2_intl_phones_css');
+wp_enqueue_script('hq_rental_wpv2_select2_js');
+wp_enqueue_script('hq_rental_wpv2_intl_phone_js');
+wp_enqueue_script('hq_rental_wpv2_intl_phone_utils_js');
+wp_enqueue_script('hq_rental_wpv2_app_init');
 global $post;
 ?>
+<style media="screen">
+    .iti-flag {
+        background-image: url("<?php echo plugin_dir_url( __FILE__ ) . 'assets/img/flags.png'  ?>");
+    }
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+        .iti-flag {
+            background-image: url("<?php echo plugin_dir_url( __FILE__ ) . 'assets/img/flags@2x.png'  ?>");
+        }
+    }
+</style>
     <div id="main">
         <div class="container stm-reservation-archive hq-rental-reservation-wrapper">
             <?php hq_rental_wpv2_get_partial('banner', $partials_data)?>

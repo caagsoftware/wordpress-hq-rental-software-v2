@@ -153,7 +153,18 @@
     $('#hq-rental-pick-up-date-time').change(function(){
         $('#hq-rental-return-date-time').val(moment().add(7, 'days').format('MM/DD/YYYY HH:mm'));
     });
-
+    var phonePickerOptions = {
+        preferrefCountries: ["us"],
+        initialCountry: "us"
+    }
+    /*Telephone International Code Picker*/
+    $('#hq-phone-picker').each(function(){
+        $(this).intlTelInput(phonePickerOptions);
+    });
+    $('#hq-phone-picker').on("countrychange", function(e, currentCountry){
+        $('#hq-phone-picker-cc').val(currentCountry.dialCode);
+        $('#hq-phone-picker-country').val(currentCountry.iso2);
+    });
 })(jQuery);
 
 function checkDate ($start, $end) {

@@ -278,6 +278,9 @@ function hq_rental_wpv2_get_header_new_client($post_data)
             case 'text':
                 $body[$key] = $value['value'];
 				break;
+			case 'decimal':
+                $body[$key] = $value['value'];
+				break;
             case 'checkbox':
                 $body[$key] = $value['value'];
 				break;
@@ -297,22 +300,24 @@ function hq_rental_wpv2_get_header_new_client($post_data)
 				$body[$key] = $value['value'];
 				break;
 			case 'multiselect':
-				/*
-				$items = array();
-				if(isset($value['value'])){
-					foreach ($value['value'] as $keyvalue => $optionvalue) {
-						$items[] = array(
-							'type' 		=>	'multiselect',
-							'number'	=>	$optionvalue
-						);
-					}
-				}*/
-
-				/*
-				$body[$key] = array(
-					'items'	=>	$items
-				);*/
 				$body[$key] = $value['value'];
+				break;
+			case 'date':
+				$body[$key] = array(
+					'day'		=>	$value['value']['day'],
+					'month'		=>	$value['value']['month'],
+					'year'		=>	$value['value']['year']
+				);
+				break;
+			case 'phone':
+				$body[$key] = array(
+						'items'	=>	array([
+							'number'		=>	$value['value']['number'],
+							'cc'			=>	$value['value']['cc'],
+							'ext'			=>	$value['value']['ext'],
+							'country'		=>	$value['value']['country']
+						])
+					);
 				break;
 			case 'identification':
 				$expiration = is_null($value['value']['expiration']) ? '' : $value['value']['expiration'];
@@ -321,6 +326,14 @@ function hq_rental_wpv2_get_header_new_client($post_data)
 						'type'			=>	trim($value['value']['type']),
 						'number'		=>	trim($value['value']['id_number']),
 						'expires_on'	=>	$expiration
+					])
+				);
+				break;
+			case 'email':
+				$body[$key] = array(
+					'items' => array([
+						'type'			=>	trim($value['value']['type']),
+						'email'		=>	trim($value['value']['email'])
 					])
 				);
 				break;

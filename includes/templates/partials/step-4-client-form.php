@@ -262,40 +262,94 @@
                                                     </div>
                                                 </p>
                                                 <?php endif; ?>
+                                                <?php if( $field->type == 'phone' ): ?>
+                                                <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                    <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                                <label for="billing_first_name" class="heading-font">Type <abbr class="required" title="required">*</abbr></label>
+                                                                <select id="hq-countries" name="<?php echo 'client[field_'.$field->id.'][value][type]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Choose Location">
+                                                                    <option value="mobile">Mobile</option>
+                                                                    <option value="home" selected="">Home</option>
+                                                                    <option value="work">Work</option>
+                                                                    <option value="fax">Fax</option>
+                                                                    <option value="emergency">Emergency</option>
+                                                                    <option value="other">Other</option>
+                                                                </select>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                                <label for="billing_first_name" class="heading-font">Phone Number <abbr class="required" title="required">*</abbr></label>
+                                                                <input type="text" id="hq-phone-picker" class="input-text " name="<?php echo 'client[field_'.$field->id.'][value][number]'; ?>"  placeholder="" value="" autocomplete="given-name" autofocus="autofocus">
+                                                                <input id="hq-phone-picker-cc" type="hidden" name="<?php echo 'client[field_'.$field->id.'][value][cc]'; ?>" value="" />
+                                                                <input id="hq-phone-picker-ex" type="hidden" name="<?php echo 'client[field_'.$field->id.'][value][ext]'; ?>" value="" />
+                                                                <input id="hq-phone-picker-country" type="hidden" name="<?php echo 'client[field_'.$field->id.'][value][country]'; ?>" value="" />
+                                                            </p>
+                                                        </div>
+                                                        <input name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" type="hidden" value="phone" />
+                                                    </div>
+                                                </p>
+                                                <?php endif; ?>
+                                                <?php if( $field->type == 'email' ): ?>
+                                                <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                    <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                                <label for="billing_first_name" class="heading-font">Type <abbr class="required" title="required">*</abbr></label>
+                                                                <select name="<?php echo 'client[field_'.$field->id.'][value][type]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Choose Location">
+                                                                    <option value="home">Home</option>
+                                                                    <option value="work" selected="">Work</option>
+                                                                    <option value="other">Other</option>
+                                                                </select>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                                <label for="billing_first_name" class="heading-font">Email <abbr class="required" title="required">*</abbr></label>
+                                                                <input type="text" class="input-text " name="<?php echo 'client[field_'.$field->id.'][value][email]'; ?>"  placeholder="" value="" autocomplete="given-name" autofocus="autofocus">
+                                                            </p>
+                                                        </div>
+                                                        <input name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" type="hidden" value="email" />
+                                                    </div>
+                                                </p>
+                                                <?php endif; ?>
                                                 <?php if($field->type == 'date'): ?>
                                                     <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
                                                         <label for="billing_first_name" class="heading-font"><?php echo $field->label; ?> <abbr class="required" title="required">*</abbr></label>
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                    <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
-                                                        <label for="billing_first_name" class="heading-font">Day <abbr class="required" title="required">*</abbr></label>
-                                                        <select id="hq-countries" name="<?php echo 'client[field_'.$field->id.'][value][day]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Choose Location">
-                                                            <option value="" selected="selected"></option>
-                                                            <?php hq_rental_wpv2_get_partial('dropdown-days-options'); ?>
-                                                        </select>
+                                                                <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                                    <label for="billing_first_name" class="heading-font">Day <abbr class="required" title="required">*</abbr></label>
+                                                                    <select id="hq-countries" name="<?php echo 'client[field_'.$field->id.'][value][day]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Day">
+                                                                        <option value="" selected="selected"></option>
+                                                                        <?php hq_rental_wpv2_get_partial('dropdown-days-options'); ?>
+                                                                    </select>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                                    <label for="billing_first_name" class="heading-font">Month <abbr class="required" title="required">*</abbr></label>
+                                                                    <select id="hq-countries" name="<?php echo 'client[field_'.$field->id.'][value][month]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Month">
+                                                                        <option value="" selected="selected"></option>
+                                                                        <?php hq_rental_wpv2_get_partial('dropdown-months-options'); ?>
+                                                                    </select>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
+                                                                    <label for="billing_first_name" class="heading-font">Year <abbr class="required" title="required">*</abbr></label>
+                                                                    <select id="hq-countries" name="<?php echo 'client[field_'.$field->id.'][value][year]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Yeart">
+                                                                        <option value=""></option>
+                                                                        <?php hq_rental_wpv2_get_partial('dropdown-years-options'); ?>
+                                                                    </select>
+                                                                    <input name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" type="hidden" value="date" />
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                     </p>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
-                                                        <label for="billing_first_name" class="heading-font">Month <abbr class="required" title="required">*</abbr></label>
-                                                        <select id="hq-countries" name="<?php echo 'client[field_'.$field->id.'][value][month]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Choose Location">
-                                                            <option value="" selected="selected"></option>
-                                                            <?php hq_rental_wpv2_get_partial('dropdown-months-options'); ?>
-                                                        </select>
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
-                                                        <label for="billing_first_name" class="heading-font">Year <abbr class="required" title="required">*</abbr></label>
-                                                        <select id="hq-countries" name="<?php echo 'client[field_'.$field->id.'][value][year]'; ?>" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" placeholder="Choose Location">
-                                                            <option value=""></option>
-                                                            <?php hq_rental_wpv2_get_partial('dropdown-years-options'); ?>
-                                                        </select>
-                                                        <input name="<?php echo 'client[field_'.$field->id.'][type]'; ?>" type="hidden" value="date" />
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </p>
                                         <?php endif; ?>
                                         <?php if($field->type == 'radio'): ?>
                                             <p class="form-row validate-required" id="billing_first_name_field" data-priority="10">
