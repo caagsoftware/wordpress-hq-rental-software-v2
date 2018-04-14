@@ -1,7 +1,7 @@
 (function($) {
     "use strict";
     $(document).ready(function(){
-        /*Timepicker*/
+        /*Global Variables*/
         var stmToday = new Date();
         var stmTomorrow = new Date(+new Date() + 86400000);
         var stmStartDate = false;
@@ -9,13 +9,30 @@
         var startDate = false;
         var endDate = false;
         var dateTimeFormat = 'Y-m-d H:i';
+        var dateTimeFormatMoment = 'YYYY-MM-DD HH:mm';
 
+        /*Step 1 - Setup*/
+        var step1DateTimePickerConfig = {
+            format: dateTimeFormat,
+            timepicker:true,
+            defaultSelect: false,
+            closeOnDateSelect: true,
+            defaultDate: stmToday
+        };
+        $('#hq-rental-pick-up-date-time').stm_datetimepicker(step1DateTimePickerConfig);
+        $('#hq-rental-return-date-time').stm_datetimepicker(step1DateTimePickerConfig);
+        /*Setting the Same Locations CheckBox*/
         $('input[name="return_same"]').on('change', function(){
             if($(this).prop('checked')) {
                 $('.stm_same_return').slideUp();
             } else {
                 $('.stm_same_return').slideDown();
             }
+        });
+        /*Select a Week Reservations*/
+        $('#hq-rental-pick-up-date-time').change(function(){
+            var addAWeek = moment($('#hq-rental-pick-up-date-time').val(), dateTimeFormatMoment);
+            $('#hq-rental-return-date-time').val(addAWeek.add(7,'days').format(dateTimeFormatMoment));
         });
 
         $('.stm_pickup_location select').on('select2:open', function() {
@@ -37,6 +54,9 @@
             $(this).select2();
         });
         $('#hq-countries').select2();
+
+
+
         $('#hq-datepicker-identification-field').each(function(){
             $(this).stm_datetimepicker({
                 format: 'Y-m-d',
@@ -103,43 +123,6 @@
                 $('body').removeClass('stm_background_overlay stm-lock');
             }
         });
-        /*Datepicker Init*/
-        $('#hq-rental-return-date-time').stm_datetimepicker({
-            format:dateTimeFormat,
-            defaultDate: stmTomorrow,
-            defaultSelect: false,
-            closeOnDateSelect: true,
-            timeHeightInTimePicker: 40,
-            fixed: false,
-            lang: stm_lang_code,
-            onShow:function( ct ){
-                $('body').addClass('stm_background_overlay stm-lock');
-                var stmStartDate = $('.stm-date-timepicker-start').val() ? $('.stm-date-timepicker-start').val() : false;
-                if(stmStartDate) {
-                    stmStartDate = stmStartDate.split(' ');
-                    stmStartDate = new Date(stmStartDate[0]);
-                } else {
-                    stmStartDate = new Date();
-                }
-
-                stmStartDate.setDate(stmStartDate.getDate() + 1);
-
-                //if($('.stm-date-timepicker-end').val()) stmStartDate = new Date($('.stm-date-timepicker-end').val().split(' ')[0]);
-                this.setOptions({
-                    minDate: stmStartDate
-                })
-            },
-            onSelectDate: function( ) {
-                if($('.stm-date-timepicker-start').val() != '' && $('.stm-date-timepicker-end').val() != '') {
-                    checkDate($('.stm-date-timepicker-start').val(), $('.stm-date-timepicker-end').val());
-                }
-                $('.stm-date-timepicker-end').stm_datetimepicker('close');
-            },
-            onClose: function( ) {
-                $('body').removeClass('stm_background_overlay stm-lock');
-            }
-        });
-
     });
 
     $('.xdsoft_current').css('background-color','#1184bf !important');
@@ -149,14 +132,11 @@
         $('#return_location').val($('#pick_up_location').val());
     });
 
-    /*Change Return Date on PickUp Date Selection*/
-    $('#hq-rental-pick-up-date-time').change(function(){
-        $('#hq-rental-return-date-time').val(moment().add(7, 'days').format('MM/DD/YYYY HH:mm'));
-    });
+
     var phonePickerOptions = {
         preferrefCountries: ["us"],
         initialCountry: "us"
-    }
+};
     /*Telephone International Code Picker*/
     $('#hq-phone-picker').each(function(){
         $(this).intlTelInput(phonePickerOptions);

@@ -35,7 +35,9 @@ $locations = $data;
                                 </label>
                                 <div class="stm_date_time_input">
                                     <h4 class="stm_form_title">Pick-up Date/Time*</h4>
-                                    <div class="stm_date_input"> <input type="text" id="hq-rental-pick-up-date-time" value="" class="stm-date-timepicker-start" name="pick_up_date_time" placeholder="Pickup Date" required readonly=""> <i class="stm-icon-date"></i></div>
+                                    <div class="stm_date_input">
+                                        <input type="text" id="hq-rental-pick-up-date-time" value="" name="pick_up_date_time" placeholder="Pickup Date" required readonly="readonly" /> <i class="stm-icon-date"></i>
+                                    </div>
                                 </div>
                             </div>
                             <h4>Return</h4>
@@ -53,7 +55,9 @@ $locations = $data;
                                 </div>
                                 <div class="stm_date_time_input">
                                     <h4 class="stm_form_title">Drop Date/Time*</h4>
-                                    <div class="stm_date_input"> <input type="text" class="stm-date-timepicker-end" id="hq-rental-return-date-time" name="return_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                                    <div class="stm_date_input">
+                                        <input type="text" id="hq-rental-return-date-time" name="return_date_time" value="" placeholder="Return Date" required="" readonly="readonly" /><i class="stm-icon-date"></i>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit">Continue Reservation</button>

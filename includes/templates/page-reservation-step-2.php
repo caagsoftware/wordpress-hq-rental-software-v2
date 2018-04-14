@@ -6,9 +6,11 @@
         if($api_call->success){
             $cars_availability = hq_rental_wpv2_get_availability_step_2($_POST)->applicable_classes;
             $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
+            $last_step_data = $_POST;
             $partials_data = array(
                     'cars'              =>  $cars_availability,
-                    'hidden_inputs'     =>  $hidden_inputs
+                    'hidden_inputs'     =>  $hidden_inputs,
+                    'last_step_data'    =>  $last_step_data
             );
             $pickup_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->pick_up->date,0,  -10));
             $return_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->return->date, 0, -10));
@@ -28,11 +30,11 @@
         <?php if(!$api_call_errors): ?>
             <div id="main">
                 <div class="container stm-reservation-archive hq-rental-reservation-wrapper">
-                    <?php hq_rental_wpv2_get_partial('banner', $partials_data); ?>
+                    <?php hq_rental_wpv2_get_partial('banner', $partials_data['last_step_data']); ?>
                 </div>
                 <div class="stm-reservation-archive hq-rental-reservation-wrapper">
                     <?php hq_rental_wpv2_get_partial('step-2-select-car',$partials_data) ?>
-    <div class="stm-reservation-archive hq-rental-reservation-wrapper">
+                </div>
             </div>
         <?php else: ?>
             errors

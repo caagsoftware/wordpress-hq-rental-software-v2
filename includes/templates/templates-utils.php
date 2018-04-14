@@ -118,3 +118,9 @@ function hq_rental_wpv2_get_range_on_multiple_charges($range_values)
         return range((int)$values[0], (int)$values[1]);
     }
 }
+
+
+function hq_rental_wpv2_get_banner_info($data)
+{
+    return isset($data) ? $data : '';
+}

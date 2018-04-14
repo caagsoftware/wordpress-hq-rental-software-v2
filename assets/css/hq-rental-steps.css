@@ -38,3 +38,6 @@ button.hq-rental-reservation-submit-button{
 .hq-submit-button-wrapper{
     margin-top:20px;
 }
+.stm-template-car_rental .stm_rent_location .select2-dropdown{
+    min-height: initial;
+}

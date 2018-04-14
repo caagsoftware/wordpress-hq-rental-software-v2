@@ -17,7 +17,7 @@
     ?>
         <div id="main">
             <div class="container stm-reservation-archive hq-rental-reservation-wrapper">
-                <?php hq_rental_wpv2_get_partial('banner', $locations); ?>
+                <?php hq_rental_wpv2_get_partial('banner'); ?>
             </div>
             <div class=" container stm-reservation-archive hq-rental-reservation-wrapper">
                 <?php hq_rental_wpv2_get_partial('step-1-form', $locations); ?>
