@@ -41,3 +41,25 @@ button.hq-rental-reservation-submit-button{
 .stm-template-car_rental .stm_rent_location .select2-dropdown{
     min-height: initial;
 }
+.hq-input-row{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.hq-input-row label,.hq-input-row p {
+    font-family:Montserrat;
+}
+
+.hq-form-wrapper .form-row .required{
+    color: red;
+    font-weight: 700;
+    border: 0;
+}
+.select2-selection__choice{
+    border: 3px solid #f0c540 !important;
+    font-family: Montserrat !important;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.intl-tel-input{
+    width:100%;
+}

@@ -17,7 +17,7 @@ if(hq_rental_wpv2_is_coming_from_step_3($_POST)){
 get_header();
 wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
 wp_enqueue_script('hq_rental_wpv2_select2_js');
-wp_enqueue_style('hq_rental_wpv2_select2_css');
+//wp_enqueue_style('hq_rental_wpv2_select2_css');
 wp_enqueue_style('hq_rental_wpv2_intl_phones_css');
 wp_enqueue_script('hq_rental_wpv2_select2_js');
 wp_enqueue_script('hq_rental_wpv2_intl_phone_js');

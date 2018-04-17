@@ -136,7 +136,8 @@
     var phonePickerOptions = {
         preferrefCountries: ["us"],
         initialCountry: "us"
-};
+    };
+
     /*Telephone International Code Picker*/
     $('#hq-phone-picker').each(function(){
         $(this).intlTelInput(phonePickerOptions);
