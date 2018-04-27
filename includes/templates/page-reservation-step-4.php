@@ -46,7 +46,7 @@ global $post;
 
         <div class="stm-reservation-archive">
 
-    </div>
+        </div>
     </div>
 <?php
 get_footer();

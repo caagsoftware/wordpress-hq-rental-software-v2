@@ -110,9 +110,12 @@ function hq_rental_wpv2_get_query_string_availability($data)
 
 function hq_rental_wpv2_response_handler($response)
 {
+
     if(is_wp_error($response)){
         return array('errors'   =>  true, 'message' => $response->get_error_message());
     }else{
+		$sucess_request = json_decode($response['body']);
+		
         return json_decode($response['body']);
     }
 }
