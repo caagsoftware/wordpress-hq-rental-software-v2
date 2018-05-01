@@ -4,8 +4,9 @@
      */
     $hidden_inputs = $data['hidden_inputs'];
     $hidden_inputs_array = $data['hidden_inputs_array'];
-    $clients = $data['clients'];
+    $client = $data['client'];
     $reservation = $data['reservation'];
+    var_dump($data['clients'], $data['reservation']);
 ?>
 
 <div class="container">
@@ -119,23 +120,23 @@
                                 <p class="lost_password"> <a href="http://motors.stylemixthemes.com/rent-a-car/my-account/lost-password/">Lost your password?</a></p>
                                 <div class="clear"></div>
                             </form>
-                            <div class="woocommerce-info"><i class="fa fa-info-circle"></i><span>Informational.</span> Have a coupon? <a href="#" class="showcoupon">Click here to enter your code</a></div>
+                             <div class="woocommerce-info"><i class="fa fa-info-circle"></i><span>Informational.</span> Have a coupon? <a href="#" class="showcoupon">Click here to enter your code</a></div>
                             <form class="checkout_coupon" method="post" style="display:none">
                                 <p class="form-row form-row-first"> <input type="text" name="coupon_code" class="input-text" placeholder="Coupon code" id="coupon_code" value=""></p>
                                 <p class="form-row form-row-last"> <input type="submit" class="button" name="apply_coupon" value="Apply coupon"></p>
                                 <div class="clear"></div>
                             </form>
-                            <form name="checkout" method="post" class="checkout woocommerce-checkout" action="/confirmation" enctype="multipart/form-data" novalidate="novalidate">
+                            <form name="checkout" method="post" class="checkout woocommerce-checkout" action="/confirmation">
                                 <div class="row" id="customer_details">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 stm_woocommerce_checkout_billing">
                                         <div class="woocommerce-billing-fields">
                                             <h4>Billing Details</h4>
-                                                    <input type="text" name='client_id' value="<?php echo $final_data['client']->contact->id; ?>" />
+                                                    <input type="text" name='customer_id' value="<?php echo $client->contact->id; ?>" />
                                                     <input type="text" name="hq_comes_from_step_5" value="1" />
                                                     <?php echo $hidden_inputs; ?>
                                                     <?php echo $hidden_inputs_array; ?>
 
-                                                    <button type="submit" class="hq-rental-reservation-submit-button">Confirm</button>
+                                                    <button type="submit" class="hq-rental-reservation-submit-button">Confir1m</button>
                                                 </div>
                                                 <div class="clear"></div>
                                             </div>

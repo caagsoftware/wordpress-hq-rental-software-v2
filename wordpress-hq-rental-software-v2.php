@@ -29,7 +29,6 @@ define('HQ_RENTAL_WPV2_DATE_FORMAT', 'hq_rental_wpv2_date_format');
  */
 define('HQ_RENTAL_WPV2_BASE_FILE', __FILE__);
 define('HQ_RENTAL_WPV2_BASE_DIR', dirname(HQ_RENTAL_WPV2_BASE_FILE));
-
 /*
  *  Require Files
  */
