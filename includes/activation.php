@@ -19,7 +19,7 @@ define('HQ_RENTAL_WPV2_RESERVATION_STEP_4_SLUG','reservation-step-4');
 define('HQ_RENTAL_WPV2_RESERVATION_STEP_5_PAGE_TITLE','Reservations Step 5');
 define('HQ_RENTAL_WPV2_RESERVATION_STEP_5_SLUG','reservation-step-5');
 define('HQ_RENTAL_WPV2_RESERVATION_CONFIRMATION_PAGE_TITLE','Confirmation');
-define('HQ_RENTAL_WPV2_RESERVATION_CONFIRMATION_PAGE_SLUG','reservation-step-5');
+define('HQ_RENTAL_WPV2_RESERVATION_CONFIRMATION_PAGE_SLUG','confirmation');
 
 
 function hq_rental_wpv2_create_system_pages(){
