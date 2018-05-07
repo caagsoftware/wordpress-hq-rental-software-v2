@@ -1,4 +1,3 @@
-
 <?php
 
 use Carbon\Carbon;
@@ -36,7 +35,7 @@ function hq_rental_wpv2_get_header_step4($post_data)
     $charges = array();
     $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
-    $body['brand_id'] = $post_data['brand_id'];
+    $body['brand_id'] = $post_data['brand_id']; 
     $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
     $body['pick_up_time'] = $pick_up_date->format('H:i');
@@ -49,6 +48,8 @@ function hq_rental_wpv2_get_header_step4($post_data)
     }
     $body['additional_charges'] = $charges;
     $args['body'] = $body;
+    var_dump($body);
+    die();
     return $args;
 }
 
@@ -363,8 +364,11 @@ function hq_rental_wpv2_get_confirmation_request_data( $post_data )
             $body['customer_id'] = $value;
         }else if($key == 'brand_id'){
             $body['brand'] = $value;
+        }else if( $key == 'charges' ){
+        }else{
+            $body[$key] = $value;
         }
-        $body[$key] = $value;
+
     }
     $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);

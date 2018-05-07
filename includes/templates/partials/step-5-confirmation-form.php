@@ -6,7 +6,6 @@
     $hidden_inputs_array = $data['hidden_inputs_array'];
     $client = $data['client'];
     $reservation = $data['reservation'];
-    var_dump($data['clients'], $data['reservation']);
 ?>
 
 <div class="container">

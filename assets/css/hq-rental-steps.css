@@ -1,6 +1,9 @@
 #wrapper{
     background-color: #eeeeee !important;
 }
+.hq-vehicle-class-description{
+    text-align: justify;
+}
 .hq-rental-reservation-wrapper{
     background-color: #eeeeee;
     padding-top: 0px !important;

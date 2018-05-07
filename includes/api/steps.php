@@ -64,6 +64,7 @@ function hq_rental_wpv2_create_new_client_from_step_4($post_data)
 
 function hq_rental_wpv2_book_confirmation($post_data)
 {
+    $data = hq_rental_wpv2_get_confirmation_request_data($post_data);
     $response = wp_remote_post(HQ_RENTAL_WPV2_CONFIRMATION_URL, hq_rental_wpv2_get_confirmation_request_data($post_data));
     return hq_rental_wpv2_response_handler($response);
 }
