@@ -1,7 +1,10 @@
 <?php
     //this ccs class - > add yellow background on current step boxes
     $hq_rental_active_step = 'hq-rental-active-step';
-    $locations = $data;
+    $pick_up_location = $data['pick_up_location_worflow'];
+    $return_location = $data['return_location_worflow'];
+    $pick_up_date = $data['pick_up_date'];
+    $return_date = $data['return_date'];
 ?>
 <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding" style="position: relative; left: -221.5px; box-sizing: border-box; width: 1583px;">
     <div class="wpb_column vc_column_container vc_col-sm-12">
@@ -22,13 +25,13 @@
                                             <div class="hq-rental-non-active-step">
                                                 <div class="first">
                                                     <h5>Pick up</h5>
-                                                    <div class="stm_filled_pickup_location">--</div>
-                                                    <div class="stm_filled_pickup_date">--</div>
+                                                    <div class="stm_filled_pickup_location"><?php echo !empty($pick_up_location) ? $pick_up_location : '--'; ?></div>
+                                                    <div class="stm_filled_pickup_date"><?php echo !empty($pick_up_date) ? $pick_up_date->format('Y-m-d H:i') : '--'; ?></div>
                                                 </div>
                                                 <div class="second">
-                                                    <h5 class="second">Drop off</h5>
-                                                    <div class="stm_filled_return_location">--</div>
-                                                    <div class="stm_filled_return_date">--</div>
+                                                    <h5 class="second">Return</h5>
+                                                    <div class="stm_filled_pickup_location"><?php echo !empty($return_location) ? $return_location : '--'; ?></div>
+                                                    <div class="stm_filled_pickup_date"><?php echo !empty($return_date) ? $return_date->format('Y-m-d H:i') : '--'; ?></div>
                                                 </div>
                                             </div>
                                         </div>
