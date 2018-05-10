@@ -18,6 +18,9 @@ $locations = $data;
                     <div class="stm_rent_car_form">
                         <form action="/reservation-step-2" method="post">
                             <input type="hidden" name="brand_id" value="<?php echo $locations[0]->brand_id; ?>">
+                            <input type="hidden" name="pick_up_location_hidden" value="" />
+                            <input type="hidden" name="return_location_hidden" value="" />
+
                             <h4>Pick Up</h4>
                             <div class="stm_rent_form_fields">
                                 <h4 class="stm_form_title">Place to pick up the Car*</h4>
@@ -28,6 +31,7 @@ $locations = $data;
                                             <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                                         <?php endforeach; ?>
                                     </select>
+
                                 </div>
                                 <label>
                                     <div class=""><span class="checked"><input type="checkbox" id="return_same_location" name="return_same" checked="">Return to the same location</span></div>

@@ -146,6 +146,14 @@
         $('#hq-phone-picker-cc').val(currentCountry.dialCode);
         $('#hq-phone-picker-country').val(currentCountry.iso2);
     });
+    $('#pick_up_location').on("change", function(){
+        $('#pick_up_location_hidden').val($('#pick_up_location').val());
+    });
+    $('#return_location').on("change", function(){
+        $('#return_location_hidden').val($('#return_location').val());
+    });
+    $('#pick_up_location_hidden').val($('#pick_up_location').val());
+    $('#return_location_hidden').val($('#return_location').val());
 })(jQuery);
 
 function checkDate ($start, $end) {

@@ -32,10 +32,9 @@ function hq_rental_wpv2_get_header_step4($post_data)
             'Authorization' => 'Basic ' . $final_token
         )
     );
-    $charges = array();
     $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
-    $body['brand_id'] = $post_data['brand_id']; 
+    $body['brand_id'] = $post_data['brand_id'];
     $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
     $body['pick_up_time'] = $pick_up_date->format('H:i');
@@ -43,13 +42,8 @@ function hq_rental_wpv2_get_header_step4($post_data)
     $body['return_time'] = $return_date->format('H:i');
     $body['brand'] = $post_data['brand_id'];
     $body['vehicle_class_id'] = $post_data['vehicle_class_id'];
-    foreach ($post_data as $key => $value){
-        $charges[] = $key.'_'.$value;
-    }
-    $body['additional_charges'] = $charges;
+    $body['additional_charges'] = hq_rental_wpv2_get_charges_formatted($post_data['charges']);
     $args['body'] = $body;
-    var_dump($body);
-    die();
     return $args;
 }
 
@@ -116,7 +110,6 @@ function hq_rental_wpv2_response_handler($response)
         return array('errors'   =>  true, 'message' => $response->get_error_message());
     }else{
 		$sucess_request = json_decode($response['body']);
-		
         return json_decode($response['body']);
     }
 }
@@ -377,6 +370,7 @@ function hq_rental_wpv2_get_confirmation_request_data( $post_data )
     $body['pick_up_time'] = $pick_up_date->format('H:i');
     $body['return_date'] = $return_date->toDateString();
     $body['return_time'] = $return_date->format('H:i');
+    $body['additional_charges'] = hq_rental_wpv2_get_charges_formatted($post_data['charges']);
     $args['body'] = $body;
     return $args;
 }
@@ -398,4 +392,16 @@ function hq_rental_wpv2_get_basic_header()
         )
     );
     return $args;
+}
+function hq_rental_wpv2_get_charges_formatted($data)
+{
+    $charges = array();
+    foreach ($data as $key => $value){
+        if($value == "on"){
+            $charges[] = $key;
+        }else{
+            $charges[] = $key.'_'.$value;
+        }
+    }
+    return $charges;
 }

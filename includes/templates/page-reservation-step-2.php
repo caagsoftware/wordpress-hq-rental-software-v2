@@ -8,9 +8,9 @@
             $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
             $last_step_data = $_POST;
             $partials_data = array(
-                    'cars'              =>  $cars_availability,
-                    'hidden_inputs'     =>  $hidden_inputs,
-                    'last_step_data'    =>  $last_step_data
+                    'cars'                  =>  $cars_availability,
+                    'hidden_inputs'         =>  $hidden_inputs,
+                    'last_step_data'        =>  $last_step_data
             );
             $pickup_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->pick_up->date,0,  -10));
             $return_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->return->date, 0, -10));

@@ -2,6 +2,7 @@
     /*
      * Hook Page Template Data With Partial Data
      */
+
     $hidden_inputs = $data['hidden_inputs'];
     $hidden_inputs_array = $data['hidden_inputs_array'];
     $client = $data['client'];
