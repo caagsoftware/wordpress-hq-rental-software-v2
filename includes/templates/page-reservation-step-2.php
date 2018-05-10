@@ -8,8 +8,10 @@
         if($api_call->success){
             $cars_availability = hq_rental_wpv2_get_availability_step_2($_POST)->applicable_classes;
             $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
-            $pickup_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->pick_up->date,0,  -10));
-            $return_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->return->date, 0, -10));
+            $pickup_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['pick_up_date_time'],0);
+            $return_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['return_date_time'],0);
+            //$pickup_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->pick_up->date,0,  -10));
+            //$return_date = Carbon::createFromFormat('Y-m-d H:i', substr($cars_availability[0]->return->date, 0, -10));
             $last_step_data = $_POST;
             $partials_data = array(
                     'cars'                          =>  $cars_availability,

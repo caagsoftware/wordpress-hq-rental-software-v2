@@ -2,6 +2,7 @@
     $additional_charges = $data['charges'];
     $hidden_inputs = $data['hidden_inputs'];
     $selected_car = $data['selected_car'];
+    $prices = $data['prices'];
 ?>
 <div class="container">
     <div class="row">
@@ -26,7 +27,6 @@
                 <div class="col-md-7">
                     <form action="/reservation-step-4" method="post">
                         <?php echo $hidden_inputs; ?>
-
                         <?php foreach ($additional_charges as $charge): ?>
                             <?php if($charge->selection_type == 'multiple'): ?>
                                 <div class="stm_rental_options_archive">
@@ -148,7 +148,7 @@
                             <div class="subtitle heading-font"><?php echo $selected_car->label_for_website->en; ?></div>
                         </div>
 
-                        <div class="image"> <img class="img-responsive" src="<?php echo $selected_car->public_image_link; ?>"></div>
+                        <div class="image"><img class="img-responsive" src="<?php echo $selected_car->public_image_link; ?>"></div>
                         <div class="stm_rent_table">
                             <div class="heading heading-font">
                                 <h4>Rate</h4>
@@ -166,9 +166,9 @@
                                     <td colspan="3" class="divider"></td>
                                 </tr>
                                 <tr>
-                                    <td>4 Days</td>
-                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>100</span></td>
-                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>400</span></td>
+                                    <td><?php echo $prices->total_days; ?> Days</td>
+                                    <td><span class="woocommerce-Price-amount amount"><?php echo $prices->rack_rate_details[0]->base_daily_price->amount_for_display; ?></td>
+                                    <td><span class="woocommerce-Price-amount amount"><?php echo $prices->total_price->amount_for_display?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="divider"></td>
