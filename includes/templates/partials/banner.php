@@ -6,6 +6,7 @@
     $pick_up_date = $data['pick_up_date'];
     $return_date = $data['return_date'];
     $selected_car = $data['selected_car'];
+    $client = $data['client']->contact;
 ?>
 <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding" style="position: relative; left: -221.5px; box-sizing: border-box; width: 1583px;">
     <div class="wpb_column vc_column_container vc_col-sm-12">
@@ -69,7 +70,7 @@
                                             <div class="content">
                                                 <div class="first">
                                                     <h5>Your information</h5>
-                                                    <div>--</div>
+                                                    <div><?php echo !empty($client->label) ? $client->label : '--'; ?></div>
                                                 </div>
                                                 <div class="second">
                                                     <h5>Payment information</h5>
