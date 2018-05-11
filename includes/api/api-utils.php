@@ -398,7 +398,7 @@ function hq_rental_wpv2_get_charges_formatted($data)
     $charges = array();
     foreach ($data as $key => $value){
         if($value == "on"){
-            $charges[] = $key;
+            $charges[] = (string) $key;
         }else{
             $charges[] = $key.'_'.$value;
         }

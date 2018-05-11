@@ -39,9 +39,7 @@
                                                 <div class="title">
                                                     <h4><?php echo $charge->name; ?></h4>
                                                 </div>
-                                                <?php if($charge->short_description_for_website->en != ''): ?>
-                                                    <div class="stm-more"><a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i></a></div>
-                                                <?php endif; ?>
+                                                <div class="stm-more"><a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i></a></div>
                                             </div>
                                             <div class="meta">
                                                 <div class="price">
@@ -63,9 +61,11 @@
                                                     <?php endif; ?>
                                                 </select>
                                             </div>
-
                                             <div class="clearfix"></div>
                                             <div class="more">
+                                                <div class="price-value">
+                                                    <h4>PRICE: <?php echo $charge->applicable_price->amount_for_display; ?></h4>
+                                                </div>
                                                 <?php echo ($charge->short_description_for_website->en != '' ? $charge->short_description_for_website->en : ''); ?>
                                             </div>
                                         </div>
@@ -80,9 +80,11 @@
                                         <div class="stm_rental_option_content">
                                             <div class="content">
                                                 <div class="title">
-                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><span> Mandatory</span><?php endif; ?><?php if($charge->recommended): ?><span> Recommended</span><?php endif; ?>
+                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><span> Mandatory</span><?php endif; ?>
+                                                    <?php if($charge->recommended): ?><h6><span class="colored hq-recommended-tag">RECOMMENDED</span></h6><?php endif; ?>
                                                 </div>
-                                                <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
+                                                <div class="stm-more"><a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i></a></div>
+
                                             </div>
                                             <div class="meta">
                                                 <div class="price">
@@ -90,14 +92,19 @@
                                                     <div class="current_price heading-font"></div>
                                                 </div>
                                                 <?php if($charge->mandatory): ?>
-                                                    <input name="charges[<?php echo $charge->id; ?>]" type="checkbox" checked disabled /> <span><?php echo '1'; ?></span><span> $</span>
+                                                    <input name="charges[<?php echo $charge->id; ?>]" type="checkbox" checked disabled /><span><?php echo $charge->applicable_price->amount_for_display; ?></span>
                                                 <?php else: ?>
-                                                    <input type="checkbox" name="charges[<?php echo $charge->id; ?>]" /> <span><?php echo '1'; ?></span><span> $</span>
+                                                    <input type="checkbox" name="charges[<?php echo $charge->id; ?>]" /><span><?php echo $charge->applicable_price->amount_for_display; ?></span>
                                                 <?php endif; ?>
 
                                             </div>
                                             <div class="clearfix"></div>
-                                            <div class="more"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales tortor est, dictum pharetra lectus facilisis vitae. Proin sodales nec neque sed posuere. Nulla facilisi. Suspendisse tincidunt quisut sagittis.Sed ullamcorper aliquet magna at accumsan. Curabitur fringilla, risus a malesuada mattis, diam quam finibus sapien, sit amet ullamcorper arcu neque a metus. Etiam rutrum orci non ex vehicula, sed egestas metus tristique.</div>
+                                            <div class="more">
+                                                <div class="price-value">
+                                                    <h4>PRICE: <?php echo $charge->applicable_price->amount_for_display; ?></h4>
+                                                </div>
+                                                <?php echo ($charge->short_description_for_website->en != '' ? $charge->short_description_for_website->en : ''); ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +117,8 @@
                                         <div class="stm_rental_option_content">
                                             <div class="content">
                                                 <div class="title">
-                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><span> Mandatory</span><?php endif; ?><?php if($charge->recommended): ?><span> Recommended</span><?php endif; ?>
+                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><span> Mandatory</span><?php endif; ?>
+                                                    <?php if($charge->recommended): ?><h6><span class="colored hq-recommended-tag">RECOMMENDED</span></h6><?php endif; ?>
                                                 </div>
                                                 <!--<div class="stm-more"> <a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i> </a></div>-->
                                             </div>
@@ -186,12 +194,8 @@
                                     <td colspan="3" class="divider"></td>
                                 </tr>
                                 <tr class="cart-tax tax-car-rental-sales-tax-1-1">
-                                    <td>Car Rental Sales Tax (1%)</td>
+                                    <td><span><?php echo $prices->brand->tax_label ?></span><span> % <?php echo $prices->brand->abb_tax; ?></span></td>
                                     <td><?php echo $prices->base_price_with_taxes->amount_for_display; ?></td>
-                                </tr>
-                                <tr class="cart-tax tax-sales-tax-2-2">
-                                    <td>Sales Tax (2%)</td>
-                                    <td>$8</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="divider"></td>

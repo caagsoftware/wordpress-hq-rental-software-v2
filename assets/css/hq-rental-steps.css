@@ -1,6 +1,14 @@
 #wrapper{
     background-color: #eeeeee !important;
 }
+.hq-additional-charge-name-step-4{
+    width: 160px !important;
+}
+.hq-recommended-tag{
+    color:#f0c540;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .hq-vehicle-class-description{
     text-align: justify;
 }

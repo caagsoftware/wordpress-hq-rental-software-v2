@@ -13,9 +13,9 @@
             $return_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['return_date_time'],0);
             $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
             $partials_data = array(
-                    'charges'   =>  $additional_charges,
-                    'hidden_inputs' =>  $hidden_inputs,
-                    'selected_car'  =>  $selected_car,
+                    'charges'                       =>  $additional_charges,
+                    'hidden_inputs'                 =>  $hidden_inputs,
+                    'selected_car'                  =>  $selected_car,
                     'pick_up_location_worflow'      =>  $pick_up_location_worflow,
                     'return_location_worflow'       =>  $return_location_worflow,
                     'pick_up_date'                  =>  $pickup_date,
