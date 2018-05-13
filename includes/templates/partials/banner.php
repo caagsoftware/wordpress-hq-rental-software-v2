@@ -6,7 +6,7 @@
     $pick_up_date = $data['pick_up_date'];
     $return_date = $data['return_date'];
     $selected_car = $data['selected_car'];
-    $client = $data['client']->contact;
+    $client = $data['client'];
 ?>
 <div data-vc-full-width="true" data-vc-full-width-init="true" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_row-no-padding" style="position: relative; left: -221.5px; box-sizing: border-box; width: 1583px;">
     <div class="wpb_column vc_column_container vc_col-sm-12">
