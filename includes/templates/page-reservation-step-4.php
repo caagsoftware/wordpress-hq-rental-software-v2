@@ -13,6 +13,8 @@
         $return_location_worflow = $_POST['return_location_hidden'];
         $pickup_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['pick_up_date_time'],0);
         $return_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['return_date_time'],0);
+        $_SESSION['step_3_data'] = $charges_step_3;
+        $_SESSION['prices'] = $prices;
         $partials_data = array(
                 'clients_fields'                =>  $clients_fields,
                 'hidden_inputs'                 =>  $hidden_inputs,
@@ -32,7 +34,6 @@
     get_header();
     wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
     wp_enqueue_script('hq_rental_wpv2_select2_js');
-    //wp_enqueue_style('hq_rental_wpv2_select2_css');
     wp_enqueue_style('hq_rental_wpv2_intl_phones_css');
     wp_enqueue_script('hq_rental_wpv2_select2_js');
     wp_enqueue_script('hq_rental_wpv2_intl_phone_js');
@@ -58,7 +59,6 @@
             <div class="stm-reservation-archive hq-rental-reservation-wrapper">
                 <?php hq_rental_wpv2_get_partial('step-4-client-form', $partials_data)?>
             </div>
-
             <div class="stm-reservation-archive">
 
             </div>

@@ -11,6 +11,9 @@
     $pick_up_date = $data['pick_up_date'];
     $return_date = $data['return_date'];
     $reservation = $data['reservation'];
+    $charges = $data['charges'];
+    $prices = $data['prices'];
+    $selected_car = $data['selected_car']
 ?>
 
 <div class="container">
@@ -34,10 +37,11 @@
                 <div class="col-md-5">
                     <div class="stm_rent_order_info">
                         <div class="title">
-                            <h4>Economy</h4>
-                            <div class="subtitle heading-font">Mini Cooper 3 or Similar</div>
+                            <h4><?php echo $selected_car->name; ?></h4>
+                            <div class="subtitle heading-font"><?php echo $selected_car->label_for_website->en; ?></div>
                         </div>
-                        <div class="image"> <img src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/economy-300x181.png"></div>
+
+                        <div class="image"><img class="img-responsive" src="<?php echo $selected_car->public_image_link; ?>"></div>
                         <div class="stm_rent_table">
                             <div class="heading heading-font">
                                 <h4>Rate</h4>
@@ -55,9 +59,9 @@
                                     <td colspan="3" class="divider"></td>
                                 </tr>
                                 <tr>
-                                    <td>4 Days</td>
-                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>100</span></td>
-                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>400</span></td>
+                                    <td><?php echo $prices->total_days; ?> Days</td>
+                                    <td><span class="woocommerce-Price-amount amount"><?php echo $prices->rack_rate_details[0]->base_daily_price->amount_for_display; ?></td>
+                                    <td><span class="woocommerce-Price-amount amount"><?php echo $prices->base_price->amount_for_display; ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="divider"></td>
@@ -66,30 +70,31 @@
                                 <tfoot class="heading-font">
                                 <tr>
                                     <td colspan="2">Rental Charges Rate</td>
-                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>400</span></td>
+                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $prices->base_price->amount_for_display; ?></td>
                                 </tr>
                                 </tfoot>
                             </table>
                         </div>
                         <div class="stm_rent_table stm_rent_tax_table">
                             <div class="heading heading-font">
-                                <h4>Taxes &amp; Fees</h4>
+                                <h4>Additional Charges</h4>
                             </div>
                             <table>
                                 <tbody>
                                 <tr>
                                     <td colspan="3" class="divider"></td>
                                 </tr>
-                                <tr class="cart-tax tax-car-rental-sales-tax-1-1">
-                                    <td>Car Rental Sales Tax (1%)</td>
-                                    <td>&nbsp;</td>
-                                    <td>$4</td>
-                                </tr>
-                                <tr class="cart-tax tax-sales-tax-2-2">
-                                    <td>Sales Tax (2%)</td>
-                                    <td>&nbsp;</td>
-                                    <td>$8</td>
-                                </tr>
+                                <?php foreach ($charges as $charge): ?>
+                                    <tr class="cart-tax tax-car-rental-sales-tax-1-1">
+                                        <td class="hq-additional-charge-name-step-4"><?php echo $charge->name; ?></td>
+                                        <?php if($charge->charge_type == 'daily'): ?>
+                                            <td><?php echo $charge->quantity; ?> x <?php echo $prices->total_days; ?> days </td>
+                                        <?php elseif($charge->charge_type == 'amount'): ?>
+                                            <td><?php echo $charge->quantity; ?> </td>
+                                        <?php endif; ?>
+                                        <td><?php echo $charge->price->amount_for_display; ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
                                 <tr>
                                     <td colspan="3" class="divider"></td>
                                 </tr>
@@ -101,7 +106,7 @@
                                 <tbody>
                                 <tr>
                                     <td>Estimated total</td>
-                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>400</span></td>
+                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $prices->outstanding_balance->amount_for_display; ?></td>
                                 </tr>
                                 </tbody>
                             </table>

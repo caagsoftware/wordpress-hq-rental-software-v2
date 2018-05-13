@@ -54,7 +54,7 @@
                                 <tr>
                                     <td><?php echo $prices->total_days; ?> Days</td>
                                     <td><span class="woocommerce-Price-amount amount"><?php echo $prices->rack_rate_details[0]->base_daily_price->amount_for_display; ?></td>
-                                    <td><span class="woocommerce-Price-amount amount"><?php echo $prices->base_price->amount_for_display?></td>
+                                    <td><span class="woocommerce-Price-amount amount"><?php echo $prices->base_price->amount_for_display; ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="divider"></td>
@@ -66,7 +66,7 @@
                                     <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $prices->base_price->amount_for_display; ?></td>
                                 </tr>
                                 </tfoot>
-                            </table>
+                            </table>Jew p
                         </div>
                         <div class="stm_rent_table stm_rent_tax_table">
                             <div class="heading heading-font">

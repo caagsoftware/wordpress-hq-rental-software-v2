@@ -9,7 +9,6 @@ if(hq_rental_wpv2_is_coming_from_step_4($_POST) and $_POST['hq_comes_from_step_4
     $return_location_worflow = $_POST['return_location_hidden'];
     $pickup_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['pick_up_date_time'],0);
     $return_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['return_date_time'],0);
-    //var_dump($pickup_date,$return_date);
     $partials_data = array(
             'hidden_inputs'                 =>  $hidden_inputs,
             'hidden_inputs_array'           =>  $hidden_inputs_array,
@@ -19,6 +18,9 @@ if(hq_rental_wpv2_is_coming_from_step_4($_POST) and $_POST['hq_comes_from_step_4
             'return_location_workflow'       =>  $return_location_worflow,
             'pick_up_date'                  =>   $pickup_date,
             'return_date'                   =>   $return_date,
+            'charges'                       =>   $_SESSION['step_3_data'],
+            'prices'                        =>   $_SESSION['prices'],
+            'selected_car'                  =>  $_SESSION['selected_car']
     );
 }else{
     wp_redirect('/reservation-step-1');

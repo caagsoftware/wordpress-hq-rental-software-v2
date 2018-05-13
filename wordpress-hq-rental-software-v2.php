@@ -54,6 +54,13 @@ function hq_rental_wpv2_deactivation()
 }
 register_deactivation_hook(__FILE__,'hq_rental_wpv2_deactivation');
 
+
+function hq_rental_wpv2_session_init() {
+    if (!session_id())
+        session_start();
+}
+
+add_action('init', 'hq_rental_wpv2_session_init', 1);
 /*
 function tl_save_error() {
     update_option( 'plugin_error',  ob_get_contents() );
