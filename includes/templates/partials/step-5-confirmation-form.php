@@ -13,7 +13,7 @@
     $reservation = $data['reservation'];
     $charges = $data['charges'];
     $prices = $data['prices'];
-    $selected_car = $data['selected_car']
+    $selected_car = $data['selected_car'];
 ?>
 
 <div class="container">
@@ -120,7 +120,7 @@
                             <div class="woocommerce-order">
                                 <h4 class="rental_title">Summary</h4>
                                 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="/confirmation">
-                                    <input type="hidden" name='customer_id' value="<?php echo $client->contact->id; ?>" />
+                                    <input type="hidden" name='customer_id' value="<?php echo $client->id; ?>" />
                                     <input type="hidden" name="hq_comes_from_step_5" value="1" />
                                     <?php echo $hidden_inputs; ?>
                                     <?php echo $hidden_inputs_array; ?>
@@ -144,10 +144,6 @@
                                         <div class="single_order_info">
                                             <h4 class="title">Client Name</h4>
                                             <div class="content"><?php echo $client->label; ?></div>
-                                        </div>
-                                        <div class="single_order_info">
-                                            <h4 class="title">Payment information</h4>
-                                            <div class="content">Estimated Total - <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>4,720.00</span></div>
                                         </div>
                                     </div>
                                     <button type="submit" class="hq-rental-reservation-submit-button">Confirm Reservation</button>

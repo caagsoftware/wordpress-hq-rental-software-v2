@@ -3,6 +3,7 @@ use Carbon\Carbon;
 if(hq_rental_wpv2_is_coming_from_step_4($_POST) and $_POST['hq_comes_from_step_4'] == '1'){
     $final_data = hq_rental_wpv2_create_new_client_from_step_4($_POST);
     $new_client = $final_data['client']->contact;
+    $_SESSION['client'] = $new_client;
     $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($final_data['reservation']);
     $hidden_inputs_array = hq_rental_wpv2_get_inputs_from_last_step_arrays('charges', $final_data['reservation']['charges']);
     $pick_up_location_worflow = $_POST['pick_up_location_hidden'];
