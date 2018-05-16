@@ -124,3 +124,30 @@ function hq_rental_wpv2_get_banner_info($data)
 {
     return isset($data) ? $data : '';
 }
+
+function hq_rental_wpv2_banner_first_box_background()
+{
+    if($_SESSION['current_step'] == 2 or $_SESSION['current_step'] == 3 or $_SESSION['current_step'] == 4 or $_SESSION['current_step'] == 5){
+        return 'hq-rental-active-step';
+    }else{
+        return 'hq-rental-non-active-step';
+    }
+}
+
+function hq_rental_wpv2_banner_second_box_background()
+{
+    if($_SESSION['current_step'] == 3 or $_SESSION['current_step'] == 4 or $_SESSION['current_step'] == 5){
+        return 'hq-rental-active-step';
+    }else{
+        return 'hq-rental-non-active-step';
+    }
+}
+
+function hq_rental_wpv2_banner_third_box_background()
+{
+    if($_SESSION['current_step'] == 5){
+        return 'hq-rental-active-step';
+    }else{
+        return 'hq-rental-non-active-step';
+    }
+}

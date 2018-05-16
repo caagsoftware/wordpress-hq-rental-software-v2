@@ -24,6 +24,7 @@ function hq_rental_wpv2_get_header()
 function hq_rental_wpv2_get_header_step4($post_data)
 {
     $body = array();
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
     $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
     $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
     $final_token = base64_encode($tenant . ':' . $user);
@@ -32,8 +33,8 @@ function hq_rental_wpv2_get_header_step4($post_data)
             'Authorization' => 'Basic ' . $final_token
         )
     );
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     $body['brand_id'] = $post_data['brand_id'];
     $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
@@ -53,6 +54,7 @@ function hq_rental_wpv2_get_header_step4($post_data)
 function hq_rental_wpv2_get_http_arguments(array $post_data = [])
 {
     $vars = array();
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
     $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
     $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
     $final_token = base64_encode($tenant . ':' . $user);
@@ -63,12 +65,12 @@ function hq_rental_wpv2_get_http_arguments(array $post_data = [])
     );
 
     if(isset($body['pick_up_date_time'])){
-        $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
+        $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
         $vars['pick_up_date'] = $pick_up_date->toDateString();
         $vars['pick_up_time'] = $pick_up_date->toTimeString();
     }
     if(isset($body['return_date_time'])){
-        $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+        $pick_up_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
         $vars['return_date'] = $pick_up_date->toDateString();
         $vars['return_time'] = $pick_up_date->toTimeString();
     }
@@ -119,22 +121,25 @@ function hq_rental_wpv2_response_handler($response)
  */
 function hq_rental_wpv2_get_query_string_availability_step_2($post_data)
 {
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
+    $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     return HQ_RENTAL_WPV2_CHECK_AVAILABILITY_STEP_2_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '&pick_up_time=' . $pick_up_date->format('H:i') . '&return_date=' . $return_date->toDateString() . '&return_time=' . $return_date->format('H:i') . '&brand=' . $post_data['brand_id'] . '&pick_up_location=' . $post_data['pick_up_location'] .'&return_location=' . $post_data['return_location'] ;
 }
 
 function hq_rental_wpv2_get_query_string_availability_step_3($post_data)
 {
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
+    $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     return HQ_RENTAL_WPV2_ADDITIONAL_CHARGES_STEP_3_URL . 'pick_up_date=' . $pick_up_date->toDateString() . '&pick_up_time=' . $pick_up_date->format('H:i') . '&return_date=' . $return_date->toDateString() . '&return_time=' . $return_date->format('H:i') . '&brand=' . $post_data['brand_id'] . '&pick_up_location=' . $post_data['pick_up_location'] .'&return_location=' . $post_data['return_location'] .'&vehicle_class_id=' . $post_data['vehicle_class_id'] ;
 }
 
 function hq_rental_wpv2_get_query_string_clients_step_4($post_data)
 {
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
+    $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     $charges_string = hq_rental_wpv2_get_query_string_arrays($post_data['charges']);
 
 }
@@ -184,7 +189,7 @@ function hq_rental_wpv2_get_query_string_from_array($data_array)
 
 function hq_rental_wpv2_get_query_string_from_errors($data_array)
 {
-    $query_variables = '?error='. urlencode(true);
+    $query_variables = '?errors='. urlencode(true);
     $counter = 0;
     if(!empty($data_array)) {
         foreach ($data_array as $key => $value) {
@@ -200,6 +205,8 @@ function hq_rental_wpv2_get_query_string_from_errors($data_array)
 function hq_rental_wpv2_get_post_data_step_2($post_data)
 {
     $body = array();
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
     $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
     $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
     $final_token = base64_encode($tenant . ':' . $user);
@@ -208,8 +215,8 @@ function hq_rental_wpv2_get_post_data_step_2($post_data)
             'Authorization' => 'Basic ' . $final_token
         )
     );
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
     $body['pick_up_time'] = $pick_up_date->format('H:i');
@@ -226,6 +233,7 @@ function hq_rental_wpv2_get_post_data_step_2($post_data)
 function hq_rental_wpv2_get_request_data_step_3($post_data)
 {
     $body = array();
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
     $user = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_USER_TOKEN);
     $tenant = hq_rental_wpv2_get_option(HQ_RENTAL_WPV2_TENANT_TOKEN);
     $final_token = base64_encode($tenant . ':' . $user);
@@ -234,8 +242,8 @@ function hq_rental_wpv2_get_request_data_step_3($post_data)
             'Authorization' => 'Basic ' . $final_token
         )
     );
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
     $body['pick_up_time'] = $pick_up_date->format('H:i');
@@ -351,6 +359,7 @@ function hq_rental_wpv2_get_header_new_client($post_data)
 function hq_rental_wpv2_get_confirmation_request_data( $post_data )
 {
     $args = hq_rental_wpv2_get_basic_header();
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
     $body = array();
     foreach( $post_data as $key => $value ){
         if($key == 'client_id'){
@@ -363,8 +372,8 @@ function hq_rental_wpv2_get_confirmation_request_data( $post_data )
         }
 
     }
-    $pick_up_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['pick_up_date_time']);
-    $return_date = Carbon::createFromFormat('Y-m-d H:i', $post_data['return_date_time']);
+    $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
+    $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     $body['pick_up_location'] = $post_data['pick_up_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
     $body['pick_up_time'] = $pick_up_date->format('H:i');
@@ -393,6 +402,7 @@ function hq_rental_wpv2_get_basic_header()
     );
     return $args;
 }
+
 function hq_rental_wpv2_get_charges_formatted($data)
 {
     $charges = array();

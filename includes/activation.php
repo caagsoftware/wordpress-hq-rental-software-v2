@@ -1,9 +1,4 @@
 <?php
-/*
- *
- */
-define('HQ_RENTAL_WPV2_AVAILABILITY_PAGE_TITLE','Availability Check');
-define('HQ_RENTAL_WPV2_AVAILABILITY_PAGE_SLUG','availability');
 
 /*
  * Define Reservation Pages Names and Slug
@@ -20,8 +15,12 @@ define('HQ_RENTAL_WPV2_RESERVATION_STEP_5_PAGE_TITLE','Reservations Step 5');
 define('HQ_RENTAL_WPV2_RESERVATION_STEP_5_SLUG','reservation-step-5');
 define('HQ_RENTAL_WPV2_RESERVATION_CONFIRMATION_PAGE_TITLE','Confirmation');
 define('HQ_RENTAL_WPV2_RESERVATION_CONFIRMATION_PAGE_SLUG','confirmation');
+define('HQ_RENTAL_WPV2_AVAILABILITY_PAGE_TITLE','Availability Check');
+define('HQ_RENTAL_WPV2_AVAILABILITY_PAGE_SLUG','availability');
 
-
+/*
+ * Creates Plugin Pages
+ */
 function hq_rental_wpv2_create_system_pages(){
     if( ! hq_rental_wpv2_exists_hq_page_by_name_and_title(HQ_RENTAL_WPV2_AVAILABILITY_PAGE_SLUG, HQ_RENTAL_WPV2_AVAILABILITY_PAGE_TITLE) ){
         $args_avalability = array(
@@ -115,12 +114,25 @@ function hq_rental_wpv2_create_system_pages(){
     }
 }
 
+/*
+ * Creates Api User Token and Tenant Token Options on Wordpress
+ */
 function hq_rental_wpv2_create_settings_data()
 {
-    add_option(HQ_RENTAL_WPV2_USER_TOKEN, '');
-    add_option(HQ_RENTAL_WPV2_TENANT_TOKEN, '');
+    if(! get_option(HQ_RENTAL_WPV2_USER_TOKEN)){
+        add_option(HQ_RENTAL_WPV2_USER_TOKEN, '');
+    }
+    if(! get_option(HQ_RENTAL_WPV2_TENANT_TOKEN) ){
+        add_option(HQ_RENTAL_WPV2_TENANT_TOKEN, '');
+    }
+    if(! get_option(HQ_RENTAL_WPV2_DATE_FORMAT)){
+        add_option( HQ_RENTAL_WPV2_DATE_FORMAT, 'Y-m-d H:i');
+    }
 }
 
+/*
+ * Checks if the Plugin Pages Are Created using Page Name and Title
+ */
 function hq_rental_wpv2_exists_hq_page_by_name_and_title($name, $title)
 {
     $args_search = array(

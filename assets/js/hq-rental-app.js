@@ -8,7 +8,7 @@
         var stmEndDate = false;
         var startDate = false;
         var endDate = false;
-        var dateTimeFormat = 'Y-m-d H:i';
+        var dateTimeFormat = hqDateTimeFormatPickers;
         var dateTimeFormatMoment = 'YYYY-MM-DD HH:mm';
 
         /*Step 1 - Setup*/
@@ -30,10 +30,11 @@
             }
         });
         /*Select a Week Reservations*/
+        /*
         $('#hq-rental-pick-up-date-time').change(function(){
             var addAWeek = moment($('#hq-rental-pick-up-date-time').val(), dateTimeFormatMoment);
             $('#hq-rental-return-date-time').val(addAWeek.add(7,'days').format(dateTimeFormatMoment));
-        });
+        });*/
 
         $('.stm_pickup_location select').on('select2:open', function() {
             $('body').addClass('stm_background_overlay');

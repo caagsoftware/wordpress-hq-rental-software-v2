@@ -32,13 +32,13 @@ define('HQ_RENTAL_WPV2_BASE_DIR', dirname(HQ_RENTAL_WPV2_BASE_FILE));
 /*
  *  Require Files
  */
-require_once ('assets/init.php');
-require_once ('includes/admin/init.php');
-require_once ('includes/api/init.php');
-require_once ('includes/shortcodes/init.php');
+require_once('assets/init.php');
+require_once('includes/admin/init.php');
+require_once('includes/api/init.php');
+require_once('includes/shortcodes/init.php');
 require_once('includes/templates/init.php');
-require_once ('includes/activation.php');
-require_once ('includes/vendor/init.php');
+require_once('includes/activation.php');
+require_once('includes/vendor/init.php');
 
 function hq_rental_wpv2_activation()
 {

@@ -66,7 +66,7 @@
                                     <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"><?php echo $prices->base_price->amount_for_display; ?></td>
                                 </tr>
                                 </tfoot>
-                            </table>Jew p
+                            </table>
                         </div>
                         <div class="stm_rent_table stm_rent_tax_table">
                             <div class="heading heading-font">

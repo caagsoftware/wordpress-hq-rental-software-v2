@@ -13,6 +13,7 @@ $charges = $data['charges'];
 $prices = $data['prices'];
 $selected_car = $data['selected_car'];
 $confirmation = $data['confirmation'];
+$date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
 ?>
 
 <div class="container">
@@ -146,7 +147,7 @@ $confirmation = $data['confirmation'];
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Pick Up Date</h4>
-                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format('Y-m-d H:i') : '--'; ?></div>
+                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format($date_format) : '--'; ?></div>
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Return Location</h4>
@@ -154,14 +155,13 @@ $confirmation = $data['confirmation'];
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Return Date</h4>
-                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format('Y-m-d H:i') : '--'; ?></div>
+                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format($date_format) : '--'; ?></div>
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Client Name</h4>
                                             <div class="content"><?php echo $client->label; ?></div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="hq-rental-reservation-submit-button">Confirm Reservation</button>
                                 </form>
                             </div>
                         </div>

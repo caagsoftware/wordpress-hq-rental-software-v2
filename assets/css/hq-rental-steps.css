@@ -41,7 +41,7 @@ button.hq-rental-reservation-submit-button{
     padding: 25px 30px 35px;
 }
 .hq-rental-active-step{
-    background-color: #f0c540;
+    background-color: #f0c540 !important;
     position: relative;
     padding: 25px 30px 35px;
 }

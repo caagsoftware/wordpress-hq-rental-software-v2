@@ -47,17 +47,14 @@ function hq_rental_wpv2_setting_template() {
 					<th><label class="wp-heading-inline" id="title-prompt-text" for="title">Select Date Format</label>
 					</th>
 					<td>
-						<?php if ( get_option( HQ_RENTAL_WPV2_DATE_FORMAT ) == "YYYY-MM-DD" ): ?>
-							<select name="<?php echo HQ_RENTAL_WPV2_DATE_FORMAT; ?>">
-								<option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
-								<option value="DD-MM-YYYY">DD-MM-YYYY</option>
-							</select>
-						<?php elseif ( get_option( HQ_RENTAL_WPV2_DATE_FORMAT ) == "DD-MM-YYYY" ): ?>
-							<select name="<?php echo HQ_RENTAL_WPV2_DATE_FORMAT; ?>">
-								<option value="YYYY-MM-DD" selected="selected">YYYY-MM-DD</option>
-								<option value="DD-MM-YYYY" selected="selected">DD-MM-YYYY</option>
-							</select>
-						<?php endif; ?>
+                        <select name="<?php echo HQ_RENTAL_WPV2_DATE_FORMAT; ?>">
+                            <option value="Y-m-d H:i" <?php echo ($settings[ HQ_RENTAL_WPV2_DATE_FORMAT ] == 'Y-m-d H:i') ? 'selected="selected"' : ''?>>DD-MM-YYYY</option>
+                            <option value="m-d-Y H:i" <?php echo ($settings[ HQ_RENTAL_WPV2_DATE_FORMAT ] == 'm-d-Y H:i') ? 'selected="selected"' : ''?>>MM-DD-YYYY</option>
+                            <option value="d-m-Y H:i" <?php echo ($settings[ HQ_RENTAL_WPV2_DATE_FORMAT ] == 'd-m-Y H:i') ? 'selected="selected"' : ''?>>DD-MM-YYYY</option>
+                            <option value="d/m/Y H:i" <?php echo ($settings[ HQ_RENTAL_WPV2_DATE_FORMAT ] == 'd/m/Y H:i') ? 'selected="selected"' : ''?>>DD/MM/YYYY</option>
+                            <option value="m/d/Y H:i" <?php echo ($settings[ HQ_RENTAL_WPV2_DATE_FORMAT ] == 'm/d/Y H:i') ? 'selected="selected"' : ''?>>MM/DD/YYYY</option>
+                            <option value="d/m/Y H:i" <?php echo ($settings[ HQ_RENTAL_WPV2_DATE_FORMAT ] == 'd/m/Y H:i') ? 'selected="selected"' : ''?>>DD/MM/YYYY</option>
+                        </select>
 					</td>
 					</tbody>
 				</table>

@@ -2,7 +2,7 @@
     /*
      * Hook Page Template Data With Partial Data
      */
-
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
     $hidden_inputs = $data['hidden_inputs'];
     $hidden_inputs_array = $data['hidden_inputs_array'];
     $client = $data['client'];
@@ -131,7 +131,7 @@
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Pick Up Date</h4>
-                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format('Y-m-d H:i') : '--'; ?></div>
+                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format($date_format) : '--'; ?></div>
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Return Location</h4>
@@ -139,7 +139,7 @@
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Return Date</h4>
-                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format('Y-m-d H:i') : '--'; ?></div>
+                                            <div class="content"><?php echo !empty($pick_up_date) ? $pick_up_date->format($date_format) : '--'; ?></div>
                                         </div>
                                         <div class="single_order_info">
                                             <h4 class="title">Client Name</h4>

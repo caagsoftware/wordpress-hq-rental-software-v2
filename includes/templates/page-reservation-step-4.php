@@ -1,5 +1,6 @@
 <?php
     use Carbon\Carbon;
+    $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
     if(hq_rental_wpv2_is_coming_from_step_3($_POST)){
         $step_3_fields = hq_rental_wpv2_post_data_from_step_3($_POST);
         $charges_step_3 = $step_3_fields->price->selected_insurances;
@@ -9,19 +10,20 @@
         $clients_fields = $clients->fields;
         $hidden_inputs = hq_rental_wpv2_inputs_from_last_step($_POST);
         $hidden_inputs_array = hq_rental_wpv2_get_inputs_from_last_step_arrays('charges', $_POST['charges']);
-        $pick_up_location_worflow = $_POST['pick_up_location_hidden'];
-        $return_location_worflow = $_POST['return_location_hidden'];
-        $pickup_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['pick_up_date_time'],0);
-        $return_date = Carbon::createFromFormat('Y-m-d H:i', $_POST['return_date_time'],0);
+        $pick_up_location_workflow = $_POST['pick_up_location_hidden'];
+        $return_location_workflow = $_POST['return_location_hidden'];
+        $pickup_date = Carbon::createFromFormat($date_format, $_POST['pick_up_date_time'],0);
+        $return_date = Carbon::createFromFormat($date_format, $_POST['return_date_time'],0);
         $_SESSION['step_3_data'] = $charges_step_3;
         $_SESSION['prices'] = $prices;
+        $_SESSION['current_step'] = 4;
         $partials_data = array(
                 'clients_fields'                =>  $clients_fields,
                 'hidden_inputs'                 =>  $hidden_inputs,
                 'hidden_inputs_array'           =>  $hidden_inputs_array,
                 'clients'                       =>  $clients,
-                'pick_up_location_worflow'      =>  $pick_up_location_worflow,
-                'return_location_worflow'       =>  $return_location_worflow,
+                'pick_up_location_workflow'     =>  $pick_up_location_workflow,
+                'return_location_workflow'      =>  $return_location_workflow,
                 'pick_up_date'                  =>  $pickup_date,
                 'return_date'                   =>  $return_date,
                 'charges'                       =>  $charges_step_3,
@@ -41,6 +43,9 @@
     wp_enqueue_script('hq_rental_wpv2_app_init');
     global $post;
 ?>
+    <script>
+        var hqDateTimeFormatPickers = '<?php echo get_option(HQ_RENTAL_WPV2_DATE_FORMAT); ?>';
+    </script>
     <style media="screen">
         .iti-flag {
             background-image: url("<?php echo plugin_dir_url( __FILE__ ) . 'assets/img/flags.png'  ?>");
