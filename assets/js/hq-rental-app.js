@@ -21,6 +21,8 @@
         };
         $('#hq-rental-pick-up-date-time').stm_datetimepicker(step1DateTimePickerConfig);
         $('#hq-rental-return-date-time').stm_datetimepicker(step1DateTimePickerConfig);
+        $('#hq-rental-pick-up-date-time-book-form').stm_datetimepicker(step1DateTimePickerConfig);
+        $('#hq-rental-return-date-time-book-form').stm_datetimepicker(step1DateTimePickerConfig);
         /*Setting the Same Locations CheckBox*/
         $('input[name="return_same"]').on('change', function(){
             if($(this).prop('checked')) {
@@ -124,6 +126,7 @@
                 $('body').removeClass('stm_background_overlay stm-lock');
             }
         });
+
     });
 
     $('.xdsoft_current').css('background-color','#1184bf !important');

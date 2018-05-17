@@ -16,7 +16,7 @@ $locations = $data;
             <div class="wpb_wrapper">
                 <div class="stm_rent_car_form_wrapper style_2 text-left">
                     <div class="stm_rent_car_form">
-                        <form action="/reservation-step-2" method="post">
+                        <form action="/reservation-step-2" method="post" id="hq-rentals-first-step-form">
                             <input type="hidden" name="brand_id" value="<?php echo $locations[0]->brand_id; ?>">
                             <input type="hidden" id="pick_up_location_hidden" name="pick_up_location_hidden" value="" />
                             <input type="hidden" id="return_location_hidden" name="return_location_hidden" value="" />
