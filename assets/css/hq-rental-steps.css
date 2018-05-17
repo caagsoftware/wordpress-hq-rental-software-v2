@@ -21,8 +21,19 @@ button.hq-rental-reservation-submit-button{
     background-color:#f0c540 !important;
     box-shadow: 0 2px 0 #f0c540 !important;
 }
-.stm_rent_car_form h4{
+.stm_rent_car_form h4 {
     padding-bottom: 12px;
+}
+ .hq-rental-book-form-field-wrapper .stm_date_time_input{
+     margin-bottom: 0px !important;
+ }
+.hq-rental-book-form-field-wrapper{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.hq-rental-book-form-field-wrapper h4{
+    padding-bottom: 5px;
+    margin-bottom: 0px !important;
 }
 .stm-template-car_rental .stm_rent_accept_wrapper .hq-rental-reservation-submit-button{
     display: block;

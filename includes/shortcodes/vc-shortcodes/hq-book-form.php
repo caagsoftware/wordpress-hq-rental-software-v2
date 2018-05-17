@@ -111,54 +111,62 @@ class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
                     <input type="hidden" name="brand_id" value="<?php echo $locations[0]->brand_id; ?>">
                     <input type="hidden" id="pick_up_location_hidden" name="pick_up_location_hidden" value="" />
                     <input type="hidden" id="return_location_hidden" name="return_location_hidden" value="" />
-                    <h4>Pick Up Location</h4>
-                    <div class="stm_rent_form_fields">
-                        <div class="stm_pickup_location">
-                            <i class="stm-service-icon-pin"></i>
-                            <select id="pick_up_location" name="pick_up_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-                                <?php foreach ($locations as $location): ?>
-                                    <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <h4>Return Location</h4>
-                    <div class="stm_rent_form_fields">
-                        <h4 class="stm_form_title">Place to pick up the Car*</h4>
-                        <div class="stm_pickup_location">
-                            <i class="stm-service-icon-pin"></i>
-                            <select id="return_location"name="return_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
-                                <?php foreach ($locations as $location): ?>
-                                    <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <h4>PickUp Date</h4>
-                    <div class="stm_rent_form_fields stm_rent_form_fields-drop">
-                        <div class="stm_same_return ">
-                            <h4 class="stm_form_title">Place to drop the Car*</h4>
-                            <div class="stm_pickup_location stm_drop_location">
+                    <div class="hq-rental-book-form-field-wrapper">
+                        <h4>Pick Up Location</h4>
+                        <div class="stm_rent_form_fields">
+                            <div class="stm_pickup_location">
                                 <i class="stm-service-icon-pin"></i>
+                                <select id="pick_up_location" name="pick_up_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                    <?php foreach ($locations as $location): ?>
+                                        <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
-                        <div class="stm_date_time_input">
-                            <div class="stm_date_input"> <input id="hq-rental-pick-up-date-time-book-form" type="text" class="stm-date-timepicker-end" name="pick_up_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
-                        </div>
                     </div>
-                    <h4>Return Date</h4>
-                    <div class="stm_rent_form_fields stm_rent_form_fields-drop">
-                        <div class="stm_same_return ">
-                            <h4 class="stm_form_title">Place to drop the Car*</h4>
-                            <div class="stm_pickup_location stm_drop_location">
+                    <div class="hq-rental-book-form-field-wrapper">
+                        <h4>Return Location</h4>
+                        <div class="stm_rent_form_fields">
+                            <h4 class="stm_form_title">Place to pick up the Car*</h4>
+                            <div class="stm_pickup_location">
                                 <i class="stm-service-icon-pin"></i>
-                                <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-drop_location-s3-container"><span class="select2-selection__rendered" id="select2-drop_location-s3-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <select id="return_location"name="return_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                    <?php foreach ($locations as $location): ?>
+                                        <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
-                        <div class="stm_date_time_input">
-                            <h4 class="stm_form_title">Drop Date/Time*</h4>
-                            <div class="stm_date_input">
-                                <input id="hq-rental-return-date-time-book-form" type="text" class="stm-date-timepicker-end" name="return_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i>
+                    </div>
+                    <div class="hq-rental-book-form-field-wrapper">
+                        <h4>PickUp Date</h4>
+                        <div class="stm_rent_form_fields stm_rent_form_fields-drop">
+                            <div class="stm_same_return ">
+                                <h4 class="stm_form_title">Place to drop the Car*</h4>
+                                <div class="stm_pickup_location stm_drop_location">
+                                    <i class="stm-service-icon-pin"></i>
+                                </div>
+                            </div>
+                            <div class="stm_date_time_input">
+                                <div class="stm_date_input"> <input id="hq-rental-pick-up-date-time-book-form" type="text" class="stm-date-timepicker-end" name="pick_up_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hq-rental-book-form-field-wrapper">
+                        <h4>Return Date</h4>
+                        <div class="stm_rent_form_fields stm_rent_form_fields-drop">
+                            <div class="stm_same_return ">
+                                <h4 class="stm_form_title">Place to drop the Car*</h4>
+                                <div class="stm_pickup_location stm_drop_location">
+                                    <i class="stm-service-icon-pin"></i>
+                                    <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-drop_location-s3-container"><span class="select2-selection__rendered" id="select2-drop_location-s3-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                </div>
+                            </div>
+                            <div class="stm_date_time_input">
+                                <h4 class="stm_form_title">Drop Date/Time*</h4>
+                                <div class="stm_date_input">
+                                    <input id="hq-rental-return-date-time-book-form" type="text" class="stm-date-timepicker-end" name="return_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
