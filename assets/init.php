@@ -13,6 +13,8 @@ function hq_rental_wpv2_assets_registration()
     wp_register_script('hq_rental_wpv2_select2_js', plugin_dir_url( __FILE__) . 'js/select2.full.min.js', array('jquery'));
     wp_register_script('hq_rental_wpv2_intl_phone_js', plugin_dir_url( __FILE__) . 'js/intlTelInput.min.js', array('jquery'));
     wp_register_script('hq_rental_wpv2_intl_phone_utils_js', plugin_dir_url( __FILE__) . 'js/utils.js', array('jquery'));
+    wp_register_style('caag-rental-font-awesome', plugin_dir_url(__FILE__) . 'css/fontawesome-all.min.css');
+
 }
 add_action('wp_enqueue_scripts', 'hq_rental_wpv2_assets_registration');
 
@@ -22,4 +24,5 @@ function hq_rental_wpv2_assets()
     wp_enqueue_script('hq_rental_wpv2_moment');
     wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
     wp_enqueue_script('hq_rental_wpv2_app_init');
+    wp_enqueue_style('caag-rental-font-awesome');
 }

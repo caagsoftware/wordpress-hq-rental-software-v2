@@ -21,16 +21,9 @@ $date_format = get_option( HQ_RENTAL_WPV2_DATE_FORMAT );
         <div class="col-md-12">
             <div class="row stm_rental_archive_top">
                 <div class="col-md-7 col-sm-7">
-                    <h2 class="title">Checkout</h2>
+                    <h2 class="title">Reservation Summary</h2>
                 </div>
                 <div class="col-md-5 col-sm-5">
-                    <div class="stm_rental_coupon">
-                        <form class="stm_checkout_coupon" method="post">
-                            <p class="form-row form-row-first"> <input type="text" name="coupon_code" class="input-text" placeholder="Coupon code" id="coupon_code" value=""></p>
-                            <p class="form-row form-row-last"> <input type="submit" class="button" name="apply_coupon" value="Apply coupon"></p>
-                            <div class="clear"></div>
-                        </form>
-                    </div>
                 </div>
             </div>
             <div class="row">
