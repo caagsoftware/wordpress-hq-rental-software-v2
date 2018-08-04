@@ -31,7 +31,7 @@
                                                     <div class="s_title"><?php echo $car->class->short_description_for_website->en; ?></div>
                                                     <div class="infos hq-rental-features">
                                                         <?php foreach ($car->class->features as $feature): ?>
-                                                            <div class="single_info stm_single_info_font_stm-rental-seats"><i class="<?php echo $feature->icon; ?>"></i> <span><?php echo $feature->label; ?></span></div>
+                                                            <div class="single_info stm_single_info_font_stm-rental-seats"><i class="<?php echo hq_rental_wpv2_get_icon($feature->icon); ?>"></i> <span><?php echo $feature->label; ?></span></div>
                                                         <?php endforeach; ?>
                                                     </div>
                                                 </div>

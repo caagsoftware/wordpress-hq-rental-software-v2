@@ -218,10 +218,18 @@ function hq_rental_wpv2_get_post_data_step_2($post_data)
     $pick_up_date = Carbon::createFromFormat($date_format, $post_data['pick_up_date_time']);
     $return_date = Carbon::createFromFormat($date_format, $post_data['return_date_time']);
     $body['pick_up_location'] = $post_data['pick_up_location'];
+    $body['return_location'] = $post_data['return_location'];
     $body['pick_up_date'] = $pick_up_date->toDateString();
     $body['pick_up_time'] = $pick_up_date->format('H:i');
     $body['return_date'] = $return_date->toDateString();
     $body['return_time'] = $return_date->format('H:i');
+    if(!empty($post_data['flight_arrival_date_date'])){
+        $body['flight_arrival_date_date'] = $pick_up_date->toDateString();
+        $body['flight_arrival_date_time'] = $return_date->format('H:i');
+    }
+    if(!empty($post_data['flight_number'])){
+        $body['flight_number'] = $post_data['flight_number'];
+    }
     $body['brand'] = $post_data['brand_id'];
     $args['body'] = $body;
     return $args;

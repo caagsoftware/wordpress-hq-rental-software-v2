@@ -151,3 +151,12 @@ function hq_rental_wpv2_banner_third_box_background()
         return 'hq-rental-non-active-step';
     }
 }
+
+function hq_rental_wpv2_get_icon($feature_icon)
+{
+    if((strpos($feature_icon, 'fas fa') !== false) or (strpos($feature_icon, 'fab fa') !== false)){
+        return $feature_icon;
+    }else{
+        return 'fas fa-'. $feature_icon;
+    }
+}

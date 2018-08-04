@@ -40,6 +40,48 @@ vc_map(
             ),
             array(
                 'type' => 'textfield',
+                'heading' => esc_html__('Flight Arrival Date Label', 'motors'),
+                'param_name' => 'flight_date_label',
+                'value' => '',
+                'description' => esc_html__('Flight Arrival Date Label')
+            ),
+            array(
+                'type' => 'textfield',
+                'heading' => esc_html__('Flight Arrival Date Placeholder', 'motors'),
+                'param_name' => 'flight_date_placeholder',
+                'value' => '',
+                'description' => esc_html__('Flight Arrival Date Placeholder')
+            ),
+            array(
+                'type' => 'textfield',
+                'heading' => esc_html__('Flight Number Label', 'motors'),
+                'param_name' => 'flight_number_label',
+                'value' => '',
+                'description' => esc_html__('Flight Number Label')
+            ),
+            array(
+                'type' => 'textfield',
+                'heading' => esc_html__('Flight Number Placeholder', 'motors'),
+                'param_name' => 'flight_number_placeholder',
+                'value' => '',
+                'description' => esc_html__('Flight Number Placeholder')
+            ),
+            array(
+                'type' => 'textfield',
+                'heading' => esc_html__('Return Location Label', 'motors'),
+                'param_name' => 'return_location_label',
+                'value' => '',
+                'description' => esc_html__('Enter the return Location Label')
+            ),
+            array(
+                'type' => 'textfield',
+                'heading' => esc_html__('Return Location Placeholder', 'motors'),
+                'param_name' => 'return_location_placeholder',
+                'value' => '',
+                'description' => esc_html__('Enter the return Location Placeholder')
+            ),
+            array(
+                'type' => 'textfield',
                 'heading' => esc_html__('Pick Up Date Label', 'motors'),
                 'param_name' => 'pick_up_date_label',
                 'value' => '',
@@ -72,13 +114,6 @@ vc_map(
                 'param_name' => 'button_text',
                 'value' => '',
                 'description' => esc_html__('Enter the Button Text')
-            ),
-            array(
-                'type' => 'textfield',
-                'heading' => esc_html__('Reservation Page Link', 'motors'),
-                'param_name' => 'action_link',
-                'value' => '',
-                'description' => esc_html__('Reservation Page Link')
             )
         )
     )
@@ -87,16 +122,20 @@ vc_map(
 class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
     protected function content( $atts, $content = null ) {
         extract( shortcode_atts( array(
-            'pick_up_location_label'	=>	'',
+            'pick_up_location_label'	    =>	'',
             'pick_up_location_placeholder'	=>	'',
-            'pick_up_date_label'	=>	'',
-            'pick_up_date_placeholder'	=>	'',
-            'return_date_label'		=>	'',
-            'return_date_placeholder'	=>	'',
-            'button_text'               =>  '',
-            'alignment'     =>  'text-left',
-            'action_link'	=>	''
-
+            'return_location_label'	    =>	'',
+            'return_location_placeholder'	=>	'',
+            'pick_up_date_label'	        =>	'',
+            'pick_up_date_placeholder' 	    =>	'',
+            'return_date_label'		        =>	'',
+            'return_date_placeholder'	    =>	'',
+            'flight_date_label'             =>  '',
+            'flight_date_placeholder'       =>  '',
+            'flight_number_label'           =>  '',
+            'flight_number_placeholder'     =>  '',
+            'button_text'                   =>  '',
+            'alignment'                     =>  'text-left'
         ), $atts ) );
         hq_rental_wpv2_assets();
         $api_call = hq_rental_wpv2_api_get_locations_step_1();
@@ -112,25 +151,47 @@ class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
                     <input type="hidden" id="pick_up_location_hidden" name="pick_up_location_hidden" value="" />
                     <input type="hidden" id="return_location_hidden" name="return_location_hidden" value="" />
                     <div class="hq-rental-book-form-field-wrapper">
-                        <h4>Pick Up Location</h4>
+                        <h4><?php echo $pick_up_location_label; ?></h4>
                         <div class="stm_rent_form_fields">
                             <div class="stm_pickup_location">
                                 <i class="stm-service-icon-pin"></i>
-                                <select id="pick_up_location" name="pick_up_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                <select id="pick_up_location" name="pick_up_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" required="required">
+                                        <option><?php echo $pick_up_location_placeholder; ?></option>
                                     <?php foreach ($locations as $location): ?>
-                                        <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
+                                        <option value="<?php echo $location->id; ?>" data-is-airport="<?php echo $location->is_airport; ?>"><?php echo $location->name; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                     </div>
+                    <div id="hq-airport-fields-wrapper">
+                        <div class="hq-rental-book-form-field-wrapper">
+                            <h4 ><?php echo $flight_date_label; ?></h4>
+                            <div class="stm_rent_form_fields">
+                                <div class="stm_pickup_location">
+                                    <i class="fa fa-plane" style="padding-top:5px;"></i>
+                                    <input id="hq-rental-airport-date-time-book-form" type="text" class="stm-date-timepicker-end hq-airport-input" name="flight_arrival_date_date" required="required" placeholder="<?php echo $flight_date_placeholder; ?>" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hq-rental-book-form-field-wrapper">
+                            <h4><?php echo $flight_number_label; ?></h4>
+                            <div class="stm_rent_form_fields">
+                                <div class="stm_pickup_location">
+                                    <i class="fa fa-plane" style="padding-top:5px;"></i>
+                                    <input type="text" class="stm-date-timepicker-end hq-airport-input" name="flight_number" required="required" placeholder="<?php echo $flight_number_placeholder; ?>" required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="hq-rental-book-form-field-wrapper">
-                        <h4>Return Location</h4>
+                        <h4><?php echo $return_location_label; ?></h4>
                         <div class="stm_rent_form_fields">
                             <h4 class="stm_form_title">Place to pick up the Car*</h4>
                             <div class="stm_pickup_location">
                                 <i class="stm-service-icon-pin"></i>
-                                <select id="return_location"name="return_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">
+                                <select id="return_location" name="return_location" data-class="stm_rent_location" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true" required="required">
+                                    <option><?php echo $return_location_placeholder; ?></option>
                                     <?php foreach ($locations as $location): ?>
                                         <option value="<?php echo $location->id; ?>"><?php echo $location->name; ?></option>
                                     <?php endforeach; ?>
@@ -138,30 +199,20 @@ class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
                             </div>
                         </div>
                     </div>
-                    <div class="hq-rental-book-form-field-wrapper">
-                        <h4>PickUp Date</h4>
+                    <div id="hq-rental-book-form-pick-up-date-wrapper" class="hq-rental-book-form-field-wrapper">
+                        <h4><?php echo $pick_up_date_label; ?></h4>
                         <div class="stm_rent_form_fields stm_rent_form_fields-drop">
-                            <div class="stm_same_return ">
-                                <h4 class="stm_form_title">Place to drop the Car*</h4>
-                                <div class="stm_pickup_location stm_drop_location">
-                                    <i class="stm-service-icon-pin"></i>
-                                </div>
-                            </div>
                             <div class="stm_date_time_input">
-                                <div class="stm_date_input"> <input id="hq-rental-pick-up-date-time-book-form" type="text" class="stm-date-timepicker-end" name="pick_up_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                                <div class="stm_date_input">
+                                    <input id="hq-rental-pick-up-date-time-book-form" type="text" class="stm-date-timepicker-end" name="pick_up_date_time" value="" placeholder="<?php echo $pick_up_date_placeholder; ?>" required="required" readonly="">
+                                    <i class="stm-icon-date"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="hq-rental-book-form-field-wrapper">
                         <h4>Return Date</h4>
                         <div class="stm_rent_form_fields stm_rent_form_fields-drop">
-                            <div class="stm_same_return ">
-                                <h4 class="stm_form_title">Place to drop the Car*</h4>
-                                <div class="stm_pickup_location stm_drop_location">
-                                    <i class="stm-service-icon-pin"></i>
-                                    <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-drop_location-s3-container"><span class="select2-selection__rendered" id="select2-drop_location-s3-container" title="Choose office">Choose office</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                </div>
-                            </div>
                             <div class="stm_date_time_input">
                                 <h4 class="stm_form_title">Drop Date/Time*</h4>
                                 <div class="stm_date_input">
@@ -174,6 +225,16 @@ class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
                 </form>
             </div>
         </div>
+        <style>
+            .hq-airport-input{
+                background-color:#fff !important;
+                border-color: #fff !important;
+                padding-left:35px !important;
+            }
+            #hq-airport-fields-wrapper{
+                display: none;
+            }
+        </style>
         <?php
     }
 }

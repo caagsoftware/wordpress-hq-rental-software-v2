@@ -9,7 +9,7 @@ function hq_rental_wpv2_assets_registration()
     wp_register_style('hq_rental_wpv2_select2_css', plugin_dir_url( __FILE__) . 'css/select2.min.css' );
     wp_register_style('hq_rental_wpv2_intl_phones_css', plugin_dir_url( __FILE__) . 'css/intlTelInput.css' );
     wp_register_script('hq_rental_wpv2_moment', plugin_dir_url( __FILE__) . 'js/moment.js', array('jquery'));
-    wp_register_script('hq_rental_wpv2_app_init', plugin_dir_url( __FILE__) . 'js/hq-rental-app.js', array('jquery'), '0.2.0', true);
+    wp_register_script('hq_rental_wpv2_app_init', plugin_dir_url( __FILE__) . 'js/hq-rental-app.js', array('jquery'), '0.3.1', true);
     wp_register_script('hq_rental_wpv2_select2_js', plugin_dir_url( __FILE__) . 'js/select2.full.min.js', array('jquery'));
     wp_register_script('hq_rental_wpv2_intl_phone_js', plugin_dir_url( __FILE__) . 'js/intlTelInput.min.js', array('jquery'));
     wp_register_script('hq_rental_wpv2_intl_phone_utils_js', plugin_dir_url( __FILE__) . 'js/utils.js', array('jquery'));
