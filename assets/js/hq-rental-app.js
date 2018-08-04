@@ -19,10 +19,30 @@
             closeOnDateSelect: true,
             defaultDate: stmToday
         };
+
+        /*
+        * Airport Slide Up Configuration
+        */
+        $('#pick_up_location').on('change',function(){
+            if($('#pick_up_location option:selected').attr("data-is-airport") === "1"){
+                $("#hq-rental-book-form-pick-up-date-wrapper").slideUp();
+                $("#hq-airport-fields-wrapper").slideDown();
+            }else{
+                $("#hq-rental-book-form-pick-up-date-wrapper").slideDown();
+                $("#hq-airport-fields-wrapper").slideUp();
+            }
+        });
+
         $('#hq-rental-pick-up-date-time').stm_datetimepicker(step1DateTimePickerConfig);
         $('#hq-rental-return-date-time').stm_datetimepicker(step1DateTimePickerConfig);
         $('#hq-rental-pick-up-date-time-book-form').stm_datetimepicker(step1DateTimePickerConfig);
         $('#hq-rental-return-date-time-book-form').stm_datetimepicker(step1DateTimePickerConfig);
+        $('#hq-rental-airport-date-time-book-form').stm_datetimepicker(step1DateTimePickerConfig);
+
+        $('#hq-rental-airport-date-time-book-form').on("change", function(){
+            $('#hq-rental-pick-up-date-time-book-form').val( $('#hq-rental-airport-date-time-book-form').val() );
+            $('#hq-rental-pick-up-date-time').val( $('#hq-rental-airport-date-time-book-form').val() );
+        });
         /*Setting the Same Locations CheckBox*/
         $('input[name="return_same"]').on('change', function(){
             if($(this).prop('checked')) {
@@ -47,7 +67,7 @@
             $('body').removeClass('stm_background_overlay');
         });
 
-        $('#pick_up_location').change(function(){
+        $('#pick_up_location').on("change", function(){
             if($('#return_same_location').is(':checked')) {
                 $('#return_location').val($('#pick_up_location').val());
             }
@@ -126,6 +146,7 @@
                 $('body').removeClass('stm_background_overlay stm-lock');
             }
         });
+        console
 
     });
 
@@ -152,6 +173,10 @@
     });
     $('#pick_up_location').on("change", function(){
         $('#pick_up_location_hidden').val($('#pick_up_location option:selected').text());
+        if($('#return_same_location').is(':checked')) {
+            $('#return_location_hidden').val($('#pick_up_location option:selected').text());
+        }
+
     });
     $('#return_location').on("change", function(){
         $('#return_location_hidden').val($('#return_location option:selected').text());
