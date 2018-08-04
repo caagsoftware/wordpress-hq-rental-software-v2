@@ -14,6 +14,7 @@ Text Domain:  hq-rental-wp-plugin-v2
 /*
  * Plugin Settings Variables
  */
+define('HQ_RENTAL_WPV2_VERSION', '0.0.1');
 define('HQ_RENTAL_WPV2_USER_TOKEN', 'hq_rental_wpv2_user_token');
 define('HQ_RENTAL_WPV2_TENANT_TOKEN', 'hq_rental_wpv2_tenant_token');
 define('HQ_RENTAL_WPV2_DATE_FORMAT', 'hq_rental_wpv2_date_format');
