@@ -72,13 +72,6 @@ vc_map(
                 'param_name' => 'button_text',
                 'value' => '',
                 'description' => esc_html__('Enter the Button Text')
-            ),
-            array(
-                'type' => 'textfield',
-                'heading' => esc_html__('Reservation Page Link', 'motors'),
-                'param_name' => 'action_link',
-                'value' => '',
-                'description' => esc_html__('Reservation Page Link')
             )
         )
     )
@@ -87,16 +80,14 @@ vc_map(
 class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
     protected function content( $atts, $content = null ) {
         extract( shortcode_atts( array(
-            'pick_up_location_label'	=>	'',
+            'pick_up_location_label'	    =>	'',
             'pick_up_location_placeholder'	=>	'',
-            'pick_up_date_label'	=>	'',
-            'pick_up_date_placeholder'	=>	'',
-            'return_date_label'		=>	'',
-            'return_date_placeholder'	=>	'',
-            'button_text'               =>  '',
-            'alignment'     =>  'text-left',
-            'action_link'	=>	''
-
+            'pick_up_date_label'	        =>	'',
+            '$'	    =>	'',
+            'return_date_label'		        =>	'',
+            'return_date_placeholder'	    =>	'',
+            'button_text'                   =>  '',
+            'alignment'                     =>  'text-left'
         ), $atts ) );
         hq_rental_wpv2_assets();
         $api_call = hq_rental_wpv2_api_get_locations_step_1();
@@ -112,7 +103,7 @@ class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
                     <input type="hidden" id="pick_up_location_hidden" name="pick_up_location_hidden" value="" />
                     <input type="hidden" id="return_location_hidden" name="return_location_hidden" value="" />
                     <div class="hq-rental-book-form-field-wrapper">
-                        <h4>Pick Up Location</h4>
+                        <h4><?php echo $pick_up_location_label; ?></h4>
                         <div class="stm_rent_form_fields">
                             <div class="stm_pickup_location">
                                 <i class="stm-service-icon-pin"></i>
@@ -125,7 +116,7 @@ class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
                         </div>
                     </div>
                     <div class="hq-rental-book-form-field-wrapper">
-                        <h4>Return Location</h4>
+                        <h4><?php echo $pick_up_location_placeholder; ?></h4>
                         <div class="stm_rent_form_fields">
                             <h4 class="stm_form_title">Place to pick up the Car*</h4>
                             <div class="stm_pickup_location">
@@ -148,7 +139,10 @@ class WPBakeryShortCode_hq_rental_form extends WPBakeryShortCode{
                                 </div>
                             </div>
                             <div class="stm_date_time_input">
-                                <div class="stm_date_input"> <input id="hq-rental-pick-up-date-time-book-form" type="text" class="stm-date-timepicker-end" name="pick_up_date_time" value="" placeholder="Return Date" required="" readonly=""> <i class="stm-icon-date"></i></div>
+                                <div class="stm_date_input">
+                                    <input id="hq-rental-pick-up-date-time-book-form" type="text" class="stm-date-timepicker-end" name="pick_up_date_time" value="" placeholder="<?php echo $pick_up_date_placeholder; ?>" required="" readonly="">
+                                    <i class="stm-icon-date"></i>
+                                </div>
                             </div>
                         </div>
                     </div>

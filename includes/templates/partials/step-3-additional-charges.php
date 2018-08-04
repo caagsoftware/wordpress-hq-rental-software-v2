@@ -4,6 +4,22 @@
     $selected_car = $data['selected_car'];
     $prices = $data['prices'];
 ?>
+<style>
+    .hq-charges-icons-wrapper{
+
+    }
+    .hq-charges-icon{
+        font-size: 40px;
+        color: #f0c540;
+        margin-top: 10px;
+    }
+    .hq-mandatory-tag{
+        color: #6c98e1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -18,7 +34,7 @@
                         <form class="stm_checkout_coupon" method="post">
                             <p class="form-row form-row-first"> <input type="text" name="coupon_code" class="input-text" placeholder="Coupon code" id="coupon_code" value=""></p>
                             <p class="form-row form-row-last"> <input type="submit" class="button" name="apply_coupon" value="Apply coupon"></p>
-                            <div class="clear"></div>
+                            <div class="clear"></di v>
                         </form>-->
                     </div>
                 </div>
@@ -32,7 +48,9 @@
                                 <div class="stm_rental_options_archive">
                                     <div class="stm_rental_option">
                                         <div class="image">
-                                            <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                            <div class="single_info stm_single_info_font_stm-rental-seats hq-charges-icons-wrapper">
+                                                <i class="<?php echo hq_rental_wpv2_get_icon($charge->icon); ?> hq-charges-icon"></i>
+                                            </div>
                                         </div>
                                         <div class="stm_rental_option_content">
                                             <div class="content">
@@ -75,12 +93,14 @@
                                 <div class="stm_rental_options_archive">
                                     <div class="stm_rental_option">
                                         <div class="image">
-                                            <img width="1" height="1" src="http://motors.stylemixthemes.com/rent-a-car/wp-content/uploads/sites/7/2017/01/waiver.svg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                            <div class="single_info stm_single_info_font_stm-rental-seats hq-charges-icons-wrapper">
+                                                <i class="<?php echo hq_rental_wpv2_get_icon($charge->icon); ?> hq-charges-icon"></i>
+                                            </div>
                                         </div>
                                         <div class="stm_rental_option_content">
                                             <div class="content">
                                                 <div class="title">
-                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><span> Mandatory</span><?php endif; ?>
+                                                    <h4><?php echo $charge->name; ?></h4><?php if($charge->mandatory): ?><h6><span class="colored hq-mandatory-tag">Mandatory</span></h6><?php endif; ?>
                                                     <?php if($charge->recommended): ?><h6><span class="colored hq-recommended-tag">RECOMMENDED</span></h6><?php endif; ?>
                                                 </div>
                                                 <div class="stm-more"><a href="#"> <span>More information</span> <i class="fa fa-angle-down"></i></a></div>

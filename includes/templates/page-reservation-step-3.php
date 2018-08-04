@@ -33,6 +33,7 @@
         wp_redirect('/reservation-step-1');
     }
     get_header();
+    hq_rental_wpv2_assets();
     wp_enqueue_style('hq_rental_wpv2_styles_steps_styles');
     wp_enqueue_script('hq_rental_wpv2_app_init');
     global $post;
