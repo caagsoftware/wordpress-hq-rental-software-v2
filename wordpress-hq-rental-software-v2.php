@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name:  HQ Rental Wordpress Integration
+Plugin Name:  HQ Rental Wordpress Integration WPV2
 Plugin URI:   https://hqrentalsoftware.com
 Description:  HQ Rental Software Wordpress Integration
 Version:      0.0.1
